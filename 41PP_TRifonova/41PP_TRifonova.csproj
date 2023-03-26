@@ -65,11 +65,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WindowUpdateNazvanie.xaml.cs">
+      <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
+    </Compile>
+    <Page Include="pages\PageBookUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\PageAddBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowAddCount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,7 +129,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Base.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ClassCatalog.cs" />
+    <Compile Include="classPages\ClassBookscs.cs" />
+    <Compile Include="classPages\ClassCatalog.cs" />
     <Compile Include="classPages\ClassAddAvtor.cs" />
     <Compile Include="classPages\BD.cs" />
     <Compile Include="Books.cs">
@@ -146,6 +158,9 @@
     <Compile Include="Libraries.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\PageBookUpdate.xaml.cs">
+      <DependentUpon>PageBookUpdate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\PageAddBook.xaml.cs">
       <DependentUpon>PageAddBook.xaml</DependentUpon>
     </Compile>
@@ -160,6 +175,9 @@
     </Compile>
     <Compile Include="SubDirectory.cs">
       <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="windows\WindowAddCount.xaml.cs">
+      <DependentUpon>WindowAddCount.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\WindowAddAvtor.xaml.cs">
       <DependentUpon>WindowAddAvtor.xaml</DependentUpon>
@@ -177,6 +195,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WindowUpdateNazvanie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

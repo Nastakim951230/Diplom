@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_41PP_TRifonova"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1000"
       Title="PageAddBook">
 
     <Grid>
@@ -68,11 +68,11 @@
           IsTextSearchEnabled="True" IsEditable="True" Margin="0,10,0,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="izdatelstvo_SelectionChanged">
                            
                         </ComboBox>
-                        <TextBox Name="data" Height="22"   Style="{StaticResource MainThemeTextBox}"></TextBox>
-                        <TextBox Name="isbn" Height="22"   Style="{StaticResource MainThemeTextBox}"></TextBox>
-                        <TextBox Name="countStr" Height="22"  Style="{StaticResource MainThemeTextBox}"></TextBox>
+                        <TextBox Name="data" Height="22" PreviewTextInput="data_PreviewTextInput" MaxLength="4" Style="{StaticResource MainThemeTextBox}"></TextBox>
+                        <TextBox Name="isbn" Height="22"  PreviewTextInput="isbn_PreviewTextInput" MaxLength="17"  Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
+                        <TextBox Name="countStr" Height="22" PreviewTextInput="countStr_PreviewTextInput" Style="{StaticResource MainThemeTextBox}"></TextBox>
                         <ComboBox Name="restrictions"  Margin="0,8,0,0" Style="{StaticResource MainThemeComboBox}"></ComboBox>
-                        <TextBox Name="count" Height="22" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
+                        <TextBox Name="count" Height="22" PreviewTextInput="countStr_PreviewTextInput" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
                     </StackPanel>
                     <Grid Grid.Column="2">
                         <StackPanel Margin="10,0,10,0">
@@ -106,10 +106,7 @@
                                     <Grid>
                                         <StackPanel HorizontalAlignment="Left">
                                             <TextBlock Text="{Binding avtor}"></TextBlock>
-                                           
-                                        </StackPanel>
-                                        <StackPanel HorizontalAlignment="Right">
-                                            <CheckBox></CheckBox>
+
                                         </StackPanel>
                                     </Grid>
                                 </Border>
@@ -136,7 +133,7 @@
                     <ListView Name="listganre" Background="#CCE9F5"  HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Каталог" Width="200" DisplayMemberBinding="{Binding catalogGamr}"></GridViewColumn>
+                                <GridViewColumn  Header="Каталог" Width="200" DisplayMemberBinding="{Binding catalogGamr}"></GridViewColumn>
                                 <GridViewColumn Header="Подкаталог" Width="250" DisplayMemberBinding="{Binding SubDirectory.SubDirectory1}"></GridViewColumn>
                                 <GridViewColumn Header="Жанр" Width="500" DisplayMemberBinding="{Binding Ganre}"></GridViewColumn>
                             </GridView>

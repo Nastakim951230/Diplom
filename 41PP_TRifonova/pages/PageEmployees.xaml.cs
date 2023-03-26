@@ -25,6 +25,11 @@ namespace _41PP_TRifonova
         {
             InitializeComponent();
             this.employees = employees;
+            if(employees.RoleID==1)
+            {
+                addEmployee.Visibility=Visibility.Visible;  
+            }
+
             string name="";
             string othestvo="";
             for(int i=0; i<employees.Name.Length; i++)
@@ -71,7 +76,8 @@ namespace _41PP_TRifonova
             }
             CBGanre.SelectedIndex = 0;
 
-
+            listBook.ItemsSource = BD.bD.Books.ToList();
+            TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
         }
 
         private void search_TextChanged(object sender, TextChangedEventArgs e)
@@ -179,6 +185,26 @@ namespace _41PP_TRifonova
         private void addBook_Click(object sender, RoutedEventArgs e)
         {
             FrameNavigate.per.Navigate(new PageAddBook(employees));
+        }
+
+        private void update_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
+
+            Books books=BD.bD.Books.FirstOrDefault(x=>x.BookID==index);
+
+            FrameNavigate.per.Navigate(new PageBookUpdate(employees,books));
+        }
+
+        private void booking_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void toBook_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

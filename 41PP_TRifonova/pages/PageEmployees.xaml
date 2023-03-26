@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1000"
       Title="PageEmployees">
-
+    <Page.Resources>
+        <BitmapImage x:Key="defaultImage" UriSource="../image/ping.png"></BitmapImage>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
@@ -42,9 +44,10 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button Name="Order" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Заказы</Button>
                 <Button Name="returnBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Возврат</Button>
-                <Button Name="booking" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Бронирование</Button>
+                <Button Name="booking" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="booking_Click">Бронирование</Button>
                 <Button Name="addBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="addBook_Click">Добавить книгу</Button>
-                <Button Name="addEmployee" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Добавить сотрудника</Button>
+                <Button Name="addEmployee" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0">Добавить сотрудника</Button>
+                <Button Name="addLibrarisBook" Template="{StaticResource MainThemeButton}"  Margin="0,0,5,0">Привоз</Button>
             </StackPanel>
         </StackPanel>
 
@@ -63,8 +66,27 @@
                 </Menu>
             </StackPanel>
         <Grid Grid.Row="3">
-            <ListView Name="listBook">
-                
+            <ListView Name="listBook" Margin="20,0,20,0" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Left"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10,0,10,0">
+                            <Grid Width="140" Height="375">
+                                <StackPanel>
+                                    <Image Width="150" Height="170" Source="{Binding Photo, TargetNullValue={StaticResource defaultImage}}"/>
+                                    <TextBlock Text="{Binding Nazvanie}" Style="{StaticResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
+                                    <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
+                                    <Button Uid="{Binding BookID}" Name="update" Template="{StaticResource MainThemeButton}" Click="update_Click">Редактировать</Button>
+                                    <Button Uid="{Binding BookID}" Name="toBook" Template="{StaticResource MainThemeButton}" Click="toBook_Click">Бронировать</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
     </Grid>

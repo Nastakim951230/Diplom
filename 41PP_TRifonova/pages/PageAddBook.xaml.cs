@@ -29,9 +29,10 @@ namespace _41PP_TRifonova
     public partial class PageAddBook : Page
     {
         Employees employees;
+        
         string path = null;  // путь к картинке
         byte[] Barray = null;
-
+        Books books;
 
         void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
@@ -212,7 +213,140 @@ namespace _41PP_TRifonova
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
+            if (MessageBox.Show("Вы точно хотите добавить эту книгу?", "Вопрос", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    if (nazvanie.Text == "" || data.Text == "" || izdatelstvo.SelectedIndex == 0 || isbn.Text == "" || countStr.Text == "" ||  count.Text == "" || listganre.SelectedItem==null || listAvtor.SelectedItem==null)
+                    {
+                        MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        DateTime dateTime = DateTime.Today;
+                        Books book=BD.bD.Books.FirstOrDefault(x=>x.Nazvanie==nazvanie.Text);
 
+                        if (Convert.ToInt32(data.Text) <= Convert.ToInt32(dateTime.ToString("yyyy")))
+                        {
+                            if (book == null)
+                            {
+                                books = new Books();
+
+
+
+
+                                books.Nazvanie = nazvanie.Text;
+
+                                books.IDPublishingHouse = izdatelstvo.SelectedIndex;
+                                books.Year = Convert.ToInt32(data.Text);
+                                books.ISBN = isbn.Text;
+                                books.Pages = Convert.ToInt32(countStr.Text);
+                                if (restrictions.SelectedIndex == 0)
+                                {
+                                    books.RestrictionsID = null;
+                                }
+                                else
+                                {
+                                    books.RestrictionsID = restrictions.SelectedIndex;
+                                }
+
+                                if (descrition.Text == "")
+                                {
+                                    books.Description = null;
+
+                                }
+                                else
+                                {
+                                    books.Description = descrition.Text;
+                                }
+                                if (Barray == null)
+                                {
+                                    books.Photo = null;
+                                }
+                                else
+                                {
+                                    books.Photo = Barray;
+                                }
+                                BD.bD.Books.Add(books);
+
+
+                                List<BooksAndAuthors> authors = BD.bD.BooksAndAuthors.Where(x => x.BookID == books.BookID).ToList();
+                                // если список не пустой, удаляем из него всех авторов
+                                if (authors.Count > 0)
+                                {
+                                    foreach (BooksAndAuthors t in authors)
+                                    {
+                                        BD.bD.BooksAndAuthors.Remove(t);
+                                    }
+                                }
+
+
+                                foreach (Authors bf in listAvtor.SelectedItems)
+                                {
+                                    BooksAndAuthors booksAndAuthors = new BooksAndAuthors()  // объект для записи в таблицу TraitsCat
+                                    {
+                                        BookID = books.BookID,
+                                        AuthorID = bf.AuthorID,
+                                    };
+                                    BD.bD.BooksAndAuthors.Add(booksAndAuthors);
+
+                                }
+
+
+                                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDBook == books.BookID).ToList();
+                                // если список не пустой, удаляем из него все жанры
+                                if (booksAndGanres.Count > 0)
+                                {
+                                    foreach (BooksAndGanres t in booksAndGanres)
+                                    {
+                                        BD.bD.BooksAndGanres.Remove(t);
+                                    }
+                                }
+
+                                foreach (Genres bf in listganre.SelectedItems)
+                                {
+
+                                    BooksAndGanres ganres = new BooksAndGanres()
+                                    {
+                                        IDCatalog = bf.catalogInt,
+                                        IDUnderTheDirectory = bf.DirectoryAndSubDirectoryID,
+                                        IDGanre = bf.GenreID,
+                                        IDBook = books.BookID,
+                                    };
+                                    BD.bD.BooksAndGanres.Add(ganres);
+
+                                }
+
+                                BooksAndLibraries libraries = new BooksAndLibraries();
+                                libraries.IDBook = books.BookID;
+                                libraries.IDLibrary = employees.LibraryID;
+                                libraries.count = Convert.ToInt32(count.Text);
+
+                                BD.bD.BooksAndLibraries.Add(libraries);
+                                BD.bD.SaveChanges();
+                                MessageBox.Show("Книга добавлена");
+                                FrameNavigate.per.Navigate(new PageEmployees(employees));
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Неправильно введен год создания книги", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Данная книга уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                        }
+                        
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка");
+                }
+            }
+          
         }
        
         private void izdatelstvo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -334,6 +468,33 @@ namespace _41PP_TRifonova
             filter();
         }
 
-      
+        private void data_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0) )
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void isbn_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+            foreach (var ch in e.Text)
+            {
+                if (!(Char.IsDigit(ch) || ch.Equals('-')))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void countStr_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
