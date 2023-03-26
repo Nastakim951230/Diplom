@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="86e3b7be4bae4200babe88d537967a55" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.AgeRestrictions" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Authors" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Books" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.BooksAndAuthors" Width="1.5" PointX="5.25" PointY="8.25" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.BooksAndGanres" Width="1.5" PointX="8.25" PointY="7.875" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.BooksAndLibraries" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Catalogs" Width="1.5" PointX="6" PointY="11.875" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Employees" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Genres" Width="1.5" PointX="6" PointY="15.5" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Libraries" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.PublishingHouse" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Roles" Width="1.5" PointX="3" PointY="19" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.SubDirectory" Width="1.5" PointX="3.75" PointY="15.375" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Books" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Books" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Books" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Catalogs" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Genres" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_SubDirectory" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_DirectoryAndSubDirectory_Catalogs" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Employees_Libraries" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Employees_Roles" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

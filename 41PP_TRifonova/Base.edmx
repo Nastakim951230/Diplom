@@ -1,0 +1,905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Trifonova_41P_DiplomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgeRestrictions">
+          <Key>
+            <PropertyRef Name="AgeRestrictionsID" />
+          </Key>
+          <Property Name="AgeRestrictionsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Restrictions" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorID" />
+          </Key>
+          <Property Name="AuthorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurnameAuthor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NameAuthor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OthestvoAuthor" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IDPublishingHouse" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="Pages" Type="int" Nullable="false" />
+          <Property Name="RestrictionsID" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="BooksAndAuthors">
+          <Key>
+            <PropertyRef Name="BookAndAuthorID" />
+          </Key>
+          <Property Name="BookAndAuthorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BooksAndGanres">
+          <Key>
+            <PropertyRef Name="BookAndGanreID" />
+          </Key>
+          <Property Name="BookAndGanreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCatalog" Type="int" Nullable="false" />
+          <Property Name="IDUnderTheDirectory" Type="int" Nullable="false" />
+          <Property Name="IDGanre" Type="int" />
+          <Property Name="IDBook" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BooksAndLibraries">
+          <Key>
+            <PropertyRef Name="BookAndLibrary" />
+          </Key>
+          <Property Name="BookAndLibrary" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDBook" Type="int" Nullable="false" />
+          <Property Name="IDLibrary" Type="int" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Catalogs">
+          <Key>
+            <PropertyRef Name="CatalogID" />
+          </Key>
+          <Property Name="CatalogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catalog" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="LibraryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="GenreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DirectoryAndSubDirectoryID" Type="int" Nullable="false" />
+          <Property Name="Ganre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Libraries">
+          <Key>
+            <PropertyRef Name="LibraryID" />
+          </Key>
+          <Property Name="LibraryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="library" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublishingHouse">
+          <Key>
+            <PropertyRef Name="PublishingHouseID" />
+          </Key>
+          <Property Name="PublishingHouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubDirectory">
+          <Key>
+            <PropertyRef Name="SubDirectoryID" />
+          </Key>
+          <Property Name="SubDirectoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCatolog" Type="int" Nullable="false" />
+          <Property Name="SubDirectory" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Books_AgeRestrictions">
+          <End Role="AgeRestrictions" Type="Self.AgeRestrictions" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeRestrictions">
+              <PropertyRef Name="AgeRestrictionsID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="RestrictionsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_PublishingHouse">
+          <End Role="PublishingHouse" Type="Self.PublishingHouse" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublishingHouse">
+              <PropertyRef Name="PublishingHouseID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="IDPublishingHouse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndAuthors_Authors">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+          <End Role="BooksAndAuthors" Type="Self.BooksAndAuthors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="BooksAndAuthors">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndAuthors_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BooksAndAuthors" Type="Self.BooksAndAuthors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BooksAndAuthors">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BooksAndGanres" Type="Self.BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_Catalogs">
+          <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="1" />
+          <End Role="BooksAndGanres" Type="Self.BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogs">
+              <PropertyRef Name="CatalogID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDCatalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_Genres">
+          <End Role="Genres" Type="Self.Genres" Multiplicity="0..1" />
+          <End Role="BooksAndGanres" Type="Self.BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genres">
+              <PropertyRef Name="GenreID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDGanre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_SubDirectory">
+          <End Role="SubDirectory" Type="Self.SubDirectory" Multiplicity="1" />
+          <End Role="BooksAndGanres" Type="Self.BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDirectory">
+              <PropertyRef Name="SubDirectoryID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDUnderTheDirectory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndLibraries_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BooksAndLibraries" Type="Self.BooksAndLibraries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BooksAndLibraries">
+              <PropertyRef Name="IDBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndLibraries_Libraries">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="BooksAndLibraries" Type="Self.BooksAndLibraries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="BooksAndLibraries">
+              <PropertyRef Name="IDLibrary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DirectoryAndSubDirectory_Catalogs">
+          <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="1" />
+          <End Role="SubDirectory" Type="Self.SubDirectory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogs">
+              <PropertyRef Name="CatalogID" />
+            </Principal>
+            <Dependent Role="SubDirectory">
+              <PropertyRef Name="IDCatolog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Libraries">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="LibraryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Genres_SubDirectory">
+          <End Role="SubDirectory" Type="Self.SubDirectory" Multiplicity="1" />
+          <End Role="Genres" Type="Self.Genres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDirectory">
+              <PropertyRef Name="SubDirectoryID" />
+            </Principal>
+            <Dependent Role="Genres">
+              <PropertyRef Name="DirectoryAndSubDirectoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Trifonova_41P_DiplomModelContainer">
+          <EntitySet Name="AgeRestrictions" EntityType="Self.AgeRestrictions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BooksAndAuthors" EntityType="Self.BooksAndAuthors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BooksAndGanres" EntityType="Self.BooksAndGanres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BooksAndLibraries" EntityType="Self.BooksAndLibraries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catalogs" EntityType="Self.Catalogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libraries" EntityType="Self.Libraries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublishingHouse" EntityType="Self.PublishingHouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubDirectory" EntityType="Self.SubDirectory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Books_AgeRestrictions" Association="Self.FK_Books_AgeRestrictions">
+            <End Role="AgeRestrictions" EntitySet="AgeRestrictions" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_PublishingHouse" Association="Self.FK_Books_PublishingHouse">
+            <End Role="PublishingHouse" EntitySet="PublishingHouse" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndAuthors_Authors" Association="Self.FK_BooksAndAuthors_Authors">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="BooksAndAuthors" EntitySet="BooksAndAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndAuthors_Books" Association="Self.FK_BooksAndAuthors_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BooksAndAuthors" EntitySet="BooksAndAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_Books" Association="Self.FK_BooksAndGanres_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_Catalogs" Association="Self.FK_BooksAndGanres_Catalogs">
+            <End Role="Catalogs" EntitySet="Catalogs" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_Genres" Association="Self.FK_BooksAndGanres_Genres">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_SubDirectory" Association="Self.FK_BooksAndGanres_SubDirectory">
+            <End Role="SubDirectory" EntitySet="SubDirectory" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndLibraries_Books" Association="Self.FK_BooksAndLibraries_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BooksAndLibraries" EntitySet="BooksAndLibraries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndLibraries_Libraries" Association="Self.FK_BooksAndLibraries_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="BooksAndLibraries" EntitySet="BooksAndLibraries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DirectoryAndSubDirectory_Catalogs" Association="Self.FK_DirectoryAndSubDirectory_Catalogs">
+            <End Role="Catalogs" EntitySet="Catalogs" />
+            <End Role="SubDirectory" EntitySet="SubDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Libraries" Association="Self.FK_Employees_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Roles" Association="Self.FK_Employees_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Genres_SubDirectory" Association="Self.FK_Genres_SubDirectory">
+            <End Role="SubDirectory" EntitySet="SubDirectory" />
+            <End Role="Genres" EntitySet="Genres" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Trifonova_41P_DiplomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BaseBD" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgeRestrictions" EntityType="Trifonova_41P_DiplomModel.AgeRestrictions" />
+          <EntitySet Name="Authors" EntityType="Trifonova_41P_DiplomModel.Authors" />
+          <EntitySet Name="Books" EntityType="Trifonova_41P_DiplomModel.Books" />
+          <EntitySet Name="BooksAndAuthors" EntityType="Trifonova_41P_DiplomModel.BooksAndAuthors" />
+          <EntitySet Name="BooksAndGanres" EntityType="Trifonova_41P_DiplomModel.BooksAndGanres" />
+          <EntitySet Name="BooksAndLibraries" EntityType="Trifonova_41P_DiplomModel.BooksAndLibraries" />
+          <EntitySet Name="Catalogs" EntityType="Trifonova_41P_DiplomModel.Catalogs" />
+          <EntitySet Name="Employees" EntityType="Trifonova_41P_DiplomModel.Employees" />
+          <EntitySet Name="Genres" EntityType="Trifonova_41P_DiplomModel.Genres" />
+          <EntitySet Name="Libraries" EntityType="Trifonova_41P_DiplomModel.Libraries" />
+          <EntitySet Name="PublishingHouse" EntityType="Trifonova_41P_DiplomModel.PublishingHouse" />
+          <EntitySet Name="Roles" EntityType="Trifonova_41P_DiplomModel.Roles" />
+          <EntitySet Name="SubDirectory" EntityType="Trifonova_41P_DiplomModel.SubDirectory" />
+          <AssociationSet Name="FK_Books_AgeRestrictions" Association="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions">
+            <End Role="AgeRestrictions" EntitySet="AgeRestrictions" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndAuthors_Authors" Association="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="BooksAndAuthors" EntitySet="BooksAndAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_PublishingHouse" Association="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse">
+            <End Role="PublishingHouse" EntitySet="PublishingHouse" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndAuthors_Books" Association="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BooksAndAuthors" EntitySet="BooksAndAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_Books" Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndLibraries_Books" Association="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BooksAndLibraries" EntitySet="BooksAndLibraries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_Catalogs" Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Catalogs">
+            <End Role="Catalogs" EntitySet="Catalogs" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_Genres" Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Genres">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndGanres_SubDirectory" Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_SubDirectory">
+            <End Role="SubDirectory" EntitySet="SubDirectory" />
+            <End Role="BooksAndGanres" EntitySet="BooksAndGanres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BooksAndLibraries_Libraries" Association="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="BooksAndLibraries" EntitySet="BooksAndLibraries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DirectoryAndSubDirectory_Catalogs" Association="Trifonova_41P_DiplomModel.FK_DirectoryAndSubDirectory_Catalogs">
+            <End Role="Catalogs" EntitySet="Catalogs" />
+            <End Role="SubDirectory" EntitySet="SubDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Libraries" Association="Trifonova_41P_DiplomModel.FK_Employees_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Roles" Association="Trifonova_41P_DiplomModel.FK_Employees_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Genres_SubDirectory" Association="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory">
+            <End Role="SubDirectory" EntitySet="SubDirectory" />
+            <End Role="Genres" EntitySet="Genres" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AgeRestrictions">
+          <Key>
+            <PropertyRef Name="AgeRestrictionsID" />
+          </Key>
+          <Property Name="AgeRestrictionsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Restrictions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" FromRole="AgeRestrictions" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorID" />
+          </Key>
+          <Property Name="AuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurnameAuthor" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameAuthor" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OthestvoAuthor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BooksAndAuthors" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors" FromRole="Authors" ToRole="BooksAndAuthors" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDPublishingHouse" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Pages" Type="Int32" Nullable="false" />
+          <Property Name="RestrictionsID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="AgeRestrictions" Relationship="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" FromRole="Books" ToRole="AgeRestrictions" />
+          <NavigationProperty Name="PublishingHouse" Relationship="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" FromRole="Books" ToRole="PublishingHouse" />
+          <NavigationProperty Name="BooksAndAuthors" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Books" FromRole="Books" ToRole="BooksAndAuthors" />
+          <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Books" FromRole="Books" ToRole="BooksAndGanres" />
+          <NavigationProperty Name="BooksAndLibraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Books" FromRole="Books" ToRole="BooksAndLibraries" />
+        </EntityType>
+        <EntityType Name="BooksAndAuthors">
+          <Key>
+            <PropertyRef Name="BookAndAuthorID" />
+          </Key>
+          <Property Name="BookAndAuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Authors" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors" FromRole="BooksAndAuthors" ToRole="Authors" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Books" FromRole="BooksAndAuthors" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="BooksAndGanres">
+          <Key>
+            <PropertyRef Name="BookAndGanreID" />
+          </Key>
+          <Property Name="BookAndGanreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCatalog" Type="Int32" Nullable="false" />
+          <Property Name="IDUnderTheDirectory" Type="Int32" Nullable="false" />
+          <Property Name="IDGanre" Type="Int32" />
+          <Property Name="IDBook" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Books" FromRole="BooksAndGanres" ToRole="Books" />
+          <NavigationProperty Name="Catalogs" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Catalogs" FromRole="BooksAndGanres" ToRole="Catalogs" />
+          <NavigationProperty Name="Genres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Genres" FromRole="BooksAndGanres" ToRole="Genres" />
+          <NavigationProperty Name="SubDirectory" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_SubDirectory" FromRole="BooksAndGanres" ToRole="SubDirectory" />
+        </EntityType>
+        <EntityType Name="BooksAndLibraries">
+          <Key>
+            <PropertyRef Name="BookAndLibrary" />
+          </Key>
+          <Property Name="BookAndLibrary" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDBook" Type="Int32" Nullable="false" />
+          <Property Name="IDLibrary" Type="Int32" Nullable="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Books" FromRole="BooksAndLibraries" ToRole="Books" />
+          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries" FromRole="BooksAndLibraries" ToRole="Libraries" />
+        </EntityType>
+        <EntityType Name="Catalogs">
+          <Key>
+            <PropertyRef Name="CatalogID" />
+          </Key>
+          <Property Name="CatalogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catalog" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Catalogs" FromRole="Catalogs" ToRole="BooksAndGanres" />
+          <NavigationProperty Name="SubDirectory" Relationship="Trifonova_41P_DiplomModel.FK_DirectoryAndSubDirectory_Catalogs" FromRole="Catalogs" ToRole="SubDirectory" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="LibraryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Libraries" FromRole="Employees" ToRole="Libraries" />
+          <NavigationProperty Name="Roles" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Roles" FromRole="Employees" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DirectoryAndSubDirectoryID" Type="Int32" Nullable="false" />
+          <Property Name="Ganre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Genres" FromRole="Genres" ToRole="BooksAndGanres" />
+          <NavigationProperty Name="SubDirectory" Relationship="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory" FromRole="Genres" ToRole="SubDirectory" />
+        </EntityType>
+        <EntityType Name="Libraries">
+          <Key>
+            <PropertyRef Name="LibraryID" />
+          </Key>
+          <Property Name="LibraryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="library" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BooksAndLibraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries" FromRole="Libraries" ToRole="BooksAndLibraries" />
+          <NavigationProperty Name="Employees" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Libraries" FromRole="Libraries" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="PublishingHouse">
+          <Key>
+            <PropertyRef Name="PublishingHouseID" />
+          </Key>
+          <Property Name="PublishingHouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" FromRole="PublishingHouse" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Roles" FromRole="Roles" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="SubDirectory">
+          <Key>
+            <PropertyRef Name="SubDirectoryID" />
+          </Key>
+          <Property Name="SubDirectoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCatolog" Type="Int32" Nullable="false" />
+          <Property Name="SubDirectory1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_SubDirectory" FromRole="SubDirectory" ToRole="BooksAndGanres" />
+          <NavigationProperty Name="Catalogs" Relationship="Trifonova_41P_DiplomModel.FK_DirectoryAndSubDirectory_Catalogs" FromRole="SubDirectory" ToRole="Catalogs" />
+          <NavigationProperty Name="Genres" Relationship="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory" FromRole="SubDirectory" ToRole="Genres" />
+        </EntityType>
+        <Association Name="FK_Books_AgeRestrictions">
+          <End Type="Trifonova_41P_DiplomModel.AgeRestrictions" Role="AgeRestrictions" Multiplicity="0..1" />
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeRestrictions">
+              <PropertyRef Name="AgeRestrictionsID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="RestrictionsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndAuthors_Authors">
+          <End Type="Trifonova_41P_DiplomModel.Authors" Role="Authors" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndAuthors" Role="BooksAndAuthors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="BooksAndAuthors">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_PublishingHouse">
+          <End Type="Trifonova_41P_DiplomModel.PublishingHouse" Role="PublishingHouse" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublishingHouse">
+              <PropertyRef Name="PublishingHouseID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="IDPublishingHouse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndAuthors_Books">
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndAuthors" Role="BooksAndAuthors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BooksAndAuthors">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_Books">
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndGanres" Role="BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndLibraries_Books">
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndLibraries" Role="BooksAndLibraries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BooksAndLibraries">
+              <PropertyRef Name="IDBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_Catalogs">
+          <End Type="Trifonova_41P_DiplomModel.Catalogs" Role="Catalogs" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndGanres" Role="BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogs">
+              <PropertyRef Name="CatalogID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDCatalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_Genres">
+          <End Type="Trifonova_41P_DiplomModel.Genres" Role="Genres" Multiplicity="0..1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndGanres" Role="BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genres">
+              <PropertyRef Name="GenreID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDGanre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndGanres_SubDirectory">
+          <End Type="Trifonova_41P_DiplomModel.SubDirectory" Role="SubDirectory" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndGanres" Role="BooksAndGanres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDirectory">
+              <PropertyRef Name="SubDirectoryID" />
+            </Principal>
+            <Dependent Role="BooksAndGanres">
+              <PropertyRef Name="IDUnderTheDirectory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BooksAndLibraries_Libraries">
+          <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.BooksAndLibraries" Role="BooksAndLibraries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="BooksAndLibraries">
+              <PropertyRef Name="IDLibrary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DirectoryAndSubDirectory_Catalogs">
+          <End Type="Trifonova_41P_DiplomModel.Catalogs" Role="Catalogs" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.SubDirectory" Role="SubDirectory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogs">
+              <PropertyRef Name="CatalogID" />
+            </Principal>
+            <Dependent Role="SubDirectory">
+              <PropertyRef Name="IDCatolog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Libraries">
+          <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="LibraryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Roles">
+          <End Type="Trifonova_41P_DiplomModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Genres_SubDirectory">
+          <End Type="Trifonova_41P_DiplomModel.SubDirectory" Role="SubDirectory" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Genres" Role="Genres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDirectory">
+              <PropertyRef Name="SubDirectoryID" />
+            </Principal>
+            <Dependent Role="Genres">
+              <PropertyRef Name="DirectoryAndSubDirectoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Trifonova_41P_DiplomModelContainer" CdmEntityContainer="BaseBD">
+          <EntitySetMapping Name="AgeRestrictions">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.AgeRestrictions">
+              <MappingFragment StoreEntitySet="AgeRestrictions">
+                <ScalarProperty Name="Restrictions" ColumnName="Restrictions" />
+                <ScalarProperty Name="AgeRestrictionsID" ColumnName="AgeRestrictionsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Authors">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="OthestvoAuthor" ColumnName="OthestvoAuthor" />
+                <ScalarProperty Name="NameAuthor" ColumnName="NameAuthor" />
+                <ScalarProperty Name="SurnameAuthor" ColumnName="SurnameAuthor" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RestrictionsID" ColumnName="RestrictionsID" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="IDPublishingHouse" ColumnName="IDPublishingHouse" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BooksAndAuthors">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.BooksAndAuthors">
+              <MappingFragment StoreEntitySet="BooksAndAuthors">
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookAndAuthorID" ColumnName="BookAndAuthorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BooksAndGanres">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.BooksAndGanres">
+              <MappingFragment StoreEntitySet="BooksAndGanres">
+                <ScalarProperty Name="IDBook" ColumnName="IDBook" />
+                <ScalarProperty Name="IDGanre" ColumnName="IDGanre" />
+                <ScalarProperty Name="IDUnderTheDirectory" ColumnName="IDUnderTheDirectory" />
+                <ScalarProperty Name="IDCatalog" ColumnName="IDCatalog" />
+                <ScalarProperty Name="BookAndGanreID" ColumnName="BookAndGanreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BooksAndLibraries">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.BooksAndLibraries">
+              <MappingFragment StoreEntitySet="BooksAndLibraries">
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="IDLibrary" ColumnName="IDLibrary" />
+                <ScalarProperty Name="IDBook" ColumnName="IDBook" />
+                <ScalarProperty Name="BookAndLibrary" ColumnName="BookAndLibrary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogs">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Catalogs">
+              <MappingFragment StoreEntitySet="Catalogs">
+                <ScalarProperty Name="catalog" ColumnName="catalog" />
+                <ScalarProperty Name="CatalogID" ColumnName="CatalogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="LibraryID" ColumnName="LibraryID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Genres">
+              <MappingFragment StoreEntitySet="Genres">
+                <ScalarProperty Name="Ganre" ColumnName="Ganre" />
+                <ScalarProperty Name="DirectoryAndSubDirectoryID" ColumnName="DirectoryAndSubDirectoryID" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libraries">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Libraries">
+              <MappingFragment StoreEntitySet="Libraries">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="library" ColumnName="library" />
+                <ScalarProperty Name="LibraryID" ColumnName="LibraryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PublishingHouse">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.PublishingHouse">
+              <MappingFragment StoreEntitySet="PublishingHouse">
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="PublishingHouseID" ColumnName="PublishingHouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID_role" ColumnName="ID_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDirectory">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.SubDirectory">
+              <MappingFragment StoreEntitySet="SubDirectory">
+                <ScalarProperty Name="SubDirectory1" ColumnName="SubDirectory" />
+                <ScalarProperty Name="IDCatolog" ColumnName="IDCatolog" />
+                <ScalarProperty Name="SubDirectoryID" ColumnName="SubDirectoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

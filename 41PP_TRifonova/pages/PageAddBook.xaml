@@ -1,0 +1,156 @@
+﻿<Page x:Class="_41PP_TRifonova.PageAddBook"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_41PP_TRifonova"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAddBook">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition  Height="360"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock Name="FIO" Style="{StaticResource textOsnova}"  Margin="0,0,5,0">dmdmv</TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="25,0,0,0">
+                <Image Name="photoBook" Source="../image/ping.png" ></Image>
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="185"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,0,10,0">Название книги</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                        <TextBox  Name="nazvanie" VerticalAlignment="Top" Height="30" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="230"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition/>
+                       
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"  Margin="10,0,0,0">
+                        <TextBlock Style="{StaticResource textOsnova}"  Margin="0,10,0,0">Издательство</TextBlock>
+                        <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0">Год создания</TextBlock>
+                        <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0">ISBN</TextBlock>
+                        <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0">Количество страниц</TextBlock>
+                        <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0">Возрастное ограничение</TextBlock>
+                        <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0">Количество в наличии</TextBlock>
+                      
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="10,0,10,0">
+                        <Button Name="addPhoto" VerticalAlignment="Top" Template="{StaticResource MainThemeButton}" Click="addPhoto_Click">Добавить фотографию</Button>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+
+                        <ComboBox Name="izdatelstvo"  
+          IsTextSearchEnabled="True" IsEditable="True" Margin="0,10,0,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="izdatelstvo_SelectionChanged">
+                           
+                        </ComboBox>
+                        <TextBox Name="data" Height="22"   Style="{StaticResource MainThemeTextBox}"></TextBox>
+                        <TextBox Name="isbn" Height="22"   Style="{StaticResource MainThemeTextBox}"></TextBox>
+                        <TextBox Name="countStr" Height="22"  Style="{StaticResource MainThemeTextBox}"></TextBox>
+                        <ComboBox Name="restrictions"  Margin="0,8,0,0" Style="{StaticResource MainThemeComboBox}"></ComboBox>
+                        <TextBox Name="count" Height="22" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
+                    </StackPanel>
+                    <Grid Grid.Column="2">
+                        <StackPanel Margin="10,0,10,0">
+                            <TextBlock Style="{StaticResource textOsnovaNazvanie}">Описание</TextBlock>
+                        </StackPanel>
+                        <TextBox Name="descrition" Margin="10,30,10,20" Style="{StaticResource MainThemeTextBoxDescriot}" SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" VerticalContentAlignment="Top" Cursor="IBeam"></TextBox>
+                    </Grid>
+                   
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="10,0,10,0">
+                    <TextBox Name="searhAvtor" Height="30" TextChanged="searhAvtor_TextChanged" Style="{StaticResource MainThemeTextBox}" Tag="Поиск авторов"></TextBox>
+                    <Button Name="addAvtor" Click="addAvtor_Click" Template="{StaticResource MainThemeButton}">Добавить автора</Button>
+                </StackPanel>
+                <Grid Grid.Row="1" Margin="10,0,10,0">
+                    <ListView Name="listAvtor" Background="#CCE9F5" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Left">
+                                            <TextBlock Text="{Binding avtor}"></TextBlock>
+                                           
+                                        </StackPanel>
+                                        <StackPanel HorizontalAlignment="Right">
+                                            <CheckBox></CheckBox>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="10,0,10,0">
+                    <TextBox Name="searhGanre" Height="30" TextChanged="searhGanre_TextChanged" Style="{StaticResource MainThemeTextBox}" Tag="Поиск подкаталогу" Cursor="IBeam"></TextBox>
+                    <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                        <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
+                        <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
+                        
+                    </StackPanel>
+                </StackPanel>
+                
+                <Grid Grid.Row="1" Margin="10,0,10,0">
+                    <ListView Name="listganre" Background="#CCE9F5"  HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Каталог" Width="200" DisplayMemberBinding="{Binding catalogGamr}"></GridViewColumn>
+                                <GridViewColumn Header="Подкаталог" Width="250" DisplayMemberBinding="{Binding SubDirectory.SubDirectory1}"></GridViewColumn>
+                                <GridViewColumn Header="Жанр" Width="500" DisplayMemberBinding="{Binding Ganre}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+      
+        <StackPanel Grid.Row="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                <Button Name="back" Margin="25,0,0,0" Template="{StaticResource MainThemeButton}" Click="back_Click">Назад</Button>
+                <Button Name="save" Margin="10,0,0,0" Template="{StaticResource MainThemeButton}" Click="save_Click">Сохранить </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

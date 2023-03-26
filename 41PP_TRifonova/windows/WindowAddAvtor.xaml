@@ -1,0 +1,20 @@
+﻿<Window x:Class="_41PP_TRifonova.WindowAddAvtor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_41PP_TRifonova"
+        mc:Ignorable="d" Icon="../image/logo.png"
+        Title="Добавление автора" Height="230" Width="250" MaxHeight="230" MaxWidth="250">
+    <Grid Style="{StaticResource MainThemeGrid}">
+        <StackPanel>
+            <TextBox Name="surname" Height="30" Style="{StaticResource MainThemeTextBox}" Tag="Фамилия"></TextBox>
+            <TextBox Name="name" Height="30" Style="{StaticResource MainThemeTextBox}" Tag="Имя"></TextBox>
+            <TextBox Name="othestvo" Height="30" Style="{StaticResource MainThemeTextBox}" Tag="Отчество"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="back" Click="back_Click"  Template="{StaticResource MainThemeButton}">Назад</Button>
+                <Button Name="save" Click="save_Click" Margin="10,0,0,0" Template="{StaticResource MainThemeButton}">Сохранить</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

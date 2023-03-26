@@ -1,0 +1,71 @@
+﻿<Page x:Class="_41PP_TRifonova.PageEmployees"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_41PP_TRifonova"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="PageEmployees">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Style="{StaticResource MainThemeGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Image Margin="0,5,0,0" Source="../image/MainThemeImage.png"></Image>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{StaticResource MainThemeTextBox}"></TextBox>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
+                    <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
+                    <ComboBox Name="CBGanre" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBGanre_SelectionChanged"></ComboBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <TextBlock Name="FIO" Style="{StaticResource WhiteText}">dmdmv</TextBlock>
+                <Button Name="exit" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="1"   Background="#54C4F4">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Name="Order" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Заказы</Button>
+                <Button Name="returnBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Возврат</Button>
+                <Button Name="booking" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Бронирование</Button>
+                <Button Name="addBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="addBook_Click">Добавить книгу</Button>
+                <Button Name="addEmployee" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Добавить сотрудника</Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Left" Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource textOsnova}">В наличии</TextBlock>
+            <CheckBox Name="inStock" ></CheckBox>
+            </StackPanel>
+        <StackPanel  Grid.Row="2" HorizontalAlignment="Right"  Orientation="Horizontal" Margin="0,0,20,0">
+                <TextBlock Name="TextCountBook" Margin="0,0,10,0" Style="{StaticResource textOsnova}">Книг:2685</TextBlock>
+                <Menu Height="30" VerticalAlignment="Top" Style="{StaticResource MenuOsnova}" Background="White">
+                    <MenuItem Header="...">
+                        <MenuItem Header="Основная тема"></MenuItem>
+                        <MenuItem Header="Фиолетовая тема"></MenuItem>
+                        <MenuItem Header="Светло-голубая тема"></MenuItem>
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+        <Grid Grid.Row="3">
+            <ListView Name="listBook">
+                
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
