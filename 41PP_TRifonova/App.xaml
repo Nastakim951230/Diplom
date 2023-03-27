@@ -48,6 +48,14 @@
 
         <!--основная тема-->
 
+        <Style x:Key="MainThemetextOsnovaNazvanie" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Alegreya"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#225496"/>
+        </Style>
+
+
         <Style x:Key="MainThemeDatePicker" TargetType="DatePicker">
             <Setter Property="Foreground" Value="#225496"></Setter>
             <Setter Property="BorderBrush" Value="#26A9E0"></Setter>

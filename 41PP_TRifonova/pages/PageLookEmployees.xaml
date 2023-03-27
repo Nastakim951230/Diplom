@@ -5,12 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_41PP_TRifonova"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1000"
       Title="PageLookEmployees">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
@@ -20,31 +21,34 @@
         <StackPanel HorizontalAlignment="Left" Grid.Row="0">
             <Button Name="back" Template="{StaticResource MainThemeButton}" Margin="20,0,0,0" Click="back_Click">Назад</Button>
         </StackPanel>
-        <StackPanel Grid.Row="1" Margin="20,0,20,0" Orientation="Horizontal" >
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1">
+            <TextBlock Style="{StaticResource textOsnovaNazvanie}">Данные о сотруднике</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="20,0,20,0" Orientation="Horizontal">
             <StackPanel>
-                <TextBlock  Style="{StaticResource textOsnova}" HorizontalAlignment="Right">ФИО:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Пол:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Дата рождения:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Номер телефона:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Адрес проживания:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Роль:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Место работы:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Логин:</TextBlock>
-                <TextBlock Style="{StaticResource textOsnova}" Margin="0,10,0,0" HorizontalAlignment="Right">Пароль:</TextBlock>
+                <TextBlock  Style="{StaticResource textOsnovaNazvanie}" HorizontalAlignment="Right">ФИО:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Пол:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Дата рождения:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Номер телефона:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Адрес проживания:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Роль:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Место работы:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Логин:</TextBlock>
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="0,10,0,0" HorizontalAlignment="Right">Пароль:</TextBlock>
             </StackPanel>
             <StackPanel Margin="5,0,0,0">
-                <TextBlock Name="fioEmployees" Style="{StaticResource MainThemeText}" Margin="0,4,0,0">ФИО:</TextBlock>
-                <TextBlock Name="genderEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0">Пол:</TextBlock>
-                <TextBlock Name="drEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0" >Дата рождения:</TextBlock>
-                <TextBlock Name="telefoEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0" >Номер телефона:</TextBlock>
-                <TextBlock Name="addresEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0" >Адрес проживания:</TextBlock>
-                <TextBlock Name="rolesEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0" >Роль:</TextBlock>
-                <TextBlock Name="libraryEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0" >Место работы:</TextBlock>
-                <TextBlock Name="loginEmployees" Style="{StaticResource MainThemeText}" Margin="0,13,0,0" >Логин:</TextBlock>
-                <TextBlock Name="passwordEmployees" Style="{StaticResource MainThemeText}" Margin="0,15,0,0" >Пароль:</TextBlock>
+                <TextBlock Name="fioEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" >ФИО:</TextBlock>
+                <TextBlock Name="genderEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0">Пол:</TextBlock>
+                <TextBlock Name="drEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Дата рождения:</TextBlock>
+                <TextBlock Name="telefoEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Номер телефона:</TextBlock>
+                <TextBlock Name="addresEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Адрес проживания:</TextBlock>
+                <TextBlock Name="rolesEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Роль:</TextBlock>
+                <TextBlock Name="libraryEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Место работы:</TextBlock>
+                <TextBlock Name="loginEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Логин:</TextBlock>
+                <TextBlock Name="passwordEmployees" Style="{StaticResource MainThemetextOsnovaNazvanie}" Margin="0,10,0,0" >Пароль:</TextBlock>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="2" Margin="20,0,20,0">
+        <StackPanel Grid.Row="3" Margin="20,0,20,0">
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Name="delet" Click="delet_Click" Template="{StaticResource MainThemeButton}">Удалить сотрудника</Button>
                 <Button Name="updateEmployees" Click="updateEmployees_Click" Margin="20,0,0,0" Template="{StaticResource MainThemeButton}">Изменить сотрудника</Button>
