@@ -27,7 +27,7 @@ namespace _41PP_TRifonova
             this.employees = employees;
             if(employees.RoleID==1)
             {
-                addEmployee.Visibility=Visibility.Visible;  
+                employee.Visibility=Visibility.Visible;  
             }
 
             string name="";
@@ -205,6 +205,18 @@ namespace _41PP_TRifonova
         private void toBook_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void libraruBook_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+      
+
+        private void employee_Click(object sender, RoutedEventArgs e)
+        {
+            FrameNavigate.per.Navigate(new PageSpisokEmployees(employees));
         }
     }
 }

@@ -33,6 +33,7 @@ namespace _41PP_TRifonova
         public virtual DbSet<BooksAndLibraries> BooksAndLibraries { get; set; }
         public virtual DbSet<Catalogs> Catalogs { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Genres> Genres { get; set; }
         public virtual DbSet<Libraries> Libraries { get; set; }
         public virtual DbSet<PublishingHouse> PublishingHouse { get; set; }

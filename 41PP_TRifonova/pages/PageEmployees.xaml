@@ -46,8 +46,9 @@
                 <Button Name="returnBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Возврат</Button>
                 <Button Name="booking" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="booking_Click">Бронирование</Button>
                 <Button Name="addBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="addBook_Click">Добавить книгу</Button>
-                <Button Name="addEmployee" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0">Добавить сотрудника</Button>
-                <Button Name="addLibrarisBook" Template="{StaticResource MainThemeButton}"  Margin="0,0,5,0">Привоз</Button>
+                <Button Name="employee" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="employee_Click">Сотрудники</Button>
+                
+                <Button Name="addReader" Template="{StaticResource MainThemeButton}"  Margin="0,0,5,0">Добавить читателя</Button>
             </StackPanel>
         </StackPanel>
 
@@ -75,12 +76,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border Margin="10,0,10,0">
-                            <Grid Width="140" Height="375">
+                            <Grid Width="140" Height="415">
                                 <StackPanel>
                                     <Image Width="150" Height="170" Source="{Binding Photo, TargetNullValue={StaticResource defaultImage}}"/>
                                     <TextBlock Text="{Binding Nazvanie}" Style="{StaticResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
                                     <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
                                     <Button Uid="{Binding BookID}" Name="update" Template="{StaticResource MainThemeButton}" Click="update_Click">Редактировать</Button>
+                                    <Button Uid="{Binding BookID}" Name="libraruBook" Template="{StaticResource MainThemeButton}" Click="libraruBook_Click">Привоз</Button>
                                     <Button Uid="{Binding BookID}" Name="toBook" Template="{StaticResource MainThemeButton}" Click="toBook_Click">Бронировать</Button>
                                 </StackPanel>
                             </Grid>

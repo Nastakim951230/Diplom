@@ -65,9 +65,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="WindowUpdateNazvanie.xaml.cs">
+    <Compile Include="classPages\ClassEmployees.cs" />
+    <Compile Include="Gender.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageAddAndUpdateEmployees.xaml.cs">
+      <DependentUpon>PageAddAndUpdateEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageLookEmployees.xaml.cs">
+      <DependentUpon>PageLookEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageSpisokEmployees.xaml.cs">
+      <DependentUpon>PageSpisokEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageAddAndUpdateEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PageLookEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PageSpisokEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\PageBookUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,7 +220,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WindowUpdateNazvanie.xaml">
+    <Page Include="windows\WindowUpdateNazvanie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

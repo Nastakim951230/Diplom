@@ -22,7 +22,12 @@ namespace _41PP_TRifonova
         public string Password { get; set; }
         public int RoleID { get; set; }
         public int LibraryID { get; set; }
+        public string Telefon { get; set; }
+        public int IDGender { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
+        public string Address { get; set; }
     
+        public virtual Gender Gender { get; set; }
         public virtual Libraries Libraries { get; set; }
         public virtual Roles Roles { get; set; }
     }

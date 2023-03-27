@@ -81,6 +81,17 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="LibraryID" Type="int" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="IDGender" Type="int" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Genres">
           <Key>
@@ -88,7 +99,7 @@
           </Key>
           <Property Name="GenreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DirectoryAndSubDirectoryID" Type="int" Nullable="false" />
-          <Property Name="Ganre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ganre" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Libraries">
           <Key>
@@ -252,6 +263,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employees_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="IDGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employees_Libraries">
           <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -297,6 +320,7 @@
           <EntitySet Name="BooksAndLibraries" EntityType="Self.BooksAndLibraries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Catalogs" EntityType="Self.Catalogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libraries" EntityType="Self.Libraries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PublishingHouse" EntityType="Self.PublishingHouse" Schema="dbo" store:Type="Tables" />
@@ -346,6 +370,10 @@
             <End Role="Catalogs" EntitySet="Catalogs" />
             <End Role="SubDirectory" EntitySet="SubDirectory" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employees_Gender" Association="Self.FK_Employees_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employees_Libraries" Association="Self.FK_Employees_Libraries">
             <End Role="Libraries" EntitySet="Libraries" />
             <End Role="Employees" EntitySet="Employees" />
@@ -372,6 +400,7 @@
           <EntitySet Name="BooksAndLibraries" EntityType="Trifonova_41P_DiplomModel.BooksAndLibraries" />
           <EntitySet Name="Catalogs" EntityType="Trifonova_41P_DiplomModel.Catalogs" />
           <EntitySet Name="Employees" EntityType="Trifonova_41P_DiplomModel.Employees" />
+          <EntitySet Name="Gender" EntityType="Trifonova_41P_DiplomModel.Gender" />
           <EntitySet Name="Genres" EntityType="Trifonova_41P_DiplomModel.Genres" />
           <EntitySet Name="Libraries" EntityType="Trifonova_41P_DiplomModel.Libraries" />
           <EntitySet Name="PublishingHouse" EntityType="Trifonova_41P_DiplomModel.PublishingHouse" />
@@ -420,6 +449,10 @@
           <AssociationSet Name="FK_DirectoryAndSubDirectory_Catalogs" Association="Trifonova_41P_DiplomModel.FK_DirectoryAndSubDirectory_Catalogs">
             <End Role="Catalogs" EntitySet="Catalogs" />
             <End Role="SubDirectory" EntitySet="SubDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Gender" Association="Trifonova_41P_DiplomModel.FK_Employees_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_Employees_Libraries" Association="Trifonova_41P_DiplomModel.FK_Employees_Libraries">
             <End Role="Libraries" EntitySet="Libraries" />
@@ -527,8 +560,21 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="LibraryID" Type="Int32" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="IDGender" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Gender" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Gender" FromRole="Employees" ToRole="Gender" />
           <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Libraries" FromRole="Employees" ToRole="Libraries" />
           <NavigationProperty Name="Roles" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Roles" FromRole="Employees" ToRole="Roles" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Gender" FromRole="Gender" ToRole="Employees" />
         </EntityType>
         <EntityType Name="Genres">
           <Key>
@@ -536,7 +582,7 @@
           </Key>
           <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DirectoryAndSubDirectoryID" Type="Int32" Nullable="false" />
-          <Property Name="Ganre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ganre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Genres" FromRole="Genres" ToRole="BooksAndGanres" />
           <NavigationProperty Name="SubDirectory" Relationship="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory" FromRole="Genres" ToRole="SubDirectory" />
         </EntityType>
@@ -709,6 +755,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employees_Gender">
+          <End Type="Trifonova_41P_DiplomModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="IDGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employees_Libraries">
           <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
           <End Type="Trifonova_41P_DiplomModel.Employees" Role="Employees" Multiplicity="*" />
@@ -745,7 +803,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -825,6 +883,10 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Employees">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IDGender" ColumnName="IDGender" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="LibraryID" ColumnName="LibraryID" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -833,6 +895,14 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="gender1" ColumnName="gender" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
