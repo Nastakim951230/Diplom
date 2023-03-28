@@ -91,6 +91,22 @@ namespace _41PP_TRifonova
                 books = books.Where(x => x.Nazvanie.ToLower().Contains(search.Text.ToLower())).ToList();
             }
 
+            if(inStock.IsChecked==true)
+            {
+                List<Books> booksLibrary = new List<Books>();
+                List<Books> book = new List<Books>();
+                List<BooksAndLibraries> booksAndLibraries = BD.bD.BooksAndLibraries.Where(x=>x.IDLibrary==employees.LibraryID).ToList();
+                for(int i = 0; i < booksAndLibraries.Count; i++)
+                {
+                    book=books.Where(x=>x.BookID==booksAndLibraries[i].IDBook).ToList();
+                    for(int j=0;j<book.Count;j++)
+                    {
+                        booksLibrary.Add(book[j]);
+                    }
+                }
+                books=booksLibrary;
+            }
+
             if (CBCatalog.SelectedIndex > 0)
             {
                 List<Books> bookGanre = new List<Books>();
@@ -144,7 +160,7 @@ namespace _41PP_TRifonova
 
             }
             
-            if(CBCatalog.SelectedIndex==0 && search.Text=="")
+            if(CBCatalog.SelectedIndex==0 && search.Text=="" && inStock.IsChecked==false)
             {
 
                 books= BD.bD.Books.ToList();
@@ -317,6 +333,16 @@ namespace _41PP_TRifonova
         private void employee_Click(object sender, RoutedEventArgs e)
         {
             FrameNavigate.per.Navigate(new PageSpisokEmployees(employees));
+        }
+
+        private void inStock_Checked(object sender, RoutedEventArgs e)
+        {
+            filter();
+        }
+
+        private void inStock_Unchecked(object sender, RoutedEventArgs e)
+        {
+            filter();
         }
     }
 }

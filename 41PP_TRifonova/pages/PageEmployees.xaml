@@ -54,7 +54,7 @@
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Left" Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Style="{StaticResource textOsnova}">В наличии</TextBlock>
-            <CheckBox Name="inStock" ></CheckBox>
+            <CheckBox Name="inStock" Checked="inStock_Checked" Unchecked="inStock_Unchecked" ></CheckBox>
             </StackPanel>
         <StackPanel  Grid.Row="2" HorizontalAlignment="Right"  Orientation="Horizontal" Margin="0,0,20,0">
                 <TextBlock Name="TextCountBook" Margin="0,0,10,0" Style="{StaticResource textOsnova}">Книг:2685</TextBlock>
