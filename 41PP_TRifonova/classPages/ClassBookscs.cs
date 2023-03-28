@@ -48,6 +48,86 @@ namespace _41PP_TRifonova
             }
           
         }
+        public string btn_booking
+        {
+            get
+            {
 
+                int id = 0;
+                List<BooksAndLibraries> booksAndLibraries = BD.bD.BooksAndLibraries.Where(x => x.IDBook == BookID).ToList();
+                if (booksAndLibraries.Count > 1)
+                {
+                    for (int i = 0; i < booksAndLibraries.Count; i++)
+                    {
+
+                        if (booksAndLibraries[i].IDLibrary == idLibrary && booksAndLibraries[i].count != 0)
+                        {
+                            id = 1;
+                        }
+
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < booksAndLibraries.Count; i++)
+                    {
+
+                        if (booksAndLibraries[i].IDLibrary == idLibrary && booksAndLibraries[i].count == 0)
+                        {
+                            id = 1;
+                        }
+                        if (booksAndLibraries[i].IDLibrary == idLibrary && booksAndLibraries[i].count != 0)
+                        {
+                            id = 1;
+                        }
+
+                    }
+                }
+                if (id == 0)
+                {
+                    return "Visible";
+
+                }
+                else
+                {
+                    return "Collapsed";
+                   
+                }
+
+
+            }
+
+        }
+        public string btn_bringing
+        {
+            get
+            {
+
+                int id = 0;
+                List<BooksAndLibraries> booksAndLibraries = BD.bD.BooksAndLibraries.Where(x => x.IDBook == BookID).ToList();
+                for (int i = 0; i < booksAndLibraries.Count; i++)
+                {
+                    if (booksAndLibraries[i].IDLibrary == idLibrary)
+                    {
+                        id = 1;
+                    }
+                }
+                if (id == 0)
+                {
+                    return "Visible";
+
+                }
+                else
+                {
+                    return "Collapsed";
+                   
+                   
+
+                }
+
+
+            }
+
+        }
     }
 }

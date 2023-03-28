@@ -310,17 +310,22 @@ namespace _41PP_TRifonova
 
             Books books=BD.bD.Books.FirstOrDefault(x=>x.BookID==index);
 
-            FrameNavigate.per.Navigate(new PageBookUpdate(employees,books));
+            FrameNavigate.per.Navigate(new PageBookUpdate(employees,books,0));
         }
 
         private void booking_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void toBook_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
 
+            Books books = BD.bD.Books.FirstOrDefault(x => x.BookID == index);
+
+            FrameNavigate.per.Navigate(new PageBookUpdate(employees, books, 1));
         }
 
         private void libraruBook_Click(object sender, RoutedEventArgs e)

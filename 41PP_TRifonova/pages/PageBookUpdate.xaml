@@ -26,10 +26,14 @@
         <StackPanel HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Center">
             <TextBlock Name="FIO" Margin="0,0,20,0" Style="{StaticResource textOsnova}">Три</TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="3">
-            <TextBlock Style="{StaticResource textOsnovaNazvanie}" Margin="20,0,0,0">Описание</TextBlock>
+        <StackPanel Grid.Row="3" Margin="20,0,20,0">
+            <StackPanel Name="addressBook"  Visibility="Collapsed">
+                <TextBlock Style="{StaticResource textListNazvanie}">Место положение:</TextBlock>
+                <TextBlock Name="textaddressBook" Margin="10,0,0,0" Style="{StaticResource MainThemeText}"></TextBlock>
+            </StackPanel>
+            <TextBlock Style="{StaticResource textOsnovaNazvanie}" >Описание</TextBlock>
 
-            <TextBlock Name="textDescription"  TextWrapping="Wrap" Margin="20,0,20,0" Style="{StaticResource textListNazvanie}"></TextBlock>
+            <TextBlock Name="textDescription"  TextWrapping="Wrap" Style="{StaticResource textListNazvanie}"></TextBlock>
         </StackPanel>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -62,7 +66,7 @@
                         <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Количество страниц</TextBlock>
                         <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Жанр</TextBlock>
                         <TextBlock Name="restristons" Style="{StaticResource textListNazvanie}" Visibility="Collapsed" Margin="0,10,0,0">Возрастное ограничение</TextBlock>
-                        <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Количество в наличии</TextBlock>
+                        <TextBlock Visibility="Collapsed" Name="textganr" Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Количество в наличии</TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <TextBlock Name="textIzdatelstvo" Style="{StaticResource MainThemeText}"></TextBlock>
@@ -75,9 +79,10 @@
                     </StackPanel>
                 </Grid>
                 <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                    <Button Name="updatePhoto" Template="{StaticResource MainThemeButton}" Click="updatePhoto_Click">Изменить фотографию</Button>
-                    <Button Name="updateNazvanie" Template="{StaticResource MainThemeButton}" Margin="10,0,0,0" Click="updateNazvanie_Click">Изменить название</Button>
-                    <Button Name="updateCount" Template="{StaticResource MainThemeButton}" Margin="10,0,0,0" Click="updateCount_Click">Изменить количество книг</Button>
+                    <Button Name="bookingBooks" Template="{StaticResource MainThemeButton}" Visibility="Visible" Click="bookingBooks_Click">Бронировать книгу</Button>
+                    <Button Name="updatePhoto" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Click="updatePhoto_Click">Изменить фотографию</Button>
+                    <Button Name="updateNazvanie" Template="{StaticResource MainThemeButton}" Visibility="Collapsed"  Margin="10,0,0,0" Click="updateNazvanie_Click">Изменить название</Button>
+                    <Button Name="updateCount" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="10,0,0,0" Click="updateCount_Click">Изменить количество книг</Button>
                 </StackPanel>
             </Grid>
         </Grid>

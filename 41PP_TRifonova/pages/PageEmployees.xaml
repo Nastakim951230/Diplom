@@ -76,14 +76,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border Margin="10,0,10,0">
-                            <Grid Width="140" Height="415">
+                            <Grid Width="140" Height="380">
                                 <StackPanel>
+                                    <StackPanel Height="285">
                                     <Image Width="150" Height="170" Source="{Binding Photo, TargetNullValue={StaticResource defaultImage}}"/>
                                     <TextBlock Text="{Binding Nazvanie}" Style="{StaticResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
                                     <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
-                                    <Button Uid="{Binding BookID}" Name="update" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_update}" Click="update_Click">Редактировать</Button>
-                                    <Button Uid="{Binding BookID}" Name="libraruBook" Template="{StaticResource MainThemeButton}" Click="libraruBook_Click">Привоз</Button>
-                                    <Button Uid="{Binding BookID}" Name="toBook" Template="{StaticResource MainThemeButton}" Click="toBook_Click">Бронировать</Button>
+                                </StackPanel>
+                                <StackPanel>
+                                        <Button Uid="{Binding BookID}"  Name="libraruBook" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_bringing}" Click="libraruBook_Click">Привоз</Button>
+                                        <Button Uid="{Binding BookID}"  Name="toBook" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_booking}" Click="toBook_Click">Бронировать</Button>
+                                        <Button Uid="{Binding BookID}"  Name="update" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_update}" Click="update_Click">Редактировать</Button>
+                                   
+                                </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </Border>

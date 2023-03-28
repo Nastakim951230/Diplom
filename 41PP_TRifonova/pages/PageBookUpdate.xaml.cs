@@ -27,7 +27,7 @@ namespace _41PP_TRifonova
         byte[] Barray = null;
         Employees employees;
         Books books;
-
+        int id;
         void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
             BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
@@ -41,11 +41,28 @@ namespace _41PP_TRifonova
             img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
             img.Stretch = Stretch.Uniform;
         }
-        public PageBookUpdate(Employees employees, Books books)
+        public PageBookUpdate(Employees employees, Books books, int id)
         {
             InitializeComponent();
             this.employees = employees;
             this.books = books;
+            this.id = id;
+            if(id== 0)
+            {
+                updateCount.Visibility = Visibility.Visible;
+                bookingBooks.Visibility = Visibility.Collapsed;
+                updatePhoto.Visibility=Visibility.Visible;
+                updateNazvanie.Visibility = Visibility.Visible;
+
+            }
+            else if (id == 1)
+            {
+                updateCount.Visibility = Visibility.Collapsed;
+                bookingBooks.Visibility = Visibility.Visible;
+                updatePhoto.Visibility = Visibility.Collapsed;
+                updateNazvanie.Visibility = Visibility.Collapsed;
+
+            }
             string name = "";
             string othestvo = "";
             for (int i = 0; i < employees.Name.Length; i++)
@@ -103,9 +120,29 @@ namespace _41PP_TRifonova
             catalogBook.Text = catalogs.catalog +">";
             SubDirectory subDirectory = BD.bD.SubDirectory.FirstOrDefault(x => x.SubDirectoryID == andGanres.IDUnderTheDirectory);
             pogCatalog.Text = subDirectory.SubDirectory1;
-            BooksAndLibraries libraries=BD.bD.BooksAndLibraries.FirstOrDefault(x=>x.IDLibrary==employees.LibraryID && x.IDBook==books.BookID);
-            textCount.Text = Convert.ToString(libraries.count);
+            if (id == 0)
+            {
+                BooksAndLibraries libraries = BD.bD.BooksAndLibraries.FirstOrDefault(x => x.IDLibrary == employees.LibraryID && x.IDBook == books.BookID);
+                textCount.Text = Convert.ToString(libraries.count);
+                textganr.Visibility = Visibility.Visible;
+            }
+            if(id==1)
+            {
+                addressBook.Visibility = Visibility.Visible;
+                List<BooksAndLibraries> booksAndLibraries=BD.bD.BooksAndLibraries.Where(x=>x.IDBook==books.BookID && x.IDLibrary!=employees.LibraryID).ToList();
 
+
+                string library = "";
+                if (booksAndLibraries.Count > 0)
+                {
+                    foreach (BooksAndLibraries libraries in booksAndLibraries)
+                    {
+                        library += libraries.Libraries.library + ", в количестве: "+libraries.count+" шт\n";
+                    }
+                    textaddressBook.Text = library.Substring(0, library.Length - 1);
+                }
+
+            }
             if (books.RestrictionsID!=null)
             {
                 AgeRestrictions restrictions=BD.bD.AgeRestrictions.FirstOrDefault(x=>x.AgeRestrictionsID==books.RestrictionsID);
@@ -151,14 +188,19 @@ namespace _41PP_TRifonova
         {
             WindowUpdateNazvanie windowUpdateNazvanie=new WindowUpdateNazvanie(books);
             windowUpdateNazvanie.ShowDialog();
-            FrameNavigate.per.Navigate(new PageBookUpdate(employees, books));
+            FrameNavigate.per.Navigate(new PageBookUpdate(employees, books,0));
         }
 
         private void updateCount_Click(object sender, RoutedEventArgs e)
         {
             WindowAddCount count = new WindowAddCount(employees, books);
             count.ShowDialog();
-            FrameNavigate.per.Navigate(new PageBookUpdate(employees, books));
+            FrameNavigate.per.Navigate(new PageBookUpdate(employees, books,0));
+        }
+
+        private void bookingBooks_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
