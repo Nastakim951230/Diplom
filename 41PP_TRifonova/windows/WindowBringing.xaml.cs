@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 namespace _41PP_TRifonova
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAddCount.xaml
+    /// Логика взаимодействия для WindowBringing.xaml
     /// </summary>
-    public partial class WindowAddCount : Window
+    public partial class WindowBringing : Window
     {
         Books books;
         Employees employees;
-        
-        public WindowAddCount(Employees employees,Books books)
+        public WindowBringing(Books books, Employees employees)
         {
             InitializeComponent();
             this.books = books;
@@ -41,9 +40,11 @@ namespace _41PP_TRifonova
             }
             else
             {
-                BooksAndLibraries libraries= BD.bD.BooksAndLibraries.FirstOrDefault(x=>x.IDLibrary==employees.LibraryID && x.IDBook==books.BookID);
-                libraries.count = Convert.ToInt32(add.Text);
-               
+                BooksAndLibraries booksAndLibraries=new BooksAndLibraries();
+                booksAndLibraries.IDLibrary = employees.LibraryID;
+                booksAndLibraries.IDBook = books.BookID;
+                booksAndLibraries.count = Convert.ToInt32(add.Text);
+                BD.bD.BooksAndLibraries.Add(booksAndLibraries);
                 BD.bD.SaveChanges();
                 this.Close();
             }

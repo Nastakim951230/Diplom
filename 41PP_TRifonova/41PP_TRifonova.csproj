@@ -69,7 +69,7 @@
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageAddAndUpdateEmployees.xaml.cs">
+    <Compile Include="pages\PageAddAndUpdateEmployees.xaml.cs">
       <DependentUpon>PageAddAndUpdateEmployees.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\PageLookEmployees.xaml.cs">
@@ -78,10 +78,13 @@
     <Compile Include="pages\PageSpisokEmployees.xaml.cs">
       <DependentUpon>PageSpisokEmployees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\WindowBringing.xaml.cs">
+      <DependentUpon>WindowBringing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
-    <Page Include="PageAddAndUpdateEmployees.xaml">
+    <Page Include="pages\PageAddAndUpdateEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowBringing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

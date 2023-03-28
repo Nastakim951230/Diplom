@@ -330,7 +330,13 @@ namespace _41PP_TRifonova
 
         private void libraruBook_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
 
+            Books books = BD.bD.Books.FirstOrDefault(x => x.BookID == index);
+            WindowBringing windowBringing = new WindowBringing(books, employees);
+            windowBringing.ShowDialog();
+            FrameNavigate.per.Navigate(new PageEmployees(employees));
         }
 
       
@@ -348,6 +354,11 @@ namespace _41PP_TRifonova
         private void inStock_Unchecked(object sender, RoutedEventArgs e)
         {
             filter();
+        }
+
+        private void addReader_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
