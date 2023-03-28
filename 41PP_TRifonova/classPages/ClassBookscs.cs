@@ -80,6 +80,10 @@ namespace _41PP_TRifonova
                         {
                             id = 1;
                         }
+                        if (booksAndLibraries[i].IDLibrary != idLibrary && booksAndLibraries[i].count == 0)
+                        {
+                            id = 1;
+                        }
 
                     }
                 }
