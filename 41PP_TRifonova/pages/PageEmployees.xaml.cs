@@ -25,7 +25,8 @@ namespace _41PP_TRifonova
         {
             InitializeComponent();
             this.employees = employees;
-            if(employees.RoleID==1)
+            Books.idLibrary = employees.LibraryID;
+            if (employees.RoleID==1)
             {
                 employee.Visibility=Visibility.Visible;  
             }
@@ -79,10 +80,94 @@ namespace _41PP_TRifonova
             listBook.ItemsSource = BD.bD.Books.ToList();
             TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
         }
+        /// <summary>
+        /// Поиск, фильтрация
+        /// </summary>
+        void filter()
+        {
+            List<Books> books = BD.bD.Books.ToList();
+            if (!string.IsNullOrWhiteSpace(search.Text))
+            {
+                books = books.Where(x => x.Nazvanie.ToLower().Contains(search.Text.ToLower())).ToList();
+            }
+
+            if (CBCatalog.SelectedIndex > 0)
+            {
+                List<Books> bookGanre = new List<Books>();
+                List<Books> book = new List<Books>();
+                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDCatalog == CBCatalog.SelectedIndex).ToList();
+                for (int i = 0; i < booksAndGanres.Count; i++)
+                {
+                    book = books.Where(x => x.BookID == booksAndGanres[i].IDBook).ToList();
+                    for (int j = 0; j < book.Count; j++)
+                    {
+                        bookGanre.Add(book[j]);
+                    }
+                }
+                books = bookGanre;
+            }
+            if(CBPodCatalog.SelectedIndex > 0)
+            {
+
+                List<Books> bookGanre = new List<Books>();
+                List<Books> book = new List<Books>();
+                int index=Convert.ToInt32(CBPodCatalog.SelectedValuePath);
+                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x =>x.IDUnderTheDirectory == index).ToList();
+                for (int i = 0; i < booksAndGanres.Count; i++)
+                {
+                    book = books.Where(x => x.BookID == booksAndGanres[i].IDBook).ToList();
+                    for (int j = 0; j < book.Count; j++)
+                    {
+                        bookGanre.Add(book[j]);
+                    }
+                }
+                books = bookGanre;
+
+            }
+
+            if (CBGanre.SelectedIndex > 0)
+            {
+
+                List<Books> bookGanre = new List<Books>();
+                List<Books> book = new List<Books>();
+                int index = Convert.ToInt32(CBGanre.SelectedValuePath);
+                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDGanre == index).ToList();
+                for (int i = 0; i < booksAndGanres.Count; i++)
+                {
+                    book = books.Where(x => x.BookID == booksAndGanres[i].IDBook).ToList();
+                    for (int j = 0; j < book.Count; j++)
+                    {
+                        bookGanre.Add(book[j]);
+                    }
+                }
+                books = bookGanre;
+
+            }
+            
+            if(CBCatalog.SelectedIndex==0 && search.Text=="")
+            {
+
+                books= BD.bD.Books.ToList();
+                CBPodCatalog.SelectedIndex = 0;
+                CBGanre.SelectedIndex = 0;
+            }
+
+            if (books.Count > 0)
+            {
+                listBook.ItemsSource = books;
+                TextCountBook.Text = "Количество книг: " + books.Count;
+            }
+            else
+            {
+               CBGanre.SelectedIndex = 0;
+                search.Text = "";
+                MessageBox.Show("Данной книги не существуеь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
 
         private void search_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            filter();
         }
 
         private void CBCatalog_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -116,6 +201,7 @@ namespace _41PP_TRifonova
                 CBPodCatalog.Visibility = Visibility.Collapsed;
                 CBGanre.Visibility = Visibility.Collapsed;
             }
+            filter();
         }
 
         private void CBPodCatalog_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -136,12 +222,13 @@ namespace _41PP_TRifonova
                     {
                         if (CBPodCatalog.SelectedIndex == i+1)
                         {
-                            CBPodCatalog.SelectedValuePath = Convert.ToString(subDirectorie[i].SubDirectoryID);
+                            string id= Convert.ToString(subDirectorie[i].SubDirectoryID);
+                            CBPodCatalog.SelectedValuePath = id;
                         }
 
                     }
-
-                    genres = genres.Where(x => x.DirectoryAndSubDirectoryID == Convert.ToInt32(CBPodCatalog.SelectedValuePath)).ToList();
+                    int index = Convert.ToInt32(CBPodCatalog.SelectedValuePath);
+                    genres = genres.Where(x => x.DirectoryAndSubDirectoryID == index).ToList();
                     if (genres.Count > 1)
                     {
                         for (int i = 0; i < genres.Count; i++)
@@ -165,11 +252,24 @@ namespace _41PP_TRifonova
                 CBPodCatalog.SelectedIndex = 0;
                 CBGanre.Visibility = Visibility.Collapsed;
             }
+            filter();
         }
 
         private void CBGanre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if(CBGanre.SelectedIndex>0)
+            {
+                int index = Convert.ToInt32(CBPodCatalog.SelectedValuePath);
+                List<Genres> genres = BD.bD.Genres.Where(x => x.DirectoryAndSubDirectoryID == index).ToList();
+                for(int i = 0; i < genres.Count; i++)
+                {
+                    if (CBGanre.SelectedIndex == i + 1)
+                    {
+                        CBGanre.SelectedValuePath = Convert.ToString(genres[i].GenreID);
+                    }
+                }
+            }
+            filter();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)

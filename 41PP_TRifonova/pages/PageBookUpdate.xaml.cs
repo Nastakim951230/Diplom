@@ -64,6 +64,7 @@ namespace _41PP_TRifonova
             }
             //Вывод ФИО сотрудника
             FIO.Text = employees.Surname + " " + name + ". " + othestvo + ".";
+
             textDescription.Text = books.Description;
             if(books.Photo!=null)
             {
@@ -97,6 +98,11 @@ namespace _41PP_TRifonova
                 }
                 textGanre.Text = ganre.Substring(0, ganre.Length - 2);
             }
+            BooksAndGanres andGanres = BD.bD.BooksAndGanres.FirstOrDefault(x => x.IDBook == books.BookID);
+            Catalogs catalogs = BD.bD.Catalogs.FirstOrDefault(x => x.CatalogID == andGanres.IDCatalog);
+            catalogBook.Text = catalogs.catalog +">";
+            SubDirectory subDirectory = BD.bD.SubDirectory.FirstOrDefault(x => x.SubDirectoryID == andGanres.IDUnderTheDirectory);
+            pogCatalog.Text = subDirectory.SubDirectory1;
             BooksAndLibraries libraries=BD.bD.BooksAndLibraries.FirstOrDefault(x=>x.IDLibrary==employees.LibraryID && x.IDBook==books.BookID);
             textCount.Text = Convert.ToString(libraries.count);
 

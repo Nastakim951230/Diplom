@@ -28,7 +28,7 @@
                 <Image Margin="0,5,0,0" Source="../image/MainThemeImage.png"></Image>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{StaticResource MainThemeTextBox}"></TextBox>
+                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
                     <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
@@ -81,7 +81,7 @@
                                     <Image Width="150" Height="170" Source="{Binding Photo, TargetNullValue={StaticResource defaultImage}}"/>
                                     <TextBlock Text="{Binding Nazvanie}" Style="{StaticResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
                                     <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
-                                    <Button Uid="{Binding BookID}" Name="update" Template="{StaticResource MainThemeButton}" Click="update_Click">Редактировать</Button>
+                                    <Button Uid="{Binding BookID}" Name="update" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_update}" Click="update_Click">Редактировать</Button>
                                     <Button Uid="{Binding BookID}" Name="libraruBook" Template="{StaticResource MainThemeButton}" Click="libraruBook_Click">Привоз</Button>
                                     <Button Uid="{Binding BookID}" Name="toBook" Template="{StaticResource MainThemeButton}" Click="toBook_Click">Бронировать</Button>
                                 </StackPanel>
