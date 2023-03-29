@@ -72,6 +72,12 @@
     <Compile Include="PageAddReader.xaml.cs">
       <DependentUpon>PageAddReader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pagesReaders\PageBooksReaders.xaml.cs">
+      <DependentUpon>PageBooksReaders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pagesReaders\PageReaders.xaml.cs">
+      <DependentUpon>PageReaders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\PageReader.xaml.cs">
       <DependentUpon>PageReader.xaml</DependentUpon>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="pages\PageSpisokEmployees.xaml.cs">
       <DependentUpon>PageSpisokEmployees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windowsReaders\WindowReader.xaml.cs">
+      <DependentUpon>WindowReader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\WindowBringing.xaml.cs">
       <DependentUpon>WindowBringing.xaml</DependentUpon>
     </Compile>
@@ -91,6 +100,14 @@
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
     <Page Include="PageAddReader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pagesReaders\PageBooksReaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pagesReaders\PageReaders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowsReaders\WindowReader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

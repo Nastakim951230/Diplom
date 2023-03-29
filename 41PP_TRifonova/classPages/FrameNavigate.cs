@@ -10,5 +10,6 @@ namespace _41PP_TRifonova
     internal class FrameNavigate
     {
         public static Frame per;
+        public static Frame perReader;
     }
 }

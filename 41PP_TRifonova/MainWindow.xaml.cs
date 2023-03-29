@@ -37,7 +37,9 @@ namespace _41PP_TRifonova
 
         private void btPolzpvatel_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowReader windowReader = new WindowReader();
+            this.Close();
+            windowReader.ShowDialog();
         }
     }
 }

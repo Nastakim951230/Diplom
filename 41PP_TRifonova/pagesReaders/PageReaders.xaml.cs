@@ -16,44 +16,17 @@ using System.Windows.Shapes;
 namespace _41PP_TRifonova
 {
     /// <summary>
-    /// Логика взаимодействия для PageEmployees.xaml
+    /// Логика взаимодействия для PageReaders.xaml
     /// </summary>
-    public partial class PageEmployees : Page
+    public partial class PageReaders : Page
     {
-        Employees employees;
-        public PageEmployees(Employees employees)
+        public PageReaders()
         {
             InitializeComponent();
-            this.employees = employees;
-            Books.idLibrary = employees.LibraryID;
-            if (employees.RoleID==1)
-            {
-                employee.Visibility=Visibility.Visible;  
-            }
-
-            string name="";
-            string othestvo="";
-            for(int i=0; i<employees.Name.Length; i++)
-            {
-                if(i ==0)
-                {
-                    name+= employees.Name[i];
-                }
-            }
-            for (int i = 0; i < employees.Otchestvo.Length; i++)
-            {
-                if (i == 0)
-                {
-                    othestvo += employees.Otchestvo[i];
-                }
-            }
-            //Вывод ФИО сотрудника
-            FIO.Text = employees.Surname + " "+name+". "+othestvo+".";
-
             //Заполнение списка каталог
             CBCatalog.Items.Add("Все каталоги");
-          List<Catalogs> catalogs=BD.bD.Catalogs.ToList();
-            for(int i = 0; i < catalogs.Count; i++)
+            List<Catalogs> catalogs = BD.bD.Catalogs.ToList();
+            for (int i = 0; i < catalogs.Count; i++)
             {
                 CBCatalog.Items.Add(catalogs[i].catalog);
             }
@@ -80,6 +53,8 @@ namespace _41PP_TRifonova
             listBook.ItemsSource = BD.bD.Books.ToList();
             TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
         }
+
+
         /// <summary>
         /// Поиск, фильтрация
         /// </summary>
@@ -91,21 +66,21 @@ namespace _41PP_TRifonova
                 books = books.Where(x => x.Nazvanie.ToLower().Contains(search.Text.ToLower())).ToList();
             }
 
-            if(inStock.IsChecked==true)
-            {
-                List<Books> booksLibrary = new List<Books>();
-                List<Books> book = new List<Books>();
-                List<BooksAndLibraries> booksAndLibraries = BD.bD.BooksAndLibraries.Where(x=>x.IDLibrary==employees.LibraryID).ToList();
-                for(int i = 0; i < booksAndLibraries.Count; i++)
-                {
-                    book=books.Where(x=>x.BookID==booksAndLibraries[i].IDBook).ToList();
-                    for(int j=0;j<book.Count;j++)
-                    {
-                        booksLibrary.Add(book[j]);
-                    }
-                }
-                books=booksLibrary;
-            }
+            //if (inStock.IsChecked == true)
+            //{
+            //    List<Books> booksLibrary = new List<Books>();
+            //    List<Books> book = new List<Books>();
+            //    List<BooksAndLibraries> booksAndLibraries = BD.bD.BooksAndLibraries.Where(x => x.IDLibrary == employees.LibraryID).ToList();
+            //    for (int i = 0; i < booksAndLibraries.Count; i++)
+            //    {
+            //        book = books.Where(x => x.BookID == booksAndLibraries[i].IDBook).ToList();
+            //        for (int j = 0; j < book.Count; j++)
+            //        {
+            //            booksLibrary.Add(book[j]);
+            //        }
+            //    }
+            //    books = booksLibrary;
+            //}
 
             if (CBCatalog.SelectedIndex > 0)
             {
@@ -122,13 +97,13 @@ namespace _41PP_TRifonova
                 }
                 books = bookGanre;
             }
-            if(CBPodCatalog.SelectedIndex > 0)
+            if (CBPodCatalog.SelectedIndex > 0)
             {
 
                 List<Books> bookGanre = new List<Books>();
                 List<Books> book = new List<Books>();
-                int index=Convert.ToInt32(CBPodCatalog.SelectedValuePath);
-                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x =>x.IDUnderTheDirectory == index).ToList();
+                int index = Convert.ToInt32(CBPodCatalog.SelectedValuePath);
+                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDUnderTheDirectory == index).ToList();
                 for (int i = 0; i < booksAndGanres.Count; i++)
                 {
                     book = books.Where(x => x.BookID == booksAndGanres[i].IDBook).ToList();
@@ -159,11 +134,11 @@ namespace _41PP_TRifonova
                 books = bookGanre;
 
             }
-            
-            if(CBCatalog.SelectedIndex==0 && search.Text=="" && inStock.IsChecked==false)
+
+            if (CBCatalog.SelectedIndex == 0 && search.Text == "" && inStock.IsChecked == false)
             {
 
-                books= BD.bD.Books.ToList();
+                books = BD.bD.Books.ToList();
                 CBPodCatalog.SelectedIndex = 0;
                 CBGanre.SelectedIndex = 0;
             }
@@ -175,7 +150,7 @@ namespace _41PP_TRifonova
             }
             else
             {
-               CBGanre.SelectedIndex = 0;
+                CBGanre.SelectedIndex = 0;
                 search.Text = "";
                 MessageBox.Show("Данной книги не существуеь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -191,19 +166,19 @@ namespace _41PP_TRifonova
             if (CBCatalog.SelectedIndex > 0)
             {
                 List<SubDirectory> subDirectories = BD.bD.SubDirectory.ToList();
-                
+
                 for (int i = 0; i < subDirectories.Count; i++)
                 {
                     CBPodCatalog.Items.Remove(subDirectories[i].SubDirectory1);
                 }
                 subDirectories = subDirectories.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
 
-              
+
                 for (int i = 0; i < subDirectories.Count; i++)
                 {
 
                     CBPodCatalog.Items.Add(subDirectories[i].SubDirectory1);
-                    
+
                 }
 
                 CBPodCatalog.SelectedIndex = 0;
@@ -233,9 +208,9 @@ namespace _41PP_TRifonova
                 {
                     for (int i = 0; i < subDirectorie.Count; i++)
                     {
-                        if (CBPodCatalog.SelectedIndex == i+1)
+                        if (CBPodCatalog.SelectedIndex == i + 1)
                         {
-                            string id= Convert.ToString(subDirectorie[i].SubDirectoryID);
+                            string id = Convert.ToString(subDirectorie[i].SubDirectoryID);
                             CBPodCatalog.SelectedValuePath = id;
                         }
 
@@ -258,7 +233,7 @@ namespace _41PP_TRifonova
                         CBGanre.Visibility = Visibility.Collapsed;
                     }
                 }
-                
+
             }
             else
             {
@@ -270,11 +245,11 @@ namespace _41PP_TRifonova
 
         private void CBGanre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(CBGanre.SelectedIndex>0)
+            if (CBGanre.SelectedIndex > 0)
             {
                 int index = Convert.ToInt32(CBPodCatalog.SelectedValuePath);
                 List<Genres> genres = BD.bD.Genres.Where(x => x.DirectoryAndSubDirectoryID == index).ToList();
-                for(int i = 0; i < genres.Count; i++)
+                for (int i = 0; i < genres.Count; i++)
                 {
                     if (CBGanre.SelectedIndex == i + 1)
                     {
@@ -287,75 +262,26 @@ namespace _41PP_TRifonova
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-            
-     
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
-            //Application.Current.Shutdown();
-           
+
         }
 
-        private void addBook_Click(object sender, RoutedEventArgs e)
+        private void entrance_Click(object sender, RoutedEventArgs e)
         {
-            FrameNavigate.per.Navigate(new PageAddBook(employees));
-        }
 
-        private void update_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
-            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
-
-            Books books=BD.bD.Books.FirstOrDefault(x=>x.BookID==index);
-
-            FrameNavigate.per.Navigate(new PageBookUpdate(employees,books,0));
-        }
-
-        private void booking_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void toBook_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
-            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
-
-            Books books = BD.bD.Books.FirstOrDefault(x => x.BookID == index);
-
-            FrameNavigate.per.Navigate(new PageBookUpdate(employees, books, 1));
-        }
-
-        private void libraruBook_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
-            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
-
-            Books books = BD.bD.Books.FirstOrDefault(x => x.BookID == index);
-            WindowBringing windowBringing = new WindowBringing(books, employees);
-            windowBringing.ShowDialog();
-            FrameNavigate.per.Navigate(new PageEmployees(employees));
-        }
-
-      
-
-        private void employee_Click(object sender, RoutedEventArgs e)
-        {
-            FrameNavigate.per.Navigate(new PageSpisokEmployees(employees));
         }
 
         private void inStock_Checked(object sender, RoutedEventArgs e)
         {
-            filter();
+
         }
 
-        private void inStock_Unchecked(object sender, RoutedEventArgs e)
+        private void lookBooks_Click(object sender, RoutedEventArgs e)
         {
-            filter();
-        }
+            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
 
-        private void addReader_Click(object sender, RoutedEventArgs e)
-        {
-            FrameNavigate.per.Navigate(new PageReader(employees));
+            Books books = BD.bD.Books.FirstOrDefault(x => x.BookID == index);
+            FrameNavigate.perReader.Navigate(new PageBooksReaders(books));
         }
     }
 }
