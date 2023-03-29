@@ -358,7 +358,7 @@ namespace _41PP_TRifonova
 
         private void addReader_Click(object sender, RoutedEventArgs e)
         {
-
+            FrameNavigate.per.Navigate(new PageReader(employees));
         }
     }
 }

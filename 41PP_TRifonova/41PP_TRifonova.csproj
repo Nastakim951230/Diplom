@@ -69,6 +69,12 @@
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageAddReader.xaml.cs">
+      <DependentUpon>PageAddReader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageReader.xaml.cs">
+      <DependentUpon>PageReader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\PageAddAndUpdateEmployees.xaml.cs">
       <DependentUpon>PageAddAndUpdateEmployees.xaml</DependentUpon>
     </Compile>
@@ -84,6 +90,14 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageAddReader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PageReader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\PageAddAndUpdateEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
