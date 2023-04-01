@@ -70,7 +70,22 @@ namespace _41PP_TRifonova
             List<IssueOrReturn> issueOrReturn = BD.bD.IssueOrReturn.Where(x => x.IDReader == reader.LibraryCardNumber).ToList();
             if (issueOrReturn.Count == 0)
             {
+                NumberOfIssued.Text = " 0";
                 DeletButton.Visibility = Visibility.Visible;
+                NumberOfDuty.Text = " 0";
+            }
+            else
+            {
+                NumberOfIssued.Text =" "+ issueOrReturn.Count.ToString();
+                int countDuty=0;
+                for (int i = 0; i < issueOrReturn.Count; i++)
+                {
+                    if(issueOrReturn[i].ReturnDate<=DateTime.Today)
+                    {
+                        countDuty++;
+                    }
+                }
+                NumberOfDuty.Text=" "+Convert.ToString(countDuty);
             }
         }
         private static int CalculateAge(DateTime birthDate)

@@ -50,7 +50,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Количество выданных книг:</TextBlock>
-               
+                <TextBlock Name="NumberOfIssued" Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock> 
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Количество бронированных книг:</TextBlock>
@@ -58,11 +58,11 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Количество задолженных книг:</TextBlock>
-
+                <TextBlock Name="NumberOfDuty" Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Name="fines" Margin="0,10,0,0" Visibility="Collapsed">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Штраф:</TextBlock>
-
+               
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
