@@ -67,6 +67,11 @@ namespace _41PP_TRifonova
             {
                 PereRegistrReader.Foreground = (SolidColorBrush)(Brush)brush.ConvertFrom("#225496");
             }
+            List<IssueOrReturn> issueOrReturn = BD.bD.IssueOrReturn.Where(x => x.IDReader == reader.LibraryCardNumber).ToList();
+            if (issueOrReturn.Count == 0)
+            {
+                DeletButton.Visibility = Visibility.Visible;
+            }
         }
         private static int CalculateAge(DateTime birthDate)
         {
@@ -109,11 +114,13 @@ namespace _41PP_TRifonova
             {
                 try
                 {
-                    //Employees sotrudnik = BD.bD.Employees.FirstOrDefault(x => x.EmployeeID == employee.EmployeeID);
-                    //BD.bD.Employees.Remove(sotrudnik);
-                    //BD.bD.SaveChanges();
-                    //MessageBox.Show("Сотрудника удален");
-                    //FrameNavigate.per.Navigate(new PageSpisokEmployees(employees));
+                    
+                        BD.bD.Reader.Remove(reader);
+                        BD.bD.SaveChanges();
+                        MessageBox.Show("Читатель удален");
+                        FrameNavigate.per.Navigate(new PageReader(employees));
+                  
+                    
                 }
                 catch (Exception ex)
                 {

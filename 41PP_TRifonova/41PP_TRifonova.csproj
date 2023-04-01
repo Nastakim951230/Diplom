@@ -65,12 +65,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="classPages\ClassEmployees.cs" />
     <Compile Include="ClassReaders.cs" />
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="InformationAboutParents.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IssueOrReturn.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="PageReaderUpdate.xaml.cs">

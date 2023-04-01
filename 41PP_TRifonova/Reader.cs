@@ -14,6 +14,12 @@ namespace _41PP_TRifonova
     
     public partial class Reader
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Reader()
+        {
+            this.Application = new HashSet<Application>();
+        }
+    
         public int LibraryCardNumber { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
@@ -30,6 +36,8 @@ namespace _41PP_TRifonova
         public System.DateTime ReissuanceDate { get; set; }
         public int IDLibrary { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Application> Application { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual InformationAboutParents InformationAboutParents { get; set; }
         public virtual Libraries Libraries { get; set; }

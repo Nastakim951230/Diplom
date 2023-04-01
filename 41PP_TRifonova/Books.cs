@@ -17,6 +17,7 @@ namespace _41PP_TRifonova
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Books()
         {
+            this.Application = new HashSet<Application>();
             this.BooksAndAuthors = new HashSet<BooksAndAuthors>();
             this.BooksAndGanres = new HashSet<BooksAndGanres>();
             this.BooksAndLibraries = new HashSet<BooksAndLibraries>();
@@ -33,6 +34,8 @@ namespace _41PP_TRifonova
         public byte[] Photo { get; set; }
     
         public virtual AgeRestrictions AgeRestrictions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Application> Application { get; set; }
         public virtual PublishingHouse PublishingHouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksAndAuthors> BooksAndAuthors { get; set; }

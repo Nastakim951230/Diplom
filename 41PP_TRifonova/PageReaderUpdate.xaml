@@ -66,7 +66,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Button Name="DeletButton"  Template="{StaticResource MainThemeButton}" Click="DeletButton_Click">Удалить читателя</Button>
+                <Button Name="DeletButton"  Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Click="DeletButton_Click">Удалить читателя</Button>
                 <Button Name="PereRegistratsiaButton" Margin="10,0,0,0" Template="{StaticResource MainThemeButton}" Visibility="Collapsed"  Click="PereRegistratsiaButton_Click">Перерегистрация</Button>
                 
             </StackPanel>
