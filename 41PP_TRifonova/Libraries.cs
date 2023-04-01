@@ -19,6 +19,7 @@ namespace _41PP_TRifonova
         {
             this.BooksAndLibraries = new HashSet<BooksAndLibraries>();
             this.Employees = new HashSet<Employees>();
+            this.Reader = new HashSet<Reader>();
         }
     
         public int LibraryID { get; set; }
@@ -29,5 +30,7 @@ namespace _41PP_TRifonova
         public virtual ICollection<BooksAndLibraries> BooksAndLibraries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employees> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reader> Reader { get; set; }
     }
 }

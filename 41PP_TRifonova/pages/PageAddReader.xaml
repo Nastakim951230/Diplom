@@ -21,7 +21,7 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <TabControl BorderBrush="{x:Null}">
-                <TabItem Header="Больше 14 лет" Style="{StaticResource MainThemeTabItem}" >
+                <TabItem Header="Старше 14 лет" Style="{StaticResource MainThemeTabItem}" >
                     <Grid  Margin="20,0,20,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -66,11 +66,11 @@
                         
                         <Grid Grid.Row="3">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="180"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Место постоянной регистрации:</TextBlock>
+                                <TextBlock Style="{StaticResource textOsnova}">Адресс проживания:</TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBox Name="addressRegistrasii" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
@@ -79,11 +79,11 @@
 
                         <Grid Grid.Row="4">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="130"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Фактическое место жительства:</TextBlock>
+                                <TextBlock Style="{StaticResource textOsnova}">Место работы:</TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBox Name="addressFactions" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
@@ -186,7 +186,7 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Меньше 14 лет" Style="{StaticResource MainThemeTabItem}">
+                <TabItem Header="Младше 14 лет" Style="{StaticResource MainThemeTabItem}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <Grid  Margin="20,0,20,0">
                         <Grid.RowDefinitions>
@@ -202,10 +202,10 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
+                            
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="13">
+                        <StackPanel Grid.Row="12">
                             <Button Name="SaveReader" Template="{StaticResource MainThemeButton}" HorizontalAlignment="Center" Click="SaveReader_Click">Сохратить читателя</Button>
                         </StackPanel>
                         <Grid Grid.Row="11">
@@ -220,7 +220,7 @@
                                 <TextBox Name="email" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
                             </StackPanel>
                         </Grid>
-                        <Grid Grid.Row="5">
+                        <Grid Grid.Row="4">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="350"/>
                                 <ColumnDefinition/>
@@ -239,25 +239,14 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Место постоянной регистрации:</TextBlock>
+                                    <TextBlock Style="{StaticResource textOsnova}">Адресс проживания:</TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBox Name="AddressRegistrasii" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
                             </StackPanel>
                         </Grid>
 
-                        <Grid Grid.Row="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="280"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Фактическое место жительства:</TextBlock>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                                <TextBox Name="AddressFactions" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
-                            </StackPanel>
-                        </Grid>
+                        
 
                         <StackPanel Grid.Row="0" HorizontalAlignment="Center">
                             <TextBlock Style="{StaticResource textOsnovaNazvanie}">Сведения о ребенке</TextBlock>
@@ -358,29 +347,13 @@
                             <TextBlock Style="{StaticResource textOsnovaNazvanie}">Сведения о родителе/законном представителе</TextBlock>
                         </StackPanel>
 
-
-
-                        
-                        <Grid Grid.Row="12">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="130"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Место работы:</TextBlock>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                                <TextBox Name="addressRoditel" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
-                            </StackPanel>
-                        </Grid>
-
                         <Grid Grid.Row="9">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="180"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Место постоянной регистрации:</TextBlock>
+                                    <TextBlock Style="{StaticResource textOsnova}">Адресс проживания:</TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBox Name="AddressRegistrasiiRoditel" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>
@@ -389,11 +362,11 @@
 
                         <Grid Grid.Row="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="130"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Style="{StaticResource textOsnova}">Фактическое место жительства:</TextBlock>
+                                    <TextBlock Style="{StaticResource textOsnova}">Место работы:</TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBox Name="AddressFactionsRoditel" Style="{StaticResource MainThemeTextBox}" Height="30"></TextBox>

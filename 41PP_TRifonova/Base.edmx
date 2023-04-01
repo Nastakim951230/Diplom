@@ -101,6 +101,21 @@
           <Property Name="DirectoryAndSubDirectoryID" Type="int" Nullable="false" />
           <Property Name="Ganre" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="InformationAboutParents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Otshestvo" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="TelefonNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PlaceOfWork" Type="nvarchar(max)" />
+          <Property Name="GenderID" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Libraries">
           <Key>
             <PropertyRef Name="LibraryID" />
@@ -115,6 +130,26 @@
           </Key>
           <Property Name="PublishingHouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazvanie" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reader">
+          <Key>
+            <PropertyRef Name="LibraryCardNumber" />
+          </Key>
+          <Property Name="LibraryCardNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Otshestvo" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="TelefonNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PlaceOfStudy" Type="nvarchar(max)" />
+          <Property Name="PlaceOfWork" Type="nvarchar(max)" />
+          <Property Name="GenderID" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="InformationAboutParentsID" Type="int" />
+          <Property Name="DateOfIssue" Type="date" Nullable="false" />
+          <Property Name="ReissuanceDate" Type="date" Nullable="false" />
+          <Property Name="IDLibrary" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -311,6 +346,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_InformationAboutParents_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="InformationAboutParents" Type="Self.InformationAboutParents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="InformationAboutParents">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_InformationAboutParents">
+          <End Role="InformationAboutParents" Type="Self.InformationAboutParents" Multiplicity="0..1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationAboutParents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="InformationAboutParentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_Libraries">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="IDLibrary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище Trifonova_41P_DiplomModelContainer">
           <EntitySet Name="AgeRestrictions" EntityType="Self.AgeRestrictions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
@@ -322,8 +405,10 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationAboutParents" EntityType="Self.InformationAboutParents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libraries" EntityType="Self.Libraries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PublishingHouse" EntityType="Self.PublishingHouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reader" EntityType="Self.Reader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubDirectory" EntityType="Self.SubDirectory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Books_AgeRestrictions" Association="Self.FK_Books_AgeRestrictions">
@@ -386,6 +471,22 @@
             <End Role="SubDirectory" EntitySet="SubDirectory" />
             <End Role="Genres" EntitySet="Genres" />
           </AssociationSet>
+          <AssociationSet Name="FK_InformationAboutParents_Gender" Association="Self.FK_InformationAboutParents_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="InformationAboutParents" EntitySet="InformationAboutParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_Gender" Association="Self.FK_Reader_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_InformationAboutParents" Association="Self.FK_Reader_InformationAboutParents">
+            <End Role="InformationAboutParents" EntitySet="InformationAboutParents" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_Libraries" Association="Self.FK_Reader_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -402,8 +503,10 @@
           <EntitySet Name="Employees" EntityType="Trifonova_41P_DiplomModel.Employees" />
           <EntitySet Name="Gender" EntityType="Trifonova_41P_DiplomModel.Gender" />
           <EntitySet Name="Genres" EntityType="Trifonova_41P_DiplomModel.Genres" />
+          <EntitySet Name="InformationAboutParents" EntityType="Trifonova_41P_DiplomModel.InformationAboutParents" />
           <EntitySet Name="Libraries" EntityType="Trifonova_41P_DiplomModel.Libraries" />
           <EntitySet Name="PublishingHouse" EntityType="Trifonova_41P_DiplomModel.PublishingHouse" />
+          <EntitySet Name="Reader" EntityType="Trifonova_41P_DiplomModel.Reader" />
           <EntitySet Name="Roles" EntityType="Trifonova_41P_DiplomModel.Roles" />
           <EntitySet Name="SubDirectory" EntityType="Trifonova_41P_DiplomModel.SubDirectory" />
           <AssociationSet Name="FK_Books_AgeRestrictions" Association="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions">
@@ -462,9 +565,25 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_InformationAboutParents_Gender" Association="Trifonova_41P_DiplomModel.FK_InformationAboutParents_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="InformationAboutParents" EntitySet="InformationAboutParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_Gender" Association="Trifonova_41P_DiplomModel.FK_Reader_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
           <AssociationSet Name="FK_Genres_SubDirectory" Association="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory">
             <End Role="SubDirectory" EntitySet="SubDirectory" />
             <End Role="Genres" EntitySet="Genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_InformationAboutParents" Association="Trifonova_41P_DiplomModel.FK_Reader_InformationAboutParents">
+            <End Role="InformationAboutParents" EntitySet="InformationAboutParents" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_Libraries" Association="Trifonova_41P_DiplomModel.FK_Reader_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AgeRestrictions">
@@ -563,10 +682,10 @@
           <Property Name="Telefon" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="IDGender" Type="Int32" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Gender" FromRole="Employees" ToRole="Gender" />
           <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Libraries" FromRole="Employees" ToRole="Libraries" />
           <NavigationProperty Name="Roles" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Roles" FromRole="Employees" ToRole="Roles" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -575,6 +694,8 @@
           <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="gender1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employees" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Gender" FromRole="Gender" ToRole="Employees" />
+          <NavigationProperty Name="InformationAboutParents" Relationship="Trifonova_41P_DiplomModel.FK_InformationAboutParents_Gender" FromRole="Gender" ToRole="InformationAboutParents" />
+          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Gender" FromRole="Gender" ToRole="Reader" />
         </EntityType>
         <EntityType Name="Genres">
           <Key>
@@ -586,6 +707,23 @@
           <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Genres" FromRole="Genres" ToRole="BooksAndGanres" />
           <NavigationProperty Name="SubDirectory" Relationship="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory" FromRole="Genres" ToRole="SubDirectory" />
         </EntityType>
+        <EntityType Name="InformationAboutParents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otshestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TelefonNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceOfWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gender" Relationship="Trifonova_41P_DiplomModel.FK_InformationAboutParents_Gender" FromRole="InformationAboutParents" ToRole="Gender" />
+          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Reader_InformationAboutParents" FromRole="InformationAboutParents" ToRole="Reader" />
+        </EntityType>
         <EntityType Name="Libraries">
           <Key>
             <PropertyRef Name="LibraryID" />
@@ -595,6 +733,7 @@
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BooksAndLibraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries" FromRole="Libraries" ToRole="BooksAndLibraries" />
           <NavigationProperty Name="Employees" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Libraries" FromRole="Libraries" ToRole="Employees" />
+          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Libraries" FromRole="Libraries" ToRole="Reader" />
         </EntityType>
         <EntityType Name="PublishingHouse">
           <Key>
@@ -603,6 +742,29 @@
           <Property Name="PublishingHouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nazvanie" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" FromRole="PublishingHouse" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Reader">
+          <Key>
+            <PropertyRef Name="LibraryCardNumber" />
+          </Key>
+          <Property Name="LibraryCardNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otshestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TelefonNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceOfStudy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceOfWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InformationAboutParentsID" Type="Int32" />
+          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReissuanceDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDLibrary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Gender" FromRole="Reader" ToRole="Gender" />
+          <NavigationProperty Name="InformationAboutParents" Relationship="Trifonova_41P_DiplomModel.FK_Reader_InformationAboutParents" FromRole="Reader" ToRole="InformationAboutParents" />
+          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Libraries" FromRole="Reader" ToRole="Libraries" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -791,6 +953,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_InformationAboutParents_Gender">
+          <End Type="Trifonova_41P_DiplomModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.InformationAboutParents" Role="InformationAboutParents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="InformationAboutParents">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_Gender">
+          <End Type="Trifonova_41P_DiplomModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Genres_SubDirectory">
           <End Type="Trifonova_41P_DiplomModel.SubDirectory" Role="SubDirectory" Multiplicity="1" />
           <End Type="Trifonova_41P_DiplomModel.Genres" Role="Genres" Multiplicity="*" />
@@ -800,6 +986,30 @@
             </Principal>
             <Dependent Role="Genres">
               <PropertyRef Name="DirectoryAndSubDirectoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_InformationAboutParents">
+          <End Type="Trifonova_41P_DiplomModel.InformationAboutParents" Role="InformationAboutParents" Multiplicity="0..1" />
+          <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationAboutParents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="InformationAboutParentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_Libraries">
+          <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="IDLibrary" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -915,6 +1125,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="InformationAboutParents">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.InformationAboutParents">
+              <MappingFragment StoreEntitySet="InformationAboutParents">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="PlaceOfWork" ColumnName="PlaceOfWork" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelefonNumber" ColumnName="TelefonNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Otshestvo" ColumnName="Otshestvo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Libraries">
             <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Libraries">
               <MappingFragment StoreEntitySet="Libraries">
@@ -929,6 +1155,27 @@
               <MappingFragment StoreEntitySet="PublishingHouse">
                 <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
                 <ScalarProperty Name="PublishingHouseID" ColumnName="PublishingHouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reader">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Reader">
+              <MappingFragment StoreEntitySet="Reader">
+                <ScalarProperty Name="IDLibrary" ColumnName="IDLibrary" />
+                <ScalarProperty Name="ReissuanceDate" ColumnName="ReissuanceDate" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="InformationAboutParentsID" ColumnName="InformationAboutParentsID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="PlaceOfWork" ColumnName="PlaceOfWork" />
+                <ScalarProperty Name="PlaceOfStudy" ColumnName="PlaceOfStudy" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelefonNumber" ColumnName="TelefonNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Otshestvo" ColumnName="Otshestvo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="LibraryCardNumber" ColumnName="LibraryCardNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

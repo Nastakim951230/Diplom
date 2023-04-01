@@ -23,6 +23,7 @@ namespace _41PP_TRifonova
         public PageReaders()
         {
             InitializeComponent();
+            
             //Заполнение списка каталог
             CBCatalog.Items.Add("Все каталоги");
             List<Catalogs> catalogs = BD.bD.Catalogs.ToList();

@@ -5,19 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="86e3b7be4bae4200babe88d537967a55" Name="Diagram1" ZoomLevel="54">
-        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.AgeRestrictions" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.AgeRestrictions" Width="1.5" PointX="0.75" PointY="5" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Authors" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Books" Width="1.5" PointX="3" PointY="3.875" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.BooksAndAuthors" Width="1.5" PointX="5.25" PointY="1.75" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.BooksAndGanres" Width="1.5" PointX="8.25" PointY="4.375" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.BooksAndLibraries" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Catalogs" Width="1.5" PointX="6" PointY="8.375" />
-        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Employees" Width="1.5" PointX="5.25" PointY="13.875" />
-        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Gender" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Employees" Width="1.5" PointX="5.25" PointY="14.75" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Gender" Width="1.5" PointX="6" PointY="23.75" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Genres" Width="1.5" PointX="6" PointY="11" />
-        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Libraries" Width="1.5" PointX="3" PointY="14.75" />
-        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.PublishingHouse" Width="1.5" PointX="0.75" PointY="5" />
-        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Roles" Width="1.5" PointX="3" PointY="20.125" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.InformationAboutParents" Width="1.5" PointX="6" PointY="19.75" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Libraries" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.PublishingHouse" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Reader" Width="1.5" PointX="8.25" PointY="13.5" />
+        <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.Roles" Width="1.5" PointX="3" PointY="18" />
         <EntityTypeShape EntityType="Trifonova_41P_DiplomModel.SubDirectory" Width="1.5" PointX="3.75" PointY="10.875" />
         <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" />
         <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors" />
@@ -33,7 +35,11 @@
         <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Employees_Gender" />
         <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Employees_Libraries" />
         <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Employees_Roles" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_InformationAboutParents_Gender" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Reader_Gender" />
         <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Genres_SubDirectory" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Reader_InformationAboutParents" />
+        <AssociationConnector Association="Trifonova_41P_DiplomModel.FK_Reader_Libraries" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

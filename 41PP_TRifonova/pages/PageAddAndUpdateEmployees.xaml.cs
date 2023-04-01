@@ -49,7 +49,7 @@ namespace _41PP_TRifonova
             CBLibrary.SelectedIndex=employee.LibraryID;
             CBGender.SelectedIndex = employee.IDGender;
             addressEmployees.Text = employee.Address;
-            dataOfBirth.Text = String.Format("{0:dd MM yyyy}", employee.DateOfBirth);
+            dataOfBirth.Text = String.Format("{0:dd.MM.yyyy}", employee.DateOfBirth);
             string telefonnomer = "";
             for(int i=0;i<employee.Telefon.Length;i++)
             {

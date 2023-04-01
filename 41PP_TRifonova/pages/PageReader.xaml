@@ -29,12 +29,32 @@
                 <Button Name="addReader" Click="addReader_Click" Template="{StaticResource MainThemeButton}">Добавить читателя</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="10,0,20,0">
-                <TextBox Style="{StaticResource MainThemeTextBox}" Tag="Поиск по фамилии" Height="37"></TextBox>
+                <TextBox Style="{StaticResource MainThemeTextBox}" TextChanged="TextBox_TextChanged" Tag="Поиск по номеру читательского билета" Height="37"></TextBox>
             </StackPanel>
          
         </Grid>
         <Grid Grid.Row="2">
-            <ListView Name="listReader" BorderBrush="{x:Null}" Margin="20,10,20,10"></ListView>
+            <ListView Name="listReader" BorderBrush="{x:Null}" Margin="20,10,20,10" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Left"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="10" Width="300" Height="130" Background="{Binding brush}" BorderBrush="#26A9E0" BorderThickness="1">
+                            <Grid>
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding Nomer}" Style="{StaticResource MainThemeText}"></TextBlock>
+                                    <TextBlock Text="{Binding dateRegistr}" Style="{StaticResource MainThemeText}"></TextBlock>
+                                    <TextBlock Text="{Binding datePeregistr}" Style="{StaticResource MainThemeText}"></TextBlock>
+                                    <Button Name="lookReader" Uid="{Binding LibraryCardNumber}" Click="lookReader_Click" Template="{StaticResource MainThemeButton}">Смотреть</Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </Page>

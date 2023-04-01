@@ -43,6 +43,7 @@ namespace _41PP_TRifonova
             }
             //Вывод ФИО сотрудника
             FIO.Text = employees.Surname + " " + name + ". " + othestvo + ".";
+            listReader.ItemsSource = BD.bD.Reader.Where(x=>x.IDLibrary==employees.LibraryID).ToList();
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -53,6 +54,19 @@ namespace _41PP_TRifonova
         private void addReader_Click(object sender, RoutedEventArgs e)
         {
             FrameNavigate.per.Navigate(new PageAddReader(employees));
+        }
+
+        private void lookReader_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка 
+            Reader reader=BD.bD.Reader.FirstOrDefault(x=>x.LibraryCardNumber==index);
+            FrameNavigate.per.Navigate(new PageReaderUpdate(employees, reader));
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            List<Reader> readers = BD.bD.Reader.ToList();
         }
     }
 }

@@ -1,0 +1,76 @@
+﻿<Page x:Class="_41PP_TRifonova.PageReaderUpdate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_41PP_TRifonova"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="PageReaderUpdate">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="0">
+            <Button Name="back" Template="{StaticResource MainThemeButton}" Margin="20,0,0,0" Click="back_Click">Назад</Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Name="FIO" Margin="0,0,20,0" Style="{StaticResource textOsnova}">Три</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="20,0,20,0">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock  Style="{StaticResource textOsnovaNazvanie}">Номер читательского билета: </TextBlock>
+                <TextBlock Name="nomer" Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">ФИО:</TextBlock>
+                <TextBlock Name="fioReader" Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Дата рождения:</TextBlock>
+                <TextBlock Name="DRReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Номер телефона:</TextBlock>
+                <TextBlock Name="TelefonReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Дата регистрации:</TextBlock>
+                <TextBlock Name="RegistrReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Дата перерегистрации:</TextBlock>
+                <TextBlock Name="PereRegistrReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Количество выданных книг:</TextBlock>
+               
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Количество бронированных книг:</TextBlock>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Количество задолженных книг:</TextBlock>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Name="fines" Margin="0,10,0,0" Visibility="Collapsed">
+                <TextBlock Style="{StaticResource textOsnovaNazvanie}">Штраф:</TextBlock>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Button Name="DeletButton"  Template="{StaticResource MainThemeButton}" Click="DeletButton_Click">Удалить читателя</Button>
+                <Button Name="PereRegistratsiaButton" Margin="10,0,0,0" Template="{StaticResource MainThemeButton}" Visibility="Collapsed"  Click="PereRegistratsiaButton_Click">Перерегистрация</Button>
+                
+            </StackPanel>
+           
+        </StackPanel>
+    </Grid>
+</Page>

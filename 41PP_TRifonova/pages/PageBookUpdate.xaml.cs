@@ -158,14 +158,12 @@ namespace _41PP_TRifonova
             try
             {
                 OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
-                                                            //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
+                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
                 OFD.ShowDialog();  // открываем диалоговое окно             
-                path = OFD.FileName;  // считываем путь выбранного изображения
-
+                string path = OFD.FileName;  // считываем путь выбранного изображения
                 System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
                 ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
-                Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
-                showImage(Barray, photoBook);
+                byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
                 return Barray;
             }
             catch

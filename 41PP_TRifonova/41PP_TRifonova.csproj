@@ -66,10 +66,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="classPages\ClassEmployees.cs" />
+    <Compile Include="ClassReaders.cs" />
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageAddReader.xaml.cs">
+    <Compile Include="InformationAboutParents.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageReaderUpdate.xaml.cs">
+      <DependentUpon>PageReaderUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageAddReader.xaml.cs">
       <DependentUpon>PageAddReader.xaml</DependentUpon>
     </Compile>
     <Compile Include="pagesReaders\PageBooksReaders.xaml.cs">
@@ -90,6 +97,9 @@
     <Compile Include="pages\PageSpisokEmployees.xaml.cs">
       <DependentUpon>PageSpisokEmployees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reader.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="windowsReaders\WindowReader.xaml.cs">
       <DependentUpon>WindowReader.xaml</DependentUpon>
     </Compile>
@@ -99,7 +109,11 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
-    <Page Include="PageAddReader.xaml">
+    <Page Include="PageReaderUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PageAddReader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,7 +315,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="image\logo.png" />
   </ItemGroup>
