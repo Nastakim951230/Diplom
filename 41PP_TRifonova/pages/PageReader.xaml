@@ -29,7 +29,7 @@
                 <Button Name="addReader" Click="addReader_Click" Template="{StaticResource MainThemeButton}">Добавить читателя</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="10,0,20,0">
-                <TextBox Style="{StaticResource MainThemeTextBox}" TextChanged="TextBox_TextChanged" Tag="Поиск по номеру читательского билета" Height="37" Cursor="IBeam"></TextBox>
+                <TextBox Name="searhReader" Style="{StaticResource MainThemeTextBox}" TextChanged="TextBox_TextChanged" Tag="Поиск по номеру читательского билета" Height="37" Cursor="IBeam"></TextBox>
             </StackPanel>
          
         </Grid>

@@ -67,6 +67,20 @@ namespace _41PP_TRifonova
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             List<Reader> readers = BD.bD.Reader.ToList();
+            if (!string.IsNullOrWhiteSpace(searhReader.Text))
+            {
+                readers = readers.Where(x => x.id.ToLower().Contains(searhReader.Text.ToLower())).ToList();
+            }
+
+            if(readers.Count>0)
+            {
+                listReader.ItemsSource=readers;
+            }
+            else
+            {
+                searhReader.Text = "";
+                MessageBox.Show("Данной читателя не существуеь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

@@ -60,6 +60,15 @@ namespace _41PP_TRifonova
                 return "Дата регистрации: " + date;
             }
         }
+
+        public string id
+        {
+            get
+            {
+                string idReader = Convert.ToString(LibraryCardNumber);
+                return "Дата регистрации: " + idReader;
+            }
+        }
         public string datePeregistr
         {
             get
