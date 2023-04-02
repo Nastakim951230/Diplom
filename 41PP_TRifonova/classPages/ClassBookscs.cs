@@ -18,6 +18,63 @@ namespace _41PP_TRifonova
                 return authors.NameAuthor + " " + authors.SurnameAuthor;
             }
         }
+        public string age
+        {
+            get
+            {
+                if(AgeRestrictions!=null)
+                {
+                    return AgeRestrictions + "";
+                }
+                else
+                {
+                    return "Ограничений нет";
+                }
+            }
+        }
+
+        public string genres
+        {
+            get
+            {
+                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDBook == BookID).ToList();
+                string ganre = "";
+                if (booksAndGanres.Count > 0)
+                {
+                    foreach (BooksAndGanres ganres in booksAndGanres)
+                    {
+                        ganre += ganres.Genres.Ganre + ", ";
+                    }
+                    return ganre.Substring(0, ganre.Length - 2);
+                }
+                else
+                {
+                    return "нет жанра";
+                }
+            }
+        }
+
+        public string listAvtors
+        {
+            get
+            {
+                List<BooksAndAuthors> booksAndAuthors = BD.bD.BooksAndAuthors.Where(x => x.BookID == BookID).ToList();
+
+                string avtors = "";
+                if (booksAndAuthors.Count > 0)
+                {
+                    foreach (BooksAndAuthors book in booksAndAuthors)
+                    {
+                        avtors += book.Authors.NameAuthor + " " + book.Authors.SurnameAuthor + " " + book.Authors.OthestvoAuthor + ", ";
+                    }
+                   return avtors.Substring(0, avtors.Length - 2);
+                }
+                else
+                {
+                    return "автора нет";
+                }
+            }
+        }
         public static int idLibrary;
         
         public  string btn_update

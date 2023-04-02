@@ -39,6 +39,9 @@
                 <Button Name="entrance" Template="{StaticResource MainThemeButton}" Visibility="Visible" Margin="0,0,5,0" Click="entrance_Click">Вход</Button>
                 <Button Name="exit" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
             </StackPanel>
+            <StackPanel Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,5,20" HorizontalAlignment="Right">
+                <Button Name="BasketButton" Click="BasketButton_Click" Visibility="Collapsed" Template="{StaticResource MainThemeButton}">Корзина</Button>
+            </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Style="{StaticResource textOsnova}">В наличии</TextBlock>

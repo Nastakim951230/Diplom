@@ -1,0 +1,21 @@
+﻿<Window x:Class="_41PP_TRifonova.WindowLibrary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_41PP_TRifonova"
+        mc:Ignorable="d" Icon="../image/logo.png"
+        Title="Библиотека" Height="300" Width="450" MaxHeight="300" MaxWidth="450">
+    <Grid Style="{StaticResource MainThemeGrid}">
+        <StackPanel  Margin="20,0,20,0">
+            <Image Height="130" Source="../image/MainThemeImage.png" Margin="0,10,0,10"></Image>
+            <TextBlock Style="{StaticResource textListNazvanie}" Foreground="White">Выберите библиотеку</TextBlock>
+            <ComboBox Name="CBLibrary"  Style="{StaticResource MainThemeComboBox}" Height="30"></ComboBox>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Center">
+                <Button Name="back" Click="back_Click" Template="{StaticResource MainThemeButton}" >Назад</Button>
+                <Button Name="vhod" Click="vhod_Click" Template="{StaticResource MainThemeButton}"  Margin="10,0,0,0">Вход</Button>
+            </StackPanel>
+           
+        </StackPanel>
+    </Grid>
+</Window>

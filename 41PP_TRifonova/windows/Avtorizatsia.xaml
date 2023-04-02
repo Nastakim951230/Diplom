@@ -24,9 +24,9 @@
            
         </StackPanel>
         <TextBlock Name="TxPassword" Grid.Row="2" Margin="25,17" Style="{StaticResource PasswordText}" IsHitTestVisible="False" Text="Пароль"></TextBlock>
-        <StackPanel Grid.Row="3" HorizontalAlignment="Center">
-            
-            <Button Name="avtorizatsiaBT" Template="{StaticResource MainThemeButton}" Click="avtorizatsiaBT_Click">Вход</Button>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Name="back" Click="back_Click" Template="{StaticResource MainThemeButton}">Назад</Button>
+            <Button Name="avtorizatsiaBT" Template="{StaticResource MainThemeButton}" Margin="10,0,0,0" Click="avtorizatsiaBT_Click">Вход</Button>
         </StackPanel>
       
       

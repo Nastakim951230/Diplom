@@ -76,7 +76,7 @@
                     </StackPanel>
                 </Grid>
                 <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                    <Button Name="basket" Template="{StaticResource MainThemeButton}"  Visibility="Visible"  Click="basket_Click">Добавить в корзину</Button>
+                    <Button Name="basket" Template="{StaticResource MainThemeButton}"  Visibility="Collapsed"  Click="basket_Click">Взять</Button>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -68,8 +68,9 @@
     <Compile Include="Application.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="classPages\ClassBasket.cs" />
     <Compile Include="classPages\ClassEmployees.cs" />
-    <Compile Include="ClassReaders.cs" />
+    <Compile Include="classPages\ClassReaders.cs" />
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -78,6 +79,9 @@
     </Compile>
     <Compile Include="IssueOrReturn.cs">
       <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageBasket.xaml.cs">
+      <DependentUpon>PageBasket.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageReaderUpdate.xaml.cs">
       <DependentUpon>PageReaderUpdate.xaml</DependentUpon>
@@ -106,6 +110,12 @@
     <Compile Include="Reader.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="windowsReaders\WindowAvtorizatsiaReaders.xaml.cs">
+      <DependentUpon>WindowAvtorizatsiaReaders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windowsReaders\WindowLibrary.xaml.cs">
+      <DependentUpon>WindowLibrary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windowsReaders\WindowReader.xaml.cs">
       <DependentUpon>WindowReader.xaml</DependentUpon>
     </Compile>
@@ -115,6 +125,10 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageBasket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageReaderUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +170,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowsReaders\WindowAvtorizatsiaReaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowsReaders\WindowLibrary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
