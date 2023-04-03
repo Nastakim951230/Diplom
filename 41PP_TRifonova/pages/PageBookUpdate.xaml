@@ -41,7 +41,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="20,10,20,0">
-                <Image   Source="../image/ping.png" Name="photoBook"></Image>
+                <Image  Source="../image/ping.png" Name="photoBook"></Image>
             </StackPanel>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>

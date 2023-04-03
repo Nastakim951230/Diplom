@@ -43,7 +43,7 @@
           <Property Name="Pages" Type="int" Nullable="false" />
           <Property Name="RestrictionsID" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Photo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BooksAndAuthors">
           <Key>
@@ -715,7 +715,7 @@
           <Property Name="Pages" Type="Int32" Nullable="false" />
           <Property Name="RestrictionsID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AgeRestrictions" Relationship="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" FromRole="Books" ToRole="AgeRestrictions" />
           <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Books" FromRole="Books" ToRole="Application" />
           <NavigationProperty Name="PublishingHouse" Relationship="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" FromRole="Books" ToRole="PublishingHouse" />

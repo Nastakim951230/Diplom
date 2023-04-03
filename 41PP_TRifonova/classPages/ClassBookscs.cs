@@ -24,7 +24,7 @@ namespace _41PP_TRifonova
             {
                 if(AgeRestrictions!=null)
                 {
-                    return AgeRestrictions + "";
+                    return AgeRestrictions.Restrictions + "";
                 }
                 else
                 {

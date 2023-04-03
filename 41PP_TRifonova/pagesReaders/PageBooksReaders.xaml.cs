@@ -23,6 +23,7 @@ namespace _41PP_TRifonova
         Books books;
         Libraries library;
         Reader reader;
+        int count=0;
         List<ClassBooksBasket> baskets = new List<ClassBooksBasket>();
         public static List<ClassBooksBasket> Basket;
         public PageBooksReaders(Books books, Libraries library,Reader reader)
@@ -31,9 +32,20 @@ namespace _41PP_TRifonova
             this.books = books;
             this.library = library;
             this.reader = reader;
-            if(Basket!=null)
+            if(Basket.Count!=0)
             {
                 baskets = Basket;
+                ClassBooksBasket classBooks=new ClassBooksBasket();
+                classBooks = baskets.FirstOrDefault(x => x.books.BookID == books.BookID);
+                if(classBooks==null)
+                {
+                    count=0;
+                }
+                else
+                {
+                    count=classBooks.couint;
+                }
+                
             }
             if(reader != null)
             {
@@ -60,7 +72,8 @@ namespace _41PP_TRifonova
             textDescription.Text = books.Description;
             if (books.Photo != null)
             {
-
+                BitmapImage img = new BitmapImage(new Uri(books.Photo, UriKind.RelativeOrAbsolute));
+                photoBook.Source = img;
             }
             textNazvanie.Text = books.Nazvanie;
             List<BooksAndAuthors> booksAndAuthors = BD.bD.BooksAndAuthors.Where(x => x.BookID == books.BookID).ToList();
@@ -104,12 +117,19 @@ namespace _41PP_TRifonova
                 textRestristons.Visibility = Visibility.Visible;
                 textRestristons.Text = restrictions.Restrictions;
             }
-            BooksAndLibraries booksAndLibraries=BD.bD.BooksAndLibraries.FirstOrDefault(x=>x.IDLibrary==library.LibraryID && x.IDBook==books.BookID);
+           
+           
+
+            BooksAndLibraries booksAndLibraries =BD.bD.BooksAndLibraries.FirstOrDefault(x=>x.IDLibrary==library.LibraryID && x.IDBook==books.BookID);
             if(booksAndLibraries!=null)
             {
                 if(booksAndLibraries.count!=0)
                 {
-                    basket.Visibility=Visibility.Visible;   
+                    if (booksAndLibraries.count - count != 0)
+                    {
+                        basket.Visibility = Visibility.Visible;
+                        count = booksAndLibraries.count;
+                    }
                 }
             }
         }
@@ -145,6 +165,11 @@ namespace _41PP_TRifonova
                     
                     product.couint = 1;
                     baskets.Add(product);
+                }
+                count--;
+              if(count==0)
+                {
+                    basket.Visibility = Visibility.Collapsed;
                 }
                 MessageBox.Show("Книга добавлена в корзину");
                 PageReaders.Basket = baskets;

@@ -30,8 +30,11 @@ namespace _41PP_TRifonova
             InitializeComponent();
             if (Basket != null)
             {
-                basket = Basket;
-                BasketButton.Visibility = Visibility.Visible;
+                if (Basket.Count != 0)
+                {
+                    basket = Basket;
+                    BasketButton.Visibility = Visibility.Visible;
+                }
             }
 
             //Заполнение списка каталог
@@ -88,6 +91,7 @@ namespace _41PP_TRifonova
                 //Вывод ФИО читателя
                 FIO.Text = reader.Surname + " " + name + ". " + othestvo + ".";
             }
+          
            
         }
 
@@ -300,6 +304,7 @@ namespace _41PP_TRifonova
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             PageReaders.reader = null;
+            PageReaders.Basket=null;
             FrameNavigate.perReader.Navigate(new PageReaders());
         }
 

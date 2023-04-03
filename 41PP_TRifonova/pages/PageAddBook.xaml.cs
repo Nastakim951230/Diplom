@@ -29,24 +29,12 @@ namespace _41PP_TRifonova
     public partial class PageAddBook : Page
     {
         Employees employees;
-        
-        string path = null;  // путь к картинке
-        byte[] Barray = null;
+
+        string newFilePath = null;  // путь к картинке
+       
         Books books;
 
-        void showImage(byte[] Barray, System.Windows.Controls.Image img)
-        {
-            BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
-            using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
-            {
-                BI.BeginInit();  // начинаем считывание
-                BI.StreamSource = m;  // задаем источник потока
-                BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
-                BI.EndInit();  // заканчиваем считывание
-            }
-            img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
-            img.Stretch = Stretch.Uniform;
-        }
+        
         public PageAddBook(Employees employees)
         {
             InitializeComponent();
@@ -107,29 +95,7 @@ namespace _41PP_TRifonova
 
         }
 
-
-
-        private byte[] photo()
-        {
-            try
-            {
-                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
-                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
-                OFD.ShowDialog();  // открываем диалоговое окно             
-                string path = OFD.FileName;  // считываем путь выбранного изображения
-                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
-                ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
-                byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
-                showImage(Barray, photoBook);
-                return Barray;
-            }
-            catch
-            {
-                MessageBox.Show("Что-то пошло не так");
-                return null;
-            }
-        }
-
+        
         void filter()
         {
             List<SubDirectory> subDirectories = BD.bD.SubDirectory.ToList();
@@ -154,7 +120,7 @@ namespace _41PP_TRifonova
                 }
                 genres = genresList;
             }
-                //genres = genres.Where(x =>x.Ganre.ToLower().Contains(searhGanre.Text.ToLower())).ToList();
+               
           
                 if(CBCatalog.SelectedIndex>0)
             {
@@ -202,7 +168,32 @@ namespace _41PP_TRifonova
         //}
             private void addPhoto_Click(object sender, RoutedEventArgs e)
         {
-            photo();
+            try
+            {
+                 
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.ShowDialog();
+                string path = OFD.FileName;
+                if (path != null)
+                {
+                     newFilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\image\\" + System.IO.Path.GetFileName(path); // Путь куда копировать файл
+                    if (!File.Exists(newFilePath)) // Проверка наличия картинки в папке
+                    {
+                        File.Copy(path, newFilePath);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Такая картинка уже есть! Добавлено старое фото");
+                    }
+                    BitmapImage img = new BitmapImage(new Uri(newFilePath, UriKind.RelativeOrAbsolute));
+                    photoBook.Source = img;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("При добавлении нового фото возникла ошибка!");
+            }
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -258,13 +249,13 @@ namespace _41PP_TRifonova
                                 {
                                     books.Description = descrition.Text;
                                 }
-                                if (Barray == null)
+                                if (newFilePath == null)
                                 {
                                     books.Photo = null;
                                 }
                                 else
                                 {
-                                    books.Photo = Barray;
+                                    books.Photo = newFilePath;
                                 }
                                 BD.bD.Books.Add(books);
 

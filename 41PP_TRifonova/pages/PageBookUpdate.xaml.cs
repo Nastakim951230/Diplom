@@ -23,24 +23,25 @@ namespace _41PP_TRifonova
     /// </summary>
     public partial class PageBookUpdate : Page
     {
-        string path = null;  // путь к картинке
-        byte[] Barray = null;
+        
+        string newFilePath = null; // путь к картинке
+        //byte[] Barray = null;
         Employees employees;
         Books books;
         int id;
-        void showImage(byte[] Barray, System.Windows.Controls.Image img)
-        {
-            BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
-            using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
-            {
-                BI.BeginInit();  // начинаем считывание
-                BI.StreamSource = m;  // задаем источник потока
-                BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
-                BI.EndInit();  // заканчиваем считывание
-            }
-            img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
-            img.Stretch = Stretch.Uniform;
-        }
+        //void showImage(byte[] Barray, System.Windows.Controls.Image img)
+        //{
+        //    BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
+        //    using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
+        //    {
+        //        BI.BeginInit();  // начинаем считывание
+        //        BI.StreamSource = m;  // задаем источник потока
+        //        BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
+        //        BI.EndInit();  // заканчиваем считывание
+        //    }
+        //    img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
+        //    img.Stretch = Stretch.Uniform;
+        //}
         public PageBookUpdate(Employees employees, Books books, int id)
         {
             InitializeComponent();
@@ -85,7 +86,8 @@ namespace _41PP_TRifonova
             textDescription.Text = books.Description;
             if(books.Photo!=null)
             {
-
+                BitmapImage img = new BitmapImage(new Uri(books.Photo, UriKind.RelativeOrAbsolute));
+                photoBook.Source = img;
             }
             textNazvanie.Text= books.Nazvanie;
              List<BooksAndAuthors> booksAndAuthors=BD.bD.BooksAndAuthors.Where(x=>x.BookID==books.BookID).ToList();
@@ -153,25 +155,25 @@ namespace _41PP_TRifonova
 
             
         }
-        private byte[] photo()
-        {
-            try
-            {
-                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
-                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
-                OFD.ShowDialog();  // открываем диалоговое окно             
-                string path = OFD.FileName;  // считываем путь выбранного изображения
-                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
-                ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
-                byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
-                return Barray;
-            }
-            catch
-            {
-                MessageBox.Show("Что-то пошло не так");
-                return null;
-            }
-        }
+        //private byte[] photo()
+        //{
+        //    try
+        //    {
+        //        OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
+        //        //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
+        //        OFD.ShowDialog();  // открываем диалоговое окно             
+        //        string path = OFD.FileName;  // считываем путь выбранного изображения
+        //        System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
+        //        ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
+        //        byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
+        //        return Barray;
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Что-то пошло не так");
+        //        return null;
+        //    }
+        //}
         private void back_Click(object sender, RoutedEventArgs e)
         {
             FrameNavigate.per.Navigate(new PageEmployees(employees));
@@ -179,7 +181,32 @@ namespace _41PP_TRifonova
 
         private void updatePhoto_Click(object sender, RoutedEventArgs e)
         {
-            photo();
+            try
+            {
+
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.ShowDialog();
+                string path = OFD.FileName;
+                if (path != null)
+                {
+                     newFilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\image\\" + System.IO.Path.GetFileName(path); // Путь куда копировать файл
+                    if (!File.Exists(newFilePath)) // Проверка наличия картинки в папке
+                    {
+                        File.Copy(path, newFilePath);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Такая картинка уже есть! Добавлено старое фото");
+                    }
+                    books.Photo = newFilePath;
+                    BD.bD.SaveChanges();
+                    FrameNavigate.per.Navigate(new PageBookUpdate(employees, books, id));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("При добавлении нового фото возникла ошибка!");
+            }
         }
 
         private void updateNazvanie_Click(object sender, RoutedEventArgs e)

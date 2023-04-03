@@ -29,7 +29,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border>
-                            <Grid Margin="0,0,0,10" HorizontalAlignment="Stretch">
+                            <Grid Margin="0,0,0,10" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="180"/>
                                     <ColumnDefinition/>
@@ -66,10 +66,14 @@
                                                 <TextBlock Style="{StaticResource MainThemeText}" Margin="0,10,0,0" Text="{Binding books.Pages}"></TextBlock>
                                                 <TextBlock Style="{StaticResource MainThemeText}" Margin="0,10,0,0" Text="{Binding books.genres}"></TextBlock>
                                                 <TextBlock Style="{StaticResource MainThemeText}" Margin="0,10,0,0" Text="{Binding books.age}"></TextBlock>
-                                                <TextBox Style="{StaticResource MainThemeTextBoxDescriot}" Margin="0,10,0,0" Text="{Binding couint}" ></TextBox>
+                                                <TextBox Uid="{Binding books.BookID}" Name="CountBooks" Style="{StaticResource MainThemeTextBoxDescriot}" PreviewTextInput="TextBox_PreviewTextInput" Margin="0,10,0,0" Text="{Binding couint}" TextChanged="TextBox_TextChanged"></TextBox>
                                             </StackPanel>
                                         </StackPanel>
+                                        <StackPanel  HorizontalAlignment="Left">
+                                            <Button Uid="{Binding books.BookID}" Name="Delet" Click="Delet_Click" Template="{StaticResource MainThemeButton}">Убрать книгу</Button>
+                                        </StackPanel>
                                     </StackPanel>
+                                   
                                 </Grid>
                             </Grid>
                         </Border>
