@@ -357,5 +357,10 @@ namespace _41PP_TRifonova
         {
             FrameNavigate.per.Navigate(new PageReader(employees));
         }
+
+        private void Order_Click(object sender, RoutedEventArgs e)
+        {
+            FrameNavigate.per.Navigate(new PageApplication(employees));
+        }
     }
 }

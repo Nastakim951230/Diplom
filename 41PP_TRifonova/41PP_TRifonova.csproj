@@ -80,7 +80,10 @@
     <Compile Include="IssueOrReturn.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageBasket.xaml.cs">
+    <Compile Include="PageApplication.xaml.cs">
+      <DependentUpon>PageApplication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pagesReaders\PageBasket.xaml.cs">
       <DependentUpon>PageBasket.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageReaderUpdate.xaml.cs">
@@ -125,7 +128,11 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
-    <Page Include="PageBasket.xaml">
+    <Page Include="PageApplication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pagesReaders\PageBasket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

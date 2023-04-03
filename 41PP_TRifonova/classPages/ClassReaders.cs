@@ -17,7 +17,56 @@ namespace _41PP_TRifonova
                 return "Номер читательского билета: " + LibraryCardNumber;
             }
         }
-        
+
+        public string fio
+        {
+            get
+            {
+                return "ФИО: " + Surname+" "+Name+" "+Otshestvo;
+            }
+        }
+
+        public string books
+        {
+            get
+            {
+                List<Application> applications = BD.bD.Application.Where(x => x.IDReader == LibraryCardNumber).ToList();
+
+                string application = "";
+                int nomer = 0;
+                if (applications.Count > 0)
+                {
+                    foreach (Application books in applications)
+                    {
+                        List<BooksAndAuthors> booksAndAuthors = BD.bD.BooksAndAuthors.Where(x => x.BookID == books.IDBook).ToList();
+
+                        string avtors = "";
+                        if (booksAndAuthors.Count > 0)
+                        {
+                            foreach (BooksAndAuthors book in booksAndAuthors)
+                            {
+                                avtors += book.Authors.NameAuthor + " " + book.Authors.SurnameAuthor + " " + book.Authors.OthestvoAuthor + ", ";
+                            }
+                            avtors = avtors.Substring(0, avtors.Length - 2);
+                        }
+                        else
+                        {
+                           avtors= "автора нет";
+                        }
+
+
+                        nomer++;
+                        application += "№" + nomer+"\n Название: "+books.Books.Nazvanie + "\n Автор: " + avtors + "\n Количество книг: " + books.countBooks + "шт.\n\n";
+                    }
+                    return application.Substring(0, application.Length - 2);
+                }
+                else
+                {
+                    return "заявки нет";
+                }
+            }
+        }
+
         public SolidColorBrush brush
         {
             get
@@ -35,6 +84,32 @@ namespace _41PP_TRifonova
                 }
             }
         }
+
+        public SolidColorBrush must
+        {
+            get
+            {
+                var brush = new BrushConverter();
+                int nomer=1;
+                List<IssueOrReturn> issues = BD.bD.IssueOrReturn.Where(x=>x.IDReader==LibraryCardNumber).ToList();
+                for(int i=0;i<issues.Count;i++)
+                {
+                   if(issues[i].ReturnDate<DateTime.Today)
+                    {
+                        nomer = 0;
+                    }
+                }
+                if(nomer==0)
+                {
+                    return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+                }
+                else
+                {
+                    return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFFFFF");
+                }
+
+            }
+            }
         public SolidColorBrush pereregistr
         {
             get

@@ -59,18 +59,34 @@ namespace _41PP_TRifonova
 
         private void oformit_Click(object sender, RoutedEventArgs e)
         {
-            for(int i = 0; i < baskets.Count; i++)
+            List<Application> booksApplicatio= BD.bD.Application.ToList();
+            for (int i = 0; i < baskets.Count; i++)
             {
-                Application application = new Application();
-                application.IDBook = baskets[i].books.BookID;
-                application.IDReader = reader.LibraryCardNumber;
-                application.IDLibrary = reader.IDLibrary;
-                application.countBooks = baskets[i].couint;
-                BD.bD.Application.Add(application);
-                BooksAndLibraries booksAndLibraries=BD.bD.BooksAndLibraries.FirstOrDefault(x=>x.IDLibrary==application.IDLibrary && x.IDBook==application.IDBook);
-                int kolvo = booksAndLibraries.count;
-                kolvo=kolvo-application.countBooks;
-                booksAndLibraries.count=kolvo;
+                Application applications = booksApplicatio.FirstOrDefault(x => x.IDReader == reader.LibraryCardNumber && x.IDBook == baskets[i].books.BookID);
+                if (applications == null)
+                {
+                    Application application = new Application();
+                    application.IDBook = baskets[i].books.BookID;
+                    application.IDReader = reader.LibraryCardNumber;
+                    application.IDLibrary = reader.IDLibrary;
+                    application.countBooks = baskets[i].couint;
+                    BD.bD.Application.Add(application);
+                    BooksAndLibraries booksAndLibraries = BD.bD.BooksAndLibraries.FirstOrDefault(x => x.IDLibrary == application.IDLibrary && x.IDBook == application.IDBook);
+                    int kolvo = booksAndLibraries.count;
+                    kolvo = kolvo - application.countBooks;
+                    booksAndLibraries.count = kolvo;
+                }
+                else
+                {
+                    int kolvo = applications.countBooks;
+                    applications.countBooks = kolvo+baskets[i].couint;
+                    BooksAndLibraries booksAndLibraries = BD.bD.BooksAndLibraries.FirstOrDefault(x => x.IDLibrary == applications.IDLibrary && x.IDBook == applications.IDBook);
+                    int kol = booksAndLibraries.count;
+                    kol = kol - baskets[i].couint;
+                    booksAndLibraries.count = kol;
+
+                }
+                
             }
             BD.bD.SaveChanges();
             PageReaders.Basket = null;

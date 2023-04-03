@@ -42,7 +42,7 @@
         </Grid>
         <StackPanel Grid.Row="1"   Background="#54C4F4">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
-                <Button Name="Order" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Заказы</Button>
+                <Button Name="Order" Template="{StaticResource MainThemeButton}" Click="Order_Click"  Margin="0,0,5,0">Заказы</Button>
                 <Button Name="returnBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0">Возврат</Button>
                 <Button Name="booking" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="booking_Click">Бронирование</Button>
                 <Button Name="addBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="addBook_Click">Добавить книгу</Button>
