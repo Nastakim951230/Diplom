@@ -32,7 +32,7 @@
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding Nomer}" Style="{StaticResource textOsnova}"></TextBlock>
                                     <TextBlock HorizontalAlignment="Center" Style="{StaticResource textOsnova}" Text="{Binding fio}"></TextBlock>
                                     <TextBlock Style="{StaticResource textListNazvanie}" Text="{Binding books}"></TextBlock>
-                                    <Button  Uid="{Binding LibraryCardNumber}" HorizontalAlignment="Left" Name="issued" Click="issued_Click" Template="{StaticResource MainThemeButton}">Выдано</Button>
+                                    <Button  Uid="{Binding LibraryCardNumber}" Visibility="{Binding visib}" HorizontalAlignment="Left" Name="issued" Click="issued_Click" Template="{StaticResource MainThemeButton}">Выдано</Button>
                                 </StackPanel>
                             </Grid>
                         </Border>

@@ -113,6 +113,9 @@
     <Compile Include="Reader.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="windows\WindowDate.xaml.cs">
+      <DependentUpon>WindowDate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windowsReaders\WindowAvtorizatsiaReaders.xaml.cs">
       <DependentUpon>WindowAvtorizatsiaReaders.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

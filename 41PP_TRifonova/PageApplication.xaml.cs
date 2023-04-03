@@ -21,6 +21,7 @@ namespace _41PP_TRifonova
     public partial class PageApplication : Page
     {
         Employees employees;
+        public static DateTime date;
         public PageApplication(Employees employees)
         {
             InitializeComponent();
@@ -66,7 +67,32 @@ namespace _41PP_TRifonova
 
         private void issued_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn=(Button)sender;
+            int index=Convert.ToInt32(btn.Uid);
+            WindowDate windowDate = new WindowDate();
+            windowDate.ShowDialog();
+            if (date > DateTime.Today)
+            {
+                List<Application> applications = BD.bD.Application.Where(x => x.IDReader == index).ToList();
+                for (int i = 0; i < applications.Count; i++)
+                {
+                    IssueOrReturn issueOrReturn = new IssueOrReturn();
+                    issueOrReturn.IDBook = applications[i].IDBook;
+                    issueOrReturn.IDReader = applications[i].IDReader;
+                    issueOrReturn.IDLibrary = applications[i].IDLibrary;
+                    issueOrReturn.countBooks = applications[i].countBooks;
+                    issueOrReturn.DateOfIssue = DateTime.Today;
+                    issueOrReturn.ReturnDate = date;
+                    BD.bD.IssueOrReturn.Add(issueOrReturn);
+                    BD.bD.Application.Remove(applications[i]);
+                }
+                BD.bD.SaveChanges();
+                FrameNavigate.per.Navigate(new PageApplication(employees));
+            }
+            else
+            {
+                MessageBox.Show("Введенная дата меньше чем сегодняшняя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

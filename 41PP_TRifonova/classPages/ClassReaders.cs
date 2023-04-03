@@ -84,6 +84,30 @@ namespace _41PP_TRifonova
                 }
             }
         }
+        
+        public string visib
+        {
+            get
+            {
+                int nomer = 1;
+                List<IssueOrReturn> issues = BD.bD.IssueOrReturn.Where(x => x.IDReader == LibraryCardNumber).ToList();
+                for (int i = 0; i < issues.Count; i++)
+                {
+                    if (issues[i].ReturnDate < DateTime.Today)
+                    {
+                        nomer = 0;
+                    }
+                }
+                if (nomer == 0)
+                {
+                    return "Collapsed";
+                }
+                else
+                {
+                    return "Visible";
+                }
+            }
+        }
 
         public SolidColorBrush must
         {
