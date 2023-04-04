@@ -71,6 +71,7 @@
     <Compile Include="classPages\ClassBasket.cs" />
     <Compile Include="classPages\ClassEmployees.cs" />
     <Compile Include="classPages\ClassReaders.cs" />
+    <Compile Include="ClassReturn.cs" />
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -80,7 +81,10 @@
     <Compile Include="IssueOrReturn.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageApplication.xaml.cs">
+    <Compile Include="PageReturn.xaml.cs">
+      <DependentUpon>PageReturn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageApplication.xaml.cs">
       <DependentUpon>PageApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="pagesReaders\PageBasket.xaml.cs">
@@ -113,6 +117,9 @@
     <Compile Include="Reader.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="windows\WindowExtend.xaml.cs">
+      <DependentUpon>WindowExtend.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\WindowDate.xaml.cs">
       <DependentUpon>WindowDate.xaml</DependentUpon>
     </Compile>
@@ -131,7 +138,11 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
-    <Page Include="PageApplication.xaml">
+    <Page Include="PageReturn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PageApplication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowExtend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -362,5 +362,10 @@ namespace _41PP_TRifonova
         {
             FrameNavigate.per.Navigate(new PageApplication(employees));
         }
+
+        private void returnBook_Click(object sender, RoutedEventArgs e)
+        {
+            FrameNavigate.per.Navigate(new PageReturn(employees));
+        }
     }
 }

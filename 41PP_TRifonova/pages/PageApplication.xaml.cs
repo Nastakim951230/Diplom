@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace _41PP_TRifonova
 {
@@ -93,6 +94,33 @@ namespace _41PP_TRifonova
             {
                 MessageBox.Show("Введенная дата меньше чем сегодняшняя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(30);
+            dispatcherTimer.Tick += dtTicker;
+            dispatcherTimer.Start();
+        }
+        private void loadedData()
+        {
+            List<Reader> reader = BD.bD.Reader.ToList();
+            List<Reader> readers = new List<Reader>();
+            List<Application> applicaciones = BD.bD.Application.ToList();
+            for (int i = 0; i < reader.Count; i++)
+            {
+                List<Application> applications = applicaciones.Where(x => x.IDReader == reader[i].LibraryCardNumber).ToList();
+                if (applications.Count > 0)
+                {
+                    readers.Add(reader[i]);
+                }
+            }
+            listApplication.ItemsSource = readers;
+        }
+        private void dtTicker(object sender, EventArgs e)
+        {
+            loadedData();
         }
     }
 }
