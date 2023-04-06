@@ -1,0 +1,99 @@
+﻿<Page x:Class="_41PP_TRifonova.PageBooking"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_41PP_TRifonova"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="PageBooking">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="0">
+            <Button Name="back" Template="{StaticResource MainThemeButton}" Margin="20,0,0,0" Click="back_Click">Назад</Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Name="FIO" Margin="0,0,20,0" Style="{StaticResource textOsnova}">Три</TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Margin="0,0,20,0" Style="{StaticResource textOsnova}">Бронирование</TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <TabControl BorderBrush="{x:Null}">
+                <TabItem Header="Бронирование книжек" Style="{StaticResource MainThemeTabItem}">
+                    <Grid>
+                        <ListView Margin="20,10,20,10" BorderBrush="{x:Null}" Name="listBooking" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10"  Width="1000" BorderBrush="#26A9E0" Background="{Binding must}" BorderThickness="1">
+                                        <Grid>
+                                            <StackPanel Margin="10">
+                                                <TextBlock HorizontalAlignment="Center" Text="{Binding Nomer}" Style="{StaticResource textOsnova}" Foreground="{Binding text}"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Center" Style="{StaticResource textOsnova}" Text="{Binding fio}" Foreground="{Binding text}"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Center" Style="{StaticResource textOsnova}" Text="{Binding telefon}" Foreground="{Binding text}"></TextBlock>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Название:</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding book}"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Автор(ы):</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding avtor}"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Количество книг:</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding countbooks}"></TextBlock>
+                                                </StackPanel>
+                                                <Button Name="ToCancelReservation"  Uid="{Binding BookingID}" Visibility="{Binding visib}" Click="ToCancelReservation_Click" Template="{StaticResource MainThemeButton}" HorizontalAlignment="Left" Margin="0,5,0,0">Выдано</Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Передача книжки в другую библиотеку" Style="{StaticResource MainThemeTabItem}">
+                    <Grid>
+                        <ListView Margin="20,10,20,10" BorderBrush="{x:Null}" Name="listBookingLibrary" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10"  Width="1000" BorderBrush="#26A9E0"  BorderThickness="1">
+                                        <Grid>
+                                            <StackPanel Margin="10">
+                                               
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Название книги:</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding book}"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Автор(ы):</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding avtor}"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Количество книг:</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding countbooks}"></TextBlock>
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource textListNazvanie}">Куда отправить:</TextBlock>
+                                                    <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding toWhere}"></TextBlock>
+                                                </StackPanel>
+
+                                                <Button Name="sent" Uid="{Binding BookingID}"  Click="sent_Click" Template="{StaticResource MainThemeButton}" HorizontalAlignment="Left" Margin="0,5,0,0">Отправлено</Button>
+
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Page>

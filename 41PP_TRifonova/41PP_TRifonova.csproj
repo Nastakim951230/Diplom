@@ -68,10 +68,14 @@
     <Compile Include="Application.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="Booking.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassBooking.cs" />
     <Compile Include="classPages\ClassBasket.cs" />
     <Compile Include="classPages\ClassEmployees.cs" />
     <Compile Include="classPages\ClassReaders.cs" />
-    <Compile Include="ClassReturn.cs" />
+    <Compile Include="classPages\ClassReturn.cs" />
     <Compile Include="Gender.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -81,7 +85,10 @@
     <Compile Include="IssueOrReturn.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageReturn.xaml.cs">
+    <Compile Include="PageBooking.xaml.cs">
+      <DependentUpon>PageBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageReturn.xaml.cs">
       <DependentUpon>PageReturn.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\PageApplication.xaml.cs">
@@ -117,6 +124,9 @@
     <Compile Include="Reader.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="windows\WindowBooking.xaml.cs">
+      <DependentUpon>WindowBooking.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\WindowExtend.xaml.cs">
       <DependentUpon>WindowExtend.xaml</DependentUpon>
     </Compile>
@@ -138,7 +148,11 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
-    <Page Include="PageReturn.xaml">
+    <Page Include="PageBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PageReturn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowBooking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

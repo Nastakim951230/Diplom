@@ -1,0 +1,20 @@
+﻿<Window x:Class="_41PP_TRifonova.WindowBooking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_41PP_TRifonova"
+        mc:Ignorable="d" Icon="../image/logo.png"
+        Title="Бронирование" Height="230" Width="250" MaxHeight="230" MaxWidth="250">
+    <Grid Style="{StaticResource MainThemeGrid}">
+        <StackPanel Margin="10,0,10,0">
+            <TextBox Name="reader" Height="30" Style="{StaticResource MainThemeTextBox}" PreviewTextInput="reader_PreviewTextInput" Tag="Номер читательского билета" Cursor="IBeam"></TextBox>
+            <ComboBox Name="cbLibrary" Style="{StaticResource MainThemeComboBox}" Height="30" Margin="0,10,0,0"  SelectionChanged="cbLibrary_SelectionChanged"></ComboBox>
+            <TextBox Name="count" Height="30" Style="{StaticResource MainThemeTextBox}" PreviewTextInput="reader_PreviewTextInput" Tag="Количество книг"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="back" Click="back_Click"  Template="{StaticResource MainThemeButton}">Назад</Button>
+                <Button Name="save" Click="save_Click" Margin="10,0,0,0" Template="{StaticResource MainThemeButton}">Сохранить</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -225,6 +225,8 @@ namespace _41PP_TRifonova
 
         private void bookingBooks_Click(object sender, RoutedEventArgs e)
         {
+            WindowBooking windowBooking = new WindowBooking(employees,books);
+            windowBooking.ShowDialog();
 
         }
     }

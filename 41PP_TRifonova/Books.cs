@@ -18,9 +18,11 @@ namespace _41PP_TRifonova
         public Books()
         {
             this.Application = new HashSet<Application>();
+            this.Booking = new HashSet<Booking>();
             this.BooksAndAuthors = new HashSet<BooksAndAuthors>();
             this.BooksAndGanres = new HashSet<BooksAndGanres>();
             this.BooksAndLibraries = new HashSet<BooksAndLibraries>();
+            this.IssueOrReturn = new HashSet<IssueOrReturn>();
         }
     
         public int BookID { get; set; }
@@ -36,6 +38,8 @@ namespace _41PP_TRifonova
         public virtual AgeRestrictions AgeRestrictions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Application { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Booking { get; set; }
         public virtual PublishingHouse PublishingHouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksAndAuthors> BooksAndAuthors { get; set; }
@@ -43,5 +47,7 @@ namespace _41PP_TRifonova
         public virtual ICollection<BooksAndGanres> BooksAndGanres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksAndLibraries> BooksAndLibraries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IssueOrReturn> IssueOrReturn { get; set; }
     }
 }

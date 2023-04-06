@@ -312,7 +312,7 @@ namespace _41PP_TRifonova
 
         private void booking_Click(object sender, RoutedEventArgs e)
         {
-           
+           FrameNavigate.per.Navigate(new PageBooking(employees));
         }
 
         private void toBook_Click(object sender, RoutedEventArgs e)

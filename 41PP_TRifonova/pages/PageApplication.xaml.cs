@@ -52,7 +52,7 @@ namespace _41PP_TRifonova
             List<Application> applicaciones = BD.bD.Application.ToList();
             for (int i = 0; i < reader.Count; i++)
             {
-                List<Application> applications = applicaciones.Where(x=>x.IDReader==reader[i].LibraryCardNumber).ToList();
+                List<Application> applications = applicaciones.Where(x=>x.IDReader==reader[i].LibraryCardNumber && x.IDLibrary==employees.LibraryID).ToList();
                 if(applications.Count>0)
                 {
                     readers.Add(reader[i]);

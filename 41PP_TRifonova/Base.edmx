@@ -31,6 +31,18 @@
           <Property Name="NameAuthor" Type="nvarchar(max)" Nullable="false" />
           <Property Name="OthestvoAuthor" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReaderID" Type="int" Nullable="false" />
+          <Property Name="FromWhere" Type="int" Nullable="false" />
+          <Property Name="ToWhere" Type="int" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="countBooks" Type="int" Nullable="false" />
+          <Property Name="look" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Books">
           <Key>
             <PropertyRef Name="BookID" />
@@ -221,6 +233,54 @@
             </Principal>
             <Dependent Role="Application">
               <PropertyRef Name="IDReader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Libraries">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="FromWhere" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Libraries1">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ToWhere" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Reader">
+          <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="LibraryCardNumber" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ReaderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -416,6 +476,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IssueOrReturn_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="IssueOrReturn" Type="Self.IssueOrReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="IssueOrReturn">
+              <PropertyRef Name="IDBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueOrReturn_Libraries">
+          <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
+          <End Role="IssueOrReturn" Type="Self.IssueOrReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="IssueOrReturn">
+              <PropertyRef Name="IDLibrary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueOrReturn_Reader">
+          <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
+          <End Role="IssueOrReturn" Type="Self.IssueOrReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="LibraryCardNumber" />
+            </Principal>
+            <Dependent Role="IssueOrReturn">
+              <PropertyRef Name="IDReader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reader_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
@@ -456,6 +552,7 @@
           <EntitySet Name="AgeRestrictions" EntityType="Self.AgeRestrictions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BooksAndAuthors" EntityType="Self.BooksAndAuthors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BooksAndGanres" EntityType="Self.BooksAndGanres" Schema="dbo" store:Type="Tables" />
@@ -482,6 +579,22 @@
           <AssociationSet Name="FK_Application_Reader" Association="Self.FK_Application_Reader">
             <End Role="Reader" EntitySet="Reader" />
             <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Books" Association="Self.FK_Booking_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Libraries" Association="Self.FK_Booking_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Libraries1" Association="Self.FK_Booking_Libraries1">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Reader" Association="Self.FK_Booking_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
           <AssociationSet Name="FK_Books_AgeRestrictions" Association="Self.FK_Books_AgeRestrictions">
             <End Role="AgeRestrictions" EntitySet="AgeRestrictions" />
@@ -547,6 +660,18 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="InformationAboutParents" EntitySet="InformationAboutParents" />
           </AssociationSet>
+          <AssociationSet Name="FK_IssueOrReturn_Books" Association="Self.FK_IssueOrReturn_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="IssueOrReturn" EntitySet="IssueOrReturn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueOrReturn_Libraries" Association="Self.FK_IssueOrReturn_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="IssueOrReturn" EntitySet="IssueOrReturn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueOrReturn_Reader" Association="Self.FK_IssueOrReturn_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="IssueOrReturn" EntitySet="IssueOrReturn" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reader_Gender" Association="Self.FK_Reader_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Reader" EntitySet="Reader" />
@@ -568,6 +693,7 @@
           <EntitySet Name="AgeRestrictions" EntityType="Trifonova_41P_DiplomModel.AgeRestrictions" />
           <EntitySet Name="Application" EntityType="Trifonova_41P_DiplomModel.Application" />
           <EntitySet Name="Authors" EntityType="Trifonova_41P_DiplomModel.Authors" />
+          <EntitySet Name="Booking" EntityType="Trifonova_41P_DiplomModel.Booking" />
           <EntitySet Name="Books" EntityType="Trifonova_41P_DiplomModel.Books" />
           <EntitySet Name="BooksAndAuthors" EntityType="Trifonova_41P_DiplomModel.BooksAndAuthors" />
           <EntitySet Name="BooksAndGanres" EntityType="Trifonova_41P_DiplomModel.BooksAndGanres" />
@@ -603,6 +729,22 @@
             <End Role="Authors" EntitySet="Authors" />
             <End Role="BooksAndAuthors" EntitySet="BooksAndAuthors" />
           </AssociationSet>
+          <AssociationSet Name="FK_Booking_Books" Association="Trifonova_41P_DiplomModel.FK_Booking_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Libraries" Association="Trifonova_41P_DiplomModel.FK_Booking_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Libraries1" Association="Trifonova_41P_DiplomModel.FK_Booking_Libraries1">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Reader" Association="Trifonova_41P_DiplomModel.FK_Booking_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
           <AssociationSet Name="FK_Books_PublishingHouse" Association="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse">
             <End Role="PublishingHouse" EntitySet="PublishingHouse" />
             <End Role="Books" EntitySet="Books" />
@@ -618,6 +760,10 @@
           <AssociationSet Name="FK_BooksAndLibraries_Books" Association="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Books">
             <End Role="Books" EntitySet="Books" />
             <End Role="BooksAndLibraries" EntitySet="BooksAndLibraries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueOrReturn_Books" Association="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="IssueOrReturn" EntitySet="IssueOrReturn" />
           </AssociationSet>
           <AssociationSet Name="FK_BooksAndGanres_Catalogs" Association="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Catalogs">
             <End Role="Catalogs" EntitySet="Catalogs" />
@@ -667,6 +813,14 @@
             <End Role="InformationAboutParents" EntitySet="InformationAboutParents" />
             <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
+          <AssociationSet Name="FK_IssueOrReturn_Libraries" Association="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Libraries">
+            <End Role="Libraries" EntitySet="Libraries" />
+            <End Role="IssueOrReturn" EntitySet="IssueOrReturn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueOrReturn_Reader" Association="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="IssueOrReturn" EntitySet="IssueOrReturn" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reader_Libraries" Association="Trifonova_41P_DiplomModel.FK_Reader_Libraries">
             <End Role="Libraries" EntitySet="Libraries" />
             <End Role="Reader" EntitySet="Reader" />
@@ -703,6 +857,22 @@
           <Property Name="OthestvoAuthor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BooksAndAuthors" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors" FromRole="Authors" ToRole="BooksAndAuthors" />
         </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReaderID" Type="Int32" Nullable="false" />
+          <Property Name="FromWhere" Type="Int32" Nullable="false" />
+          <Property Name="ToWhere" Type="Int32" Nullable="false" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="countBooks" Type="Int32" Nullable="false" />
+          <Property Name="look" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Books" FromRole="Booking" ToRole="Books" />
+          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Libraries" FromRole="Booking" ToRole="Libraries" />
+          <NavigationProperty Name="Libraries1" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Libraries1" FromRole="Booking" ToRole="Libraries" />
+          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Reader" FromRole="Booking" ToRole="Reader" />
+        </EntityType>
         <EntityType Name="Books">
           <Key>
             <PropertyRef Name="BookID" />
@@ -718,10 +888,12 @@
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AgeRestrictions" Relationship="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" FromRole="Books" ToRole="AgeRestrictions" />
           <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Books" FromRole="Books" ToRole="Application" />
+          <NavigationProperty Name="Booking" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Books" FromRole="Books" ToRole="Booking" />
           <NavigationProperty Name="PublishingHouse" Relationship="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" FromRole="Books" ToRole="PublishingHouse" />
           <NavigationProperty Name="BooksAndAuthors" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Books" FromRole="Books" ToRole="BooksAndAuthors" />
           <NavigationProperty Name="BooksAndGanres" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndGanres_Books" FromRole="Books" ToRole="BooksAndGanres" />
           <NavigationProperty Name="BooksAndLibraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Books" FromRole="Books" ToRole="BooksAndLibraries" />
+          <NavigationProperty Name="IssueOrReturn" Relationship="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Books" FromRole="Books" ToRole="IssueOrReturn" />
         </EntityType>
         <EntityType Name="BooksAndAuthors">
           <Key>
@@ -835,6 +1007,9 @@
           <Property Name="countBooks" Type="Int32" Nullable="false" />
           <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Books" FromRole="IssueOrReturn" ToRole="Books" />
+          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Libraries" FromRole="IssueOrReturn" ToRole="Libraries" />
+          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Reader" FromRole="IssueOrReturn" ToRole="Reader" />
         </EntityType>
         <EntityType Name="Libraries">
           <Key>
@@ -844,8 +1019,11 @@
           <Property Name="library" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Libraries" FromRole="Libraries" ToRole="Application" />
+          <NavigationProperty Name="Booking" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Libraries" FromRole="Libraries" ToRole="Booking" />
+          <NavigationProperty Name="Booking1" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Libraries1" FromRole="Libraries" ToRole="Booking" />
           <NavigationProperty Name="BooksAndLibraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries" FromRole="Libraries" ToRole="BooksAndLibraries" />
           <NavigationProperty Name="Employees" Relationship="Trifonova_41P_DiplomModel.FK_Employees_Libraries" FromRole="Libraries" ToRole="Employees" />
+          <NavigationProperty Name="IssueOrReturn" Relationship="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Libraries" FromRole="Libraries" ToRole="IssueOrReturn" />
           <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Libraries" FromRole="Libraries" ToRole="Reader" />
         </EntityType>
         <EntityType Name="PublishingHouse">
@@ -876,8 +1054,10 @@
           <Property Name="ReissuanceDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDLibrary" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Reader" FromRole="Reader" ToRole="Application" />
+          <NavigationProperty Name="Booking" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Reader" FromRole="Reader" ToRole="Booking" />
           <NavigationProperty Name="Gender" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Gender" FromRole="Reader" ToRole="Gender" />
           <NavigationProperty Name="InformationAboutParents" Relationship="Trifonova_41P_DiplomModel.FK_Reader_InformationAboutParents" FromRole="Reader" ToRole="InformationAboutParents" />
+          <NavigationProperty Name="IssueOrReturn" Relationship="Trifonova_41P_DiplomModel.FK_IssueOrReturn_Reader" FromRole="Reader" ToRole="IssueOrReturn" />
           <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Libraries" FromRole="Reader" ToRole="Libraries" />
         </EntityType>
         <EntityType Name="Roles">
@@ -959,6 +1139,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Booking_Books">
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Libraries">
+          <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="FromWhere" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Libraries1">
+          <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ToWhere" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Reader">
+          <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="LibraryCardNumber" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ReaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Books_PublishingHouse">
           <End Type="Trifonova_41P_DiplomModel.PublishingHouse" Role="PublishingHouse" Multiplicity="1" />
           <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="*" />
@@ -1003,6 +1231,18 @@
               <PropertyRef Name="BookID" />
             </Principal>
             <Dependent Role="BooksAndLibraries">
+              <PropertyRef Name="IDBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueOrReturn_Books">
+          <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.IssueOrReturn" Role="IssueOrReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="IssueOrReturn">
               <PropertyRef Name="IDBook" />
             </Dependent>
           </ReferentialConstraint>
@@ -1151,6 +1391,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IssueOrReturn_Libraries">
+          <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.IssueOrReturn" Role="IssueOrReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libraries">
+              <PropertyRef Name="LibraryID" />
+            </Principal>
+            <Dependent Role="IssueOrReturn">
+              <PropertyRef Name="IDLibrary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueOrReturn_Reader">
+          <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="1" />
+          <End Type="Trifonova_41P_DiplomModel.IssueOrReturn" Role="IssueOrReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="LibraryCardNumber" />
+            </Principal>
+            <Dependent Role="IssueOrReturn">
+              <PropertyRef Name="IDReader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reader_Libraries">
           <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
           <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="*" />
@@ -1195,6 +1459,19 @@
                 <ScalarProperty Name="NameAuthor" ColumnName="NameAuthor" />
                 <ScalarProperty Name="SurnameAuthor" ColumnName="SurnameAuthor" />
                 <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Booking">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="look" ColumnName="look" />
+                <ScalarProperty Name="countBooks" ColumnName="countBooks" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="ToWhere" ColumnName="ToWhere" />
+                <ScalarProperty Name="FromWhere" ColumnName="FromWhere" />
+                <ScalarProperty Name="ReaderID" ColumnName="ReaderID" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

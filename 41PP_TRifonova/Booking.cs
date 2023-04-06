@@ -12,18 +12,19 @@ namespace _41PP_TRifonova
     using System;
     using System.Collections.Generic;
     
-    public partial class IssueOrReturn
+    public partial class Booking
     {
-        public int IssueOrReturnID { get; set; }
-        public int IDBook { get; set; }
-        public int IDReader { get; set; }
-        public int IDLibrary { get; set; }
+        public int BookingID { get; set; }
+        public int ReaderID { get; set; }
+        public int FromWhere { get; set; }
+        public int ToWhere { get; set; }
+        public int BookID { get; set; }
         public int countBooks { get; set; }
-        public System.DateTime DateOfIssue { get; set; }
-        public System.DateTime ReturnDate { get; set; }
+        public int look { get; set; }
     
         public virtual Books Books { get; set; }
         public virtual Libraries Libraries { get; set; }
+        public virtual Libraries Libraries1 { get; set; }
         public virtual Reader Reader { get; set; }
     }
 }
