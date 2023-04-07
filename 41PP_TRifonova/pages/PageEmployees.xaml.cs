@@ -21,6 +21,7 @@ namespace _41PP_TRifonova
     public partial class PageEmployees : Page
     {
         Employees employees;
+       
         public PageEmployees(Employees employees)
         {
             InitializeComponent();
@@ -76,10 +77,15 @@ namespace _41PP_TRifonova
                 CBGanre.Items.Add(genres[i].Ganre);
             }
             CBGanre.SelectedIndex = 0;
-
             listBook.ItemsSource = BD.bD.Books.ToList();
             TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
         }
+
+
+
+
+        
+
         /// <summary>
         /// Поиск, фильтрация
         /// </summary>

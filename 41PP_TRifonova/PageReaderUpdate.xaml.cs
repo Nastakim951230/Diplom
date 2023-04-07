@@ -87,6 +87,20 @@ namespace _41PP_TRifonova
                 }
                 NumberOfDuty.Text=" "+Convert.ToString(countDuty);
             }
+            int bookingCount = 0;
+            List<Booking> bookings = BD.bD.Booking.Where(x => x.ReaderID == reader.LibraryCardNumber).ToList();
+            if(bookings.Count == 0)
+            {
+                bookingBooks.Text = " 0";
+            }
+            else
+            {
+                for(int i = 0; i < bookings.Count; i++)
+                {
+                    bookingCount += bookings[i].countBooks;
+                }
+            }
+            bookingBooks.Text = Convert.ToString(bookingCount);
         }
         private static int CalculateAge(DateTime birthDate)
         {
