@@ -21,6 +21,7 @@ namespace _41PP_TRifonova
     public partial class PageBooking : Page
     {
         Employees employees;
+        public static DateTime date;
         public PageBooking(Employees employees)
         {
             InitializeComponent();
@@ -57,6 +58,22 @@ namespace _41PP_TRifonova
             Button btn = (Button)sender;
             int index = Convert.ToInt32(btn.Uid);
             Booking booking = BD.bD.Booking.FirstOrDefault(x => x.BookingID == index);
+            WindowDateBooking windowDateBooking = new WindowDateBooking();
+            windowDateBooking.ShowDialog();
+            if (date > DateTime.Today)
+            {
+                IssueOrReturn issueOrReturn = new IssueOrReturn();
+                issueOrReturn.IDBook = booking.BookID;
+                issueOrReturn.IDReader=booking.ReaderID;
+                issueOrReturn.IDLibrary = booking.FromWhere;
+                issueOrReturn.countBooks=booking.countBooks;
+                issueOrReturn.DateOfIssue = DateTime.Today;
+                issueOrReturn.ReturnDate = date;
+                BD.bD.IssueOrReturn.Add(issueOrReturn);
+                BD.bD.Booking.Remove(booking);
+                BD.bD.SaveChanges();
+                FrameNavigate.per.Navigate(new PageBooking(employees));
+            }
         }
 
         private void sent_Click(object sender, RoutedEventArgs e)

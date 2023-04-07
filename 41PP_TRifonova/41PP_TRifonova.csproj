@@ -71,7 +71,7 @@
     <Compile Include="Booking.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClassBooking.cs" />
+    <Compile Include="classPages\ClassBooking.cs" />
     <Compile Include="classPages\ClassBasket.cs" />
     <Compile Include="classPages\ClassEmployees.cs" />
     <Compile Include="classPages\ClassReaders.cs" />
@@ -123,6 +123,9 @@
     </Compile>
     <Compile Include="Reader.cs">
       <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="windows\WindowDateBooking.xaml.cs">
+      <DependentUpon>WindowDateBooking.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\WindowBooking.xaml.cs">
       <DependentUpon>WindowBooking.xaml</DependentUpon>
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowDateBooking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
