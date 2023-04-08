@@ -175,6 +175,11 @@ namespace _41PP_TRifonova
                         }
 
                     }
+                    if (booksAndLibraries == null)
+                    {
+                        nomer = 0;
+
+                    }
                 }
 
                 if (nomer == 0)
