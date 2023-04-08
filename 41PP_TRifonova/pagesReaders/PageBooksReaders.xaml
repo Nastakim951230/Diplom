@@ -58,7 +58,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
                         <TextBlock Style="{StaticResource textListNazvanie}">Издательство</TextBlock>
-                        <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Год создания</TextBlock>
+                        <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Год издания</TextBlock>
                         <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">ISBN</TextBlock>
                         <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Количество страниц</TextBlock>
                         <TextBlock Style="{StaticResource textListNazvanie}" Margin="0,10,0,0">Жанр</TextBlock>
