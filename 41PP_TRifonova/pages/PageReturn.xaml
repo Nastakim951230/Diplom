@@ -60,7 +60,7 @@
                                         <TextBlock Style="{StaticResource MainThemeText}" Text="{Binding fines}" Foreground="Red"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Name="returnBook" Click="returnBook_Click"  Uid="{Binding IssueOrReturnID}" Template="{StaticResource MainThemeButton}">Возрат</Button>
+                                        <Button Name="returnBook" Click="returnBook_Click"  Uid="{Binding IssueOrReturnID}" Template="{StaticResource MainThemeButton}">Возврат</Button>
                                         <Button Name="extend" Visibility="{Binding visibBTN}" Margin="10,0,0,0" Click="extend_Click" Uid="{Binding IssueOrReturnID}" Template="{StaticResource MainThemeButton}">Продлить</Button>
                                     </StackPanel>
                                 </StackPanel>

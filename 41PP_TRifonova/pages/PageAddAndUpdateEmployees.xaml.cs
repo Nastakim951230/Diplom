@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+
 
 namespace _41PP_TRifonova
 {
@@ -149,7 +152,7 @@ namespace _41PP_TRifonova
         }
 
 
-        public string Telefon(string a)
+        public static string Telefon(string a)
         {
             string nomer = "";
             if(a.Length==12)
@@ -207,7 +210,7 @@ namespace _41PP_TRifonova
                 return "1";
             }
         }
-        public bool numberTelefon(string b)
+        public static bool numberTelefon(string b)
         {
             string a=Telefon(b);
             if (a == "1")
@@ -318,6 +321,6 @@ namespace _41PP_TRifonova
             }
         }
 
-       
+        
     }
 }

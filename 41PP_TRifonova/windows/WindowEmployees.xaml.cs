@@ -27,7 +27,7 @@ namespace _41PP_TRifonova
             BD.bD = new BaseBD();
             perehod.Navigate(new PageEmployees(employees));
             FrameNavigate.per = perehod;
-            
+           
 
             this.employees = employees;
             

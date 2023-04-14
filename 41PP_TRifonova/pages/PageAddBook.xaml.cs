@@ -33,6 +33,7 @@ namespace _41PP_TRifonova
         string newFilePath = null;  // путь к картинке
        
         Books books;
+        int index;
 
         
         public PageAddBook(Employees employees)
@@ -128,7 +129,7 @@ namespace _41PP_TRifonova
             }
                 if (CBPodCatalog.SelectedIndex > 0)
             {
-                genres=genres.Where(x=>x.DirectoryAndSubDirectoryID==Convert.ToInt32(CBPodCatalog.SelectedValuePath)).ToList();
+                genres=genres.Where(x=>x.DirectoryAndSubDirectoryID==index).ToList();
             }
 
              
@@ -408,53 +409,67 @@ namespace _41PP_TRifonova
                 {
                     CBPodCatalog.Items.Remove(subDirectories[i].SubDirectory1);
                 }
-                subDirectories = subDirectories.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
+                List<SubDirectory> directories = BD.bD.SubDirectory.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
 
-               
-                for (int i = 0; i < subDirectories.Count; i++)
+                for (int i = 0; i < directories.Count; i++)
                 {
 
-                    CBPodCatalog.Items.Add(subDirectories[i].SubDirectory1);
+                    CBPodCatalog.Items.Add(directories[i].SubDirectory1);
 
                 }
-                
 
                 CBPodCatalog.SelectedIndex = 0;
                 CBPodCatalog.Visibility = Visibility.Visible;
+
             }
             else
             {
                 CBPodCatalog.Visibility = Visibility.Collapsed;
-                
+               
             }
             filter();
         }
 
         private void CBPodCatalog_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //if (CBPodCatalog.SelectedIndex > 0)
+            //{
+
+            //    List<SubDirectory> subDirectorie = BD.bD.SubDirectory.ToList();
+            //    subDirectorie = subDirectorie.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
+            //    if (CBPodCatalog.SelectedIndex > 0)
+            //    {
+            //        for (int i = 0; i < subDirectorie.Count; i++)
+            //        {
+            //            if (CBPodCatalog.SelectedIndex == i + 1)
+            //            {
+            //                CBPodCatalog.SelectedValuePath = Convert.ToString(subDirectorie[i].SubDirectoryID);
+            //            }
+
+            //        }
+            //    }
+
+            //}
+            //else
+            //{
+            //    CBPodCatalog.SelectedIndex = 0;
+
+            //}
+
             if (CBPodCatalog.SelectedIndex > 0)
             {
-               
-                List<SubDirectory> subDirectorie = BD.bD.SubDirectory.ToList();
-                subDirectorie = subDirectorie.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
-                if (CBPodCatalog.SelectedIndex > 0)
-                {
-                    for (int i = 0; i < subDirectorie.Count; i++)
-                    {
-                        if (CBPodCatalog.SelectedIndex == i + 1)
-                        {
-                            CBPodCatalog.SelectedValuePath = Convert.ToString(subDirectorie[i].SubDirectoryID);
-                        }
 
+                
+                List<SubDirectory> subDirectories = BD.bD.SubDirectory.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
+                for (int i = 0; i < subDirectories.Count + 1; i++)
+                {
+                    if (i == CBPodCatalog.SelectedIndex)
+                    {
+                        index = subDirectories[i - 1].SubDirectoryID;
                     }
                 }
-
             }
-            else
-            {
-                CBPodCatalog.SelectedIndex = 0;
-                
-            }
+           
             filter();
         }
 

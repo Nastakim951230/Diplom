@@ -21,7 +21,8 @@ namespace _41PP_TRifonova
     public partial class PageEmployees : Page
     {
         Employees employees;
-       
+        int index;
+        int indexGanre;
         public PageEmployees(Employees employees)
         {
             InitializeComponent();
@@ -133,7 +134,7 @@ namespace _41PP_TRifonova
 
                 List<Books> bookGanre = new List<Books>();
                 List<Books> book = new List<Books>();
-                int index=Convert.ToInt32(CBPodCatalog.SelectedValuePath);
+               
                 List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x =>x.IDUnderTheDirectory == index).ToList();
                 for (int i = 0; i < booksAndGanres.Count; i++)
                 {
@@ -152,8 +153,8 @@ namespace _41PP_TRifonova
 
                 List<Books> bookGanre = new List<Books>();
                 List<Books> book = new List<Books>();
-                int index = Convert.ToInt32(CBGanre.SelectedValuePath);
-                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDGanre == index).ToList();
+               
+                List<BooksAndGanres> booksAndGanres = BD.bD.BooksAndGanres.Where(x => x.IDGanre == indexGanre).ToList();
                 for (int i = 0; i < booksAndGanres.Count; i++)
                 {
                     book = books.Where(x => x.BookID == booksAndGanres[i].IDBook).ToList();
@@ -165,15 +166,7 @@ namespace _41PP_TRifonova
                 books = bookGanre;
 
             }
-            
-            if(CBCatalog.SelectedIndex==0 && search.Text=="" && inStock.IsChecked==false)
-            {
-
-                books= BD.bD.Books.ToList();
-                CBPodCatalog.SelectedIndex = 0;
-                CBGanre.SelectedIndex = 0;
-            }
-
+           
             if (books.Count > 0)
             {
                 listBook.ItemsSource = books;
@@ -181,7 +174,21 @@ namespace _41PP_TRifonova
             }
             else
             {
-               CBGanre.SelectedIndex = 0;
+               if(CBGanre.SelectedIndex>0)
+                {
+                    CBGanre.SelectedIndex = 0;
+                }
+              else if (CBPodCatalog.SelectedIndex>0)
+                {
+                    CBPodCatalog.SelectedIndex = 0;
+                    CBGanre.SelectedIndex = 0;
+                }
+               else if(CBCatalog.SelectedIndex>0)
+                {
+                    CBCatalog.SelectedIndex = 0;
+                    CBPodCatalog.SelectedIndex = 0;
+                    CBGanre.SelectedIndex = 0;
+                }
                 search.Text = "";
                 MessageBox.Show("Данной книги не существуеь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -197,23 +204,23 @@ namespace _41PP_TRifonova
             if (CBCatalog.SelectedIndex > 0)
             {
                 List<SubDirectory> subDirectories = BD.bD.SubDirectory.ToList();
-                
+
                 for (int i = 0; i < subDirectories.Count; i++)
                 {
                     CBPodCatalog.Items.Remove(subDirectories[i].SubDirectory1);
                 }
-                subDirectories = subDirectories.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
+                List<SubDirectory> directories = BD.bD.SubDirectory.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
 
-              
-                for (int i = 0; i < subDirectories.Count; i++)
+                for (int i = 0; i < directories.Count; i++)
                 {
 
-                    CBPodCatalog.Items.Add(subDirectories[i].SubDirectory1);
-                    
+                    CBPodCatalog.Items.Add(directories[i].SubDirectory1);
+
                 }
 
                 CBPodCatalog.SelectedIndex = 0;
                 CBPodCatalog.Visibility = Visibility.Visible;
+
             }
             else
             {
@@ -225,46 +232,41 @@ namespace _41PP_TRifonova
 
         private void CBPodCatalog_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+
+
             if (CBPodCatalog.SelectedIndex > 0)
             {
+               
                 List<Genres> genres = BD.bD.Genres.ToList();
 
                 for (int i = 0; i < genres.Count; i++)
                 {
                     CBGanre.Items.Remove(genres[i].Ganre);
                 }
-                List<SubDirectory> subDirectorie = BD.bD.SubDirectory.ToList();
-                subDirectorie = subDirectorie.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
-                if (CBPodCatalog.SelectedIndex > 0)
+                List<SubDirectory> subDirectories= BD.bD.SubDirectory.Where(x => x.IDCatolog == CBCatalog.SelectedIndex).ToList();
+                for(int i = 0; i < subDirectories.Count+1; i++)
                 {
-                    for (int i = 0; i < subDirectorie.Count; i++)
+                    if(i== CBPodCatalog.SelectedIndex)
                     {
-                        if (CBPodCatalog.SelectedIndex == i+1)
-                        {
-                            string id= Convert.ToString(subDirectorie[i].SubDirectoryID);
-                            CBPodCatalog.SelectedValuePath = id;
-                        }
-
-                    }
-                    int index = Convert.ToInt32(CBPodCatalog.SelectedValuePath);
-                    genres = genres.Where(x => x.DirectoryAndSubDirectoryID == index).ToList();
-                    if (genres.Count > 1)
-                    {
-                        for (int i = 0; i < genres.Count; i++)
-                        {
-
-                            CBGanre.Items.Add(genres[i].Ganre);
-                        }
-
-                        CBGanre.SelectedIndex = 0;
-                        CBGanre.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        CBGanre.Visibility = Visibility.Collapsed;
+                        index=subDirectories[i-1].SubDirectoryID;
                     }
                 }
-                
+                List<Genres> genre=BD.bD.Genres.Where(x=>x.DirectoryAndSubDirectoryID==index).ToList();
+                if (genre.Count > 0)
+                {
+                    for (var i = 0; i < genre.Count; i++)
+                    {
+                        CBGanre.Items.Add(genre[i].Ganre);
+                    }
+                    CBGanre.SelectedIndex = 0;
+                    CBGanre.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    CBGanre.Visibility = Visibility.Collapsed;
+                }
+
             }
             else
             {
@@ -276,29 +278,27 @@ namespace _41PP_TRifonova
 
         private void CBGanre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(CBGanre.SelectedIndex>0)
+            if (CBGanre.SelectedIndex > 0)
             {
-                int index = Convert.ToInt32(CBPodCatalog.SelectedValuePath);
-                List<Genres> genres = BD.bD.Genres.Where(x => x.DirectoryAndSubDirectoryID == index).ToList();
-                for(int i = 0; i < genres.Count; i++)
+               
+                List<Genres> genre = BD.bD.Genres.Where(x => x.DirectoryAndSubDirectoryID == index).ToList();
+                for(int i=0; i<genre.Count+1;i++)
                 {
-                    if (CBGanre.SelectedIndex == i + 1)
+                    if(i==CBGanre.SelectedIndex)
                     {
-                        CBGanre.SelectedValuePath = Convert.ToString(genres[i].GenreID);
+                        indexGanre = genre[i - 1].GenreID;
                     }
                 }
+
             }
+           
             filter();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-            
-     
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
-            //Application.Current.Shutdown();
            
+            Environment.Exit(0);
         }
 
         private void addBook_Click(object sender, RoutedEventArgs e)

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "41PP_TRifonova", "41PP_TRifonova\41PP_TRifonova.csproj", "{18A63050-7203-418F-B40A-A6960F976B43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{31B455CA-C9C3-46C6-8AE1-D3AE07407B06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{18A63050-7203-418F-B40A-A6960F976B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18A63050-7203-418F-B40A-A6960F976B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18A63050-7203-418F-B40A-A6960F976B43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B455CA-C9C3-46C6-8AE1-D3AE07407B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B455CA-C9C3-46C6-8AE1-D3AE07407B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B455CA-C9C3-46C6-8AE1-D3AE07407B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B455CA-C9C3-46C6-8AE1-D3AE07407B06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
