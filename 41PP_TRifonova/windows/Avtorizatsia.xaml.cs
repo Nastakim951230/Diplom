@@ -37,14 +37,23 @@ namespace _41PP_TRifonova
                 TxPassword.Visibility = Visibility.Visible;
             }
         }
-        private void avtorizatsiaBT_Click(object sender, RoutedEventArgs e)
+        public static bool proverka(string a, string b)
         {
-            if(tbLogin.Text=="" || PbPassword.Password=="")
+            if (a == "" || b== "")
             {
-                MessageBox.Show("Обязательные поля не заполнены","Ошибка", MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
             else
             {
+                return true;
+            }
+
+        }
+        private void avtorizatsiaBT_Click(object sender, RoutedEventArgs e)
+        {
+            if(proverka(tbLogin.Text, PbPassword.Password))
+            { 
                 employees=BD.bD.Employees.FirstOrDefault(x=>x.Login==tbLogin.Text && x.Password==PbPassword.Password);
                 if (employees == null)
                 {

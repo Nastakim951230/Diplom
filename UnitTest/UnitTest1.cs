@@ -67,5 +67,27 @@ namespace UnitTest
             bool actual = PageAddAndUpdateEmployees.numberTelefon(telefon);
             Assert.AreEqual(otv, actual);
         }
+
+        //Проверка на заполненость полей в авторизации
+        [TestMethod]
+        public void CompletionOfRequiredFields()
+        {
+            string password = "951230";
+            string login = "naki";
+            bool otv = true;
+            bool actual = Avtorizatsia.proverka(login,password);
+            Assert.AreEqual(otv, actual);
+        }
+
+        //Проверка на не заполненость полей в авторизации
+        [TestMethod]
+        public void NotCompletingRequiredFields()
+        {
+            string password = "";
+            string login = "";
+            bool otv = false;
+            bool actual = Avtorizatsia.proverka(login, password);
+            Assert.AreEqual(otv, actual);
+        }
     }
 }
