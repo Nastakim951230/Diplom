@@ -23,7 +23,7 @@ namespace _41PP_TRifonova
         {
             InitializeComponent();
         }
-
+       
         private void save_Click(object sender, RoutedEventArgs e)
         {
             if(date.Text=="")

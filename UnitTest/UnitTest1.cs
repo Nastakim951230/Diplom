@@ -68,6 +68,17 @@ namespace UnitTest
             Assert.AreEqual(otv, actual);
         }
 
+
+        //Проверка на то что получает ответ
+        [TestMethod]
+        public void IsNotNullAvtorizatsia()
+        {
+            string password = "";
+            string login = "";
+            
+            bool actual = Avtorizatsia.proverka(login, password);
+            Assert.IsNotNull(actual);
+        }
         //Проверка на заполненость полей в авторизации
         [TestMethod]
         public void CompletionOfRequiredFields()
@@ -89,5 +100,29 @@ namespace UnitTest
             bool actual = Avtorizatsia.proverka(login, password);
             Assert.AreEqual(otv, actual);
         }
+
+        //Проверка на правильную дату
+        [TestMethod]
+        public void CheckingForTheCorrectDate()
+        {
+            DateTime date = DateTime.Today;
+            date=date.AddDays(14);
+            bool otv = true;
+            bool actual = PageBooking.proverkaDate(date);
+            Assert.AreEqual(otv, actual);
+        }
+
+        //Проверка если дата не правильная
+        [TestMethod]
+        public void CheckingForTheWrongDate()
+        {
+            DateTime date = DateTime.Today;
+            date = date.AddDays(-1);
+            bool otv = false;
+            bool actual = PageBooking.proverkaDate(date);
+            Assert.AreEqual(otv, actual);
+        }
+
+
     }
 }

@@ -85,7 +85,7 @@
     <Compile Include="IssueOrReturn.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageBooking.xaml.cs">
+    <Compile Include="pages\PageBooking.xaml.cs">
       <DependentUpon>PageBooking.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\PageReturn.xaml.cs">
@@ -97,7 +97,7 @@
     <Compile Include="pagesReaders\PageBasket.xaml.cs">
       <DependentUpon>PageBasket.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageReaderUpdate.xaml.cs">
+    <Compile Include="pages\PageReaderUpdate.xaml.cs">
       <DependentUpon>PageReaderUpdate.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\PageAddReader.xaml.cs">
@@ -151,7 +151,7 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
-    <Page Include="PageBooking.xaml">
+    <Page Include="pages\PageBooking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,7 +167,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageReaderUpdate.xaml">
+    <Page Include="pages\PageReaderUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

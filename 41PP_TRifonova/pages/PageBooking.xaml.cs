@@ -52,7 +52,18 @@ namespace _41PP_TRifonova
         {
             FrameNavigate.per.Navigate(new PageEmployees(employees));
         }
-
+        public static bool proverkaDate(DateTime date)
+        {
+            if (date > DateTime.Today)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Введенная дата меньше чем сегодняшняя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+        }
         private void ToCancelReservation_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -60,7 +71,7 @@ namespace _41PP_TRifonova
             Booking booking = BD.bD.Booking.FirstOrDefault(x => x.BookingID == index);
             WindowDateBooking windowDateBooking = new WindowDateBooking();
             windowDateBooking.ShowDialog();
-            if (date > DateTime.Today)
+            if (proverkaDate(date))
             {
                 IssueOrReturn issueOrReturn = new IssueOrReturn();
                 issueOrReturn.IDBook = booking.BookID;
