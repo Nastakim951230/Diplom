@@ -18,6 +18,8 @@ namespace _41PP_TRifonova
                 return authors.NameAuthor + " " + authors.SurnameAuthor;
             }
         }
+
+        
         public string age
         {
             get

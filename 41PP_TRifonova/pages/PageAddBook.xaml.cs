@@ -29,6 +29,7 @@ namespace _41PP_TRifonova
     public partial class PageAddBook : Page
     {
         Employees employees;
+       
 
         string newFilePath = null;  // путь к картинке
        

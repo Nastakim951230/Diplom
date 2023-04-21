@@ -426,6 +426,7 @@
       <DependentUpon>Base.edmx</DependentUpon>
       <LastGenOutput>Base.cs</LastGenOutput>
     </Content>
+    <Resource Include="image\заклюшка книжка.jpg" />
     <Resource Include="image\лого светло-голубое.png" />
     <Resource Include="image\Лого Фиолетовое.png" />
     <Resource Include="image\ping.png" />

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_41PP_TRifonova"
-        mc:Ignorable="d" Icon="../image/logo.png"
+        mc:Ignorable="d" Icon="../image/logo.png" WindowStartupLocation="CenterScreen"
         Title="Добавление автора" Height="230" Width="250" MaxHeight="230" MaxWidth="250">
     <Grid Style="{StaticResource MainThemeGrid}">
         <StackPanel>

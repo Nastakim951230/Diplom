@@ -8,6 +8,7 @@
       d:DesignHeight="700" d:DesignWidth="1000"
       Title="PageEmployees">
     <Page.Resources>
+        
         <BitmapImage x:Key="defaultImage" UriSource="../image/ping.png"></BitmapImage>
     </Page.Resources>
     <Grid>

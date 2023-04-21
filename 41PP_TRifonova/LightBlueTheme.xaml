@@ -10,6 +10,13 @@
         <Setter Property="Foreground" Value="#225E96"/>
     </Style>
 
+    <Style x:Key="book" TargetType="Image">
+        <Setter Property="Source" Value="./image/ping.png"></Setter>
+        <Setter Property="Height" Value="360"></Setter>
+        <Setter Property="Width" Value="280"></Setter>
+    </Style>
+
+
     <Style x:Key="ThemeLogo" TargetType="Image">
         <Setter Property="Source" Value="./image/лого светло-голубое.png"></Setter>
     </Style>

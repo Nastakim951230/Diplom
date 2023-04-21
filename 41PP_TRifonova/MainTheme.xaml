@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:local="clr-namespace:_41PP_TRifonova"
                     >
-    
+
     <Style x:Key="MainThemeTabItem" TargetType="TabItem">
         <Setter Property="Background" Value="AliceBlue"></Setter>
         <Setter Property="FontFamily" Value="Alegreya"/>
@@ -10,10 +10,16 @@
         <Setter Property="BorderBrush" Value="#26A9E0"/>
         <Setter Property="Foreground" Value="#225496"/>
     </Style>
-
+  
     <Style x:Key="ThemeLogo" TargetType="Image">
         <Setter Property="Source" Value="./image/MainThemeImage.png"></Setter>
     </Style>
+    <Style x:Key="book" TargetType="Image">
+        <Setter Property="Source" Value="./image/ping.png"></Setter>
+        <Setter Property="Height" Value="360"></Setter>
+        <Setter Property="Width" Value="280"></Setter>
+    </Style>
+    
 
     <Style x:Key="ThemeStackPanel" TargetType="StackPanel">
         <Setter Property="Background" Value="#54C4F4"></Setter>
