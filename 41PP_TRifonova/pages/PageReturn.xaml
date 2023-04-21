@@ -30,7 +30,7 @@
             <ListView Name="listReturn" Margin="0,10,0,10" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="1000" CornerRadius="10" Background="{Binding must}" BorderBrush="#26A9E0" BorderThickness="1">
+                        <Border Width="1000" CornerRadius="10" Background="{Binding must}" Style="{DynamicResource ThemeBorder}" BorderThickness="1">
                             <Grid>
                                 <StackPanel  Margin="10">
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding Nomer}" Style="{StaticResource textOsnova}"></TextBlock>

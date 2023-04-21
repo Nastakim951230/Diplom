@@ -16,54 +16,54 @@
             <RowDefinition Height="55"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition Height="40"/>
+            
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Style="{StaticResource MainThemeGrid}">
+        <Grid Grid.Row="0" Style="{DynamicResource MainThemeGrid}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Image Margin="0,5,0,0" Source="../image/MainThemeImage.png"></Image>
+                <Image Margin="0,5,0,0" Style="{DynamicResource ThemeLogo}"></Image>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
+                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{DynamicResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
-                    <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
-                    <ComboBox Name="CBGanre" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBGanre_SelectionChanged"></ComboBox>
+                    <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{DynamicResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
+                    <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{DynamicResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
+                    <ComboBox Name="CBGanre" Visibility="Collapsed"  Style="{DynamicResource MainThemeComboBox}" SelectionChanged="CBGanre_SelectionChanged"></ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <TextBlock Name="FIO" Style="{StaticResource WhiteText}">dmdmv</TextBlock>
-                <Button Name="exit" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
+                <TextBlock Name="FIO" Style="{DynamicResource WhiteText}">dmdmv</TextBlock>
+                <Button Name="exit" Template="{DynamicResource MainThemeButton}" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="1"   Background="#54C4F4">
+        <StackPanel Grid.Row="1" Style="{DynamicResource ThemeStackPanel}">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
-                <Button Name="Order" Template="{StaticResource MainThemeButton}" Click="Order_Click"  Margin="0,0,5,0">Заказы</Button>
-                <Button Name="returnBook" Template="{StaticResource MainThemeButton}" Click="returnBook_Click" Margin="0,0,5,0">Возврат</Button>
-                <Button Name="booking" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="booking_Click">Бронирование</Button>
-                <Button Name="addBook" Template="{StaticResource MainThemeButton}" Margin="0,0,5,0" Click="addBook_Click">Добавить книгу</Button>
-                <Button Name="employee" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="employee_Click">Сотрудники</Button>
+                <Button Name="Order" Template="{DynamicResource MainThemeButton}" Click="Order_Click"  Margin="0,0,5,0">Заказы</Button>
+                <Button Name="returnBook" Template="{DynamicResource MainThemeButton}" Click="returnBook_Click" Margin="0,0,5,0">Возврат</Button>
+                <Button Name="booking" Template="{DynamicResource MainThemeButton}" Margin="0,0,5,0" Click="booking_Click">Бронирование</Button>
+                <Button Name="addBook" Template="{DynamicResource MainThemeButton}" Margin="0,0,5,0" Click="addBook_Click">Добавить книгу</Button>
+                <Button Name="employee" Template="{DynamicResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="employee_Click">Сотрудники</Button>
 
-                <Button Name="addReader" Template="{StaticResource MainThemeButton}"  Margin="0,0,5,0" Click="addReader_Click">Читатели</Button>
+                <Button Name="addReader" Template="{DynamicResource MainThemeButton}"  Margin="0,0,5,0" Click="addReader_Click">Читатели</Button>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Left" Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource textOsnova}">В наличии</TextBlock>
+            <TextBlock Style="{DynamicResource textOsnova}">В наличии</TextBlock>
             <CheckBox Name="inStock" Checked="inStock_Checked" Unchecked="inStock_Unchecked" ></CheckBox>
             </StackPanel>
         <StackPanel  Grid.Row="2" HorizontalAlignment="Right"  Orientation="Horizontal" Margin="0,0,20,0">
                 <TextBlock Name="TextCountBook" Margin="0,0,10,0" Style="{StaticResource textOsnova}">Книг:2685</TextBlock>
-                <Menu Height="30" VerticalAlignment="Top" Style="{StaticResource MenuOsnova}" Background="White">
+                <Menu Height="30" VerticalAlignment="Top" Style="{DynamicResource MenuOsnova}" Background="White">
                     <MenuItem Header="...">
-                        <MenuItem Header="Основная тема"></MenuItem>
-                        <MenuItem Header="Фиолетовая тема"></MenuItem>
-                        <MenuItem Header="Светло-голубая тема"></MenuItem>
-                    </MenuItem>
+                    <MenuItem Header="Основная тема" Name="Osnova" Click="Osnova_Click"></MenuItem>
+                    <MenuItem Header="Фиолетовая тема" Name="Violet" Click="Violet_Click"></MenuItem>
+                    <MenuItem Header="Светло-голубая тема" Name="LightBlue" Click="LightBlue_Click"></MenuItem>
+                </MenuItem>
                 </Menu>
             </StackPanel>
         <Grid Grid.Row="3">
@@ -80,13 +80,13 @@
                                 <StackPanel>
                                     <StackPanel Height="285">
                                     <Image Width="150" Height="170" Source="{Binding Photo, TargetNullValue={StaticResource defaultImage}}"/>
-                                    <TextBlock Text="{Binding Nazvanie}" Style="{StaticResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
-                                    <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
+                                    <TextBlock Text="{Binding Nazvanie}" Style="{DynamicResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
+                                    <TextBlock  Text="{Binding avtors}" Style="{DynamicResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
                                 </StackPanel>
                                 <StackPanel>
-                                        <Button Uid="{Binding BookID}"  Name="libraruBook" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_bringing}" Click="libraruBook_Click">Привоз</Button>
-                                        <Button Uid="{Binding BookID}"  Name="toBook" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_booking}" Click="toBook_Click">Бронировать</Button>
-                                        <Button Uid="{Binding BookID}"  Name="update" Template="{StaticResource MainThemeButton}" Visibility="{Binding btn_update}" Click="update_Click">Редактировать</Button>
+                                        <Button Uid="{Binding BookID}"  Name="libraruBook" Template="{DynamicResource MainThemeButton}" Visibility="{Binding btn_bringing}" Click="libraruBook_Click">Привоз</Button>
+                                        <Button Uid="{Binding BookID}"  Name="toBook" Template="{DynamicResource MainThemeButton}" Visibility="{Binding btn_booking}" Click="toBook_Click">Бронировать</Button>
+                                        <Button Uid="{Binding BookID}"  Name="update" Template="{DynamicResource MainThemeButton}" Visibility="{Binding btn_update}" Click="update_Click">Редактировать</Button>
                                    
                                 </StackPanel>
                                 </StackPanel>

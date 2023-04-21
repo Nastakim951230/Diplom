@@ -26,7 +26,7 @@
             <ListView Name="listApplication" BorderBrush="{x:Null}" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="1000" CornerRadius="10" Background="{Binding must}" BorderBrush="#26A9E0" BorderThickness="1">
+                        <Border Width="1000" CornerRadius="10" Background="{Binding must}" Style="{DynamicResource ThemeBorder}" BorderThickness="1">
                             <Grid>
                                 <StackPanel Margin="10">
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding Nomer}" Style="{StaticResource textOsnova}"></TextBlock>

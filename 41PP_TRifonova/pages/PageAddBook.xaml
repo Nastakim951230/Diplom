@@ -99,7 +99,7 @@
                     <Button Name="addAvtor" Click="addAvtor_Click" Template="{StaticResource MainThemeButton}">Добавить автора</Button>
                 </StackPanel>
                 <Grid Grid.Row="1" Margin="10,0,10,0">
-                    <ListView Name="listAvtor" Background="#CCE9F5" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
+                    <ListView Name="listAvtor" Style="{DynamicResource ThemeList}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border>
@@ -130,7 +130,7 @@
                 </StackPanel>
                 
                 <Grid Grid.Row="1" Margin="10,0,10,0">
-                    <ListView Name="listganre" Background="#CCE9F5"  HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
+                    <ListView Name="listganre" Style="{DynamicResource ThemeList}"  HorizontalContentAlignment="Stretch" SelectionMode="Multiple">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Каталог" Width="200" DisplayMemberBinding="{Binding catalogGamr}"></GridViewColumn>

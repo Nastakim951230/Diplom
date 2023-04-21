@@ -59,18 +59,18 @@ namespace _41PP_TRifonova
 
         private void oformit_Click(object sender, RoutedEventArgs e)
         {
-            List<Application> booksApplicatio= BD.bD.Application.ToList();
+            List<ApplicationBooks> booksApplicatio= BD.bD.ApplicationBooks.ToList();
             for (int i = 0; i < baskets.Count; i++)
             {
-                Application applications = booksApplicatio.FirstOrDefault(x => x.IDReader == reader.LibraryCardNumber && x.IDBook == baskets[i].books.BookID);
+                ApplicationBooks applications = booksApplicatio.FirstOrDefault(x => x.IDReader == reader.LibraryCardNumber && x.IDBook == baskets[i].books.BookID);
                 if (applications == null)
                 {
-                    Application application = new Application();
+                    ApplicationBooks application = new ApplicationBooks();
                     application.IDBook = baskets[i].books.BookID;
                     application.IDReader = reader.LibraryCardNumber;
                     application.IDLibrary = reader.IDLibrary;
                     application.countBooks = baskets[i].couint;
-                    BD.bD.Application.Add(application);
+                    BD.bD.ApplicationBooks.Add(application);
                     BooksAndLibraries booksAndLibraries = BD.bD.BooksAndLibraries.FirstOrDefault(x => x.IDLibrary == application.IDLibrary && x.IDBook == application.IDBook);
                     int kolvo = booksAndLibraries.count;
                     kolvo = kolvo - application.countBooks;

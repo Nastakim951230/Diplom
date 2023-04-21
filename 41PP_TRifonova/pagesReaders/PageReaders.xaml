@@ -15,50 +15,50 @@
             <RowDefinition Height="130"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition Height="40"/>
+            
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Style="{StaticResource MainThemeGrid}">
+        <Grid Grid.Row="0" Style="{DynamicResource MainThemeGrid}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Image Margin="0,5,0,0" Source="../image/MainThemeImage.png"></Image>
+                <Image Margin="0,5,0,0" Style="{DynamicResource ThemeLogo}"></Image>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{StaticResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
+                <TextBox Tag="Поиск" Name="search"  Height="30" TextChanged="search_TextChanged" Style="{DynamicResource MainThemeTextBox}" Cursor="IBeam"></TextBox>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
-                    <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
-                    <ComboBox Name="CBGanre" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBGanre_SelectionChanged"></ComboBox>
+                    <ComboBox Name="CBCatalog" Height="30" Margin="0,0,10,0" Style="{DynamicResource MainThemeComboBox}" SelectionChanged="CBCatalog_SelectionChanged" Cursor="IBeam"></ComboBox>
+                    <ComboBox Name="CBPodCatalog" Visibility="Collapsed"  Style="{DynamicResource MainThemeComboBox}" Margin="0,0,10,0" SelectionChanged="CBPodCatalog_SelectionChanged"></ComboBox>
+                    <ComboBox Name="CBGanre" Visibility="Collapsed"  Style="{DynamicResource MainThemeComboBox}" SelectionChanged="CBGanre_SelectionChanged"></ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="2">
                 <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button Name="back" Template="{StaticResource ButtonStyl}"  Margin="0,0,5,0" Click="back_Click">X</Button>
+                    <Button Name="back" Template="{DynamicResource ButtonStyl}"  Margin="0,0,5,0" Click="back_Click">X</Button>
             </StackPanel>
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <TextBlock Name="FIO" Visibility="Collapsed" Style="{StaticResource WhiteText}">dmdmv</TextBlock>
-                <Button Name="entrance" Template="{StaticResource MainThemeButton}" Visibility="Visible" Margin="0,0,5,0" Click="entrance_Click">Вход</Button>
-                <Button Name="exit" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
+                <TextBlock Name="FIO" Visibility="Collapsed" Style="{DynamicResource WhiteText}">dmdmv</TextBlock>
+                <Button Name="entrance" Template="{DynamicResource MainThemeButton}" Visibility="Visible" Margin="0,0,5,0" Click="entrance_Click">Вход</Button>
+                <Button Name="exit" Template="{DynamicResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
             </StackPanel>
             <StackPanel  VerticalAlignment="Bottom" Margin="0,0,5,20" HorizontalAlignment="Right">
-                <Button Name="BasketButton" Click="BasketButton_Click" Visibility="Collapsed" Template="{StaticResource MainThemeButton}">Корзина</Button>
+                <Button Name="BasketButton" Click="BasketButton_Click" Visibility="Collapsed" Template="{DynamicResource MainThemeButton}">Корзина</Button>
             </StackPanel>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource textOsnova}">В наличии</TextBlock>
+            <TextBlock Style="{DynamicResource textOsnova}">В наличии</TextBlock>
             <CheckBox Name="inStock" Checked="inStock_Checked" Unchecked="inStock_Checked" ></CheckBox>
         </StackPanel>
         <StackPanel  Grid.Row="1" HorizontalAlignment="Right"  Orientation="Horizontal" Margin="0,0,20,0">
-            <TextBlock Name="TextCountBook" Margin="0,0,10,0" Style="{StaticResource textOsnova}">Книг:2685</TextBlock>
-            <Menu Height="30" VerticalAlignment="Top" Style="{StaticResource MenuOsnova}" Background="White">
+            <TextBlock Name="TextCountBook" Margin="0,0,10,0" Style="{DynamicResource textOsnova}">Книг:2685</TextBlock>
+            <Menu Height="30" VerticalAlignment="Top" Style="{DynamicResource MenuOsnova}" Background="White">
                 <MenuItem Header="...">
-                    <MenuItem Header="Основная тема"></MenuItem>
-                    <MenuItem Header="Фиолетовая тема"></MenuItem>
-                    <MenuItem Header="Светло-голубая тема"></MenuItem>
+                    <MenuItem Header="Основная тема" Name="Osnova" Click="Osnova_Click"></MenuItem>
+                    <MenuItem Header="Фиолетовая тема" Name="Violet" Click="Violet_Click"></MenuItem>
+                    <MenuItem Header="Светло-голубая тема" Name="LightBlue" Click="LightBlue_Click"></MenuItem>
                 </MenuItem>
             </Menu>
         </StackPanel>
@@ -80,7 +80,7 @@
                                         <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
                                     </StackPanel>
                                     <StackPanel>
-                                        <Button Uid="{Binding BookID}" Name="lookBooks" Template="{StaticResource MainThemeButton}" Click="lookBooks_Click">Смотреть</Button>
+                                        <Button Uid="{Binding BookID}" Name="lookBooks" Template="{DynamicResource MainThemeButton}" Click="lookBooks_Click">Смотреть</Button>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>

@@ -29,7 +29,7 @@
                         <ListView Margin="20,10,20,10" BorderBrush="{x:Null}" Name="listBooking" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="10"  Width="1000" BorderBrush="#26A9E0" Background="{Binding must}" BorderThickness="1">
+                                    <Border CornerRadius="10"  Width="1000" Style="{DynamicResource ThemeBorder}" Background="{Binding must}" BorderThickness="1">
                                         <Grid>
                                             <StackPanel Margin="10">
                                                 <TextBlock HorizontalAlignment="Center" Text="{Binding Nomer}" Style="{StaticResource textOsnova}" Foreground="{Binding text}"></TextBlock>
@@ -61,7 +61,7 @@
                         <ListView Margin="20,10,20,10" BorderBrush="{x:Null}" Name="listBookingLibrary" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="10"  Width="1000" BorderBrush="#26A9E0"  BorderThickness="1">
+                                    <Border CornerRadius="10"  Width="1000" Style="{DynamicResource ThemeBorder}"  BorderThickness="1">
                                         <Grid>
                                             <StackPanel Margin="10">
                                                

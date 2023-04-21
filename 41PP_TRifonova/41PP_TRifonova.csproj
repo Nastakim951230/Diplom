@@ -65,7 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application.cs">
+    <Compile Include="ApplicationBooks.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Booking.cs">
@@ -151,6 +151,14 @@
     <Compile Include="windows\WindowUpdateNazvanie.xaml.cs">
       <DependentUpon>WindowUpdateNazvanie.xaml</DependentUpon>
     </Compile>
+    <Page Include="LightBlueTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\PageBooking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PurpleTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -414,6 +426,8 @@
       <DependentUpon>Base.edmx</DependentUpon>
       <LastGenOutput>Base.cs</LastGenOutput>
     </Content>
+    <Resource Include="image\лого светло-голубое.png" />
+    <Resource Include="image\Лого Фиолетовое.png" />
     <Resource Include="image\ping.png" />
   </ItemGroup>
   <ItemGroup>

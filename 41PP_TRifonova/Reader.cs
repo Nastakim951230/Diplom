@@ -17,7 +17,7 @@ namespace _41PP_TRifonova
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Reader()
         {
-            this.Application = new HashSet<Application>();
+            this.ApplicationBooks = new HashSet<ApplicationBooks>();
             this.Booking = new HashSet<Booking>();
             this.IssueOrReturn = new HashSet<IssueOrReturn>();
         }
@@ -39,7 +39,7 @@ namespace _41PP_TRifonova
         public int IDLibrary { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Application { get; set; }
+        public virtual ICollection<ApplicationBooks> ApplicationBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Booking { get; set; }
         public virtual Gender Gender { get; set; }

@@ -1,0 +1,454 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:local="clr-namespace:_41PP_TRifonova"
+                    >
+    
+    <Style x:Key="MainThemeTabItem" TargetType="TabItem">
+        <Setter Property="Background" Value="AliceBlue"></Setter>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="BorderBrush" Value="#26A9E0"/>
+        <Setter Property="Foreground" Value="#225496"/>
+    </Style>
+
+    <Style x:Key="ThemeLogo" TargetType="Image">
+        <Setter Property="Source" Value="./image/MainThemeImage.png"></Setter>
+    </Style>
+
+    <Style x:Key="ThemeStackPanel" TargetType="StackPanel">
+        <Setter Property="Background" Value="#54C4F4"></Setter>
+    </Style>
+
+    <Style x:Key="ThemeList" TargetType="ListView">
+        <Setter Property="Background" Value="#CCE9F5"></Setter>
+    </Style>
+
+    <Style x:Key="ThemeBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="#26A9E0"></Setter>
+    </Style>
+
+    <Style x:Key="ThemeBorderEmployees" TargetType="Border">
+        <Setter Property="BorderBrush" Value="#26A9E0"></Setter>
+        <Setter Property="Background" Value="#CCE9F5"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+    </Style>
+
+    <Style x:Key="MainThemetextOsnovaNazvanie" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#225496"/>
+    </Style>
+
+
+    <Style x:Key="MainThemeDatePicker" TargetType="DatePicker">
+        <Setter Property="Foreground" Value="#225496"></Setter>
+        <Setter Property="BorderBrush" Value="#26A9E0"></Setter>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+
+    </Style>
+
+    <Style x:Key="MainThemeText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#225496"/>
+    </Style>
+
+    <ControlTemplate x:Key="MainThemeButton" TargetType="Button">
+        <Border CornerRadius="10" Background="#225496"  Padding="20,10,20,10" Margin="0,10,0,0">
+            <ContentControl   FontSize="14" FontFamily="Alegreya" 
+                    Foreground="#FFFFFF" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
+
+
+
+
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Border
+                  x:Name="Border" 
+                  Grid.ColumnSpan="2"
+                  CornerRadius="10"
+                  Background="#225496"
+                  BorderBrush="#225496"
+                    
+                  BorderThickness="1" />
+            <Border 
+                  Grid.Column="0"
+                  CornerRadius="10" 
+                  Margin="1" 
+                  Background="#225496" 
+                  BorderBrush="#225496"
+                  BorderThickness="0,0,1,0" />
+            <Path 
+                  x:Name="Arrow"
+                  Grid.Column="1"     
+                  Fill="White"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+        <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+
+    <Style x:Key="MainThemeComboBox" TargetType="{x:Type ComboBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <ToggleButton 
+                            Name="ToggleButton" 
+                            Template="{StaticResource ComboBoxToggleButton}" 
+                            Grid.Column="2" 
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press">
+                        </ToggleButton>
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Margin="3,3,23,3"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" />
+                        <TextBox x:Name="PART_EditableTextBox"
+                            Style="{x:Null}" 
+                            Template="{StaticResource ComboBoxTextBox}" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            Margin="3,3,23,3"
+                            Focusable="True" 
+                            Background="#225496"
+                            Foreground="White"
+                            Visibility="Hidden"
+                            IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                        <Popup 
+                            Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide">
+
+                            <Grid Name="DropDown"
+                              SnapsToDevicePixels="True"      
+                                      Margin="5,0,0,0"
+                              MinWidth="{TemplateBinding ActualWidth}"
+                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border 
+                                x:Name="DropDownBorder"
+                                Background="#FF578CD2"
+
+                                BorderThickness="1"
+                                BorderBrush="White"/>
+                                <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#FF002BFD"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEditable"  Value="true">
+                            <Setter Property="IsTabStop" Value="false"/>
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+        </Style.Triggers>
+    </Style>
+
+
+
+
+    <!-- SimpleStyles: ComboBoxItem -->
+    <Style x:Key="MainThemeComboBoxItem" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border Name="Border"
+                              Padding="2"
+                              SnapsToDevicePixels="true">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="#225496"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#FF002BFD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+    <Style x:Key="MainThemeTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="White"/>
+
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="BorderBrush" Value="#26A9E0"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="Foreground" Value="#225496"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border" CornerRadius="10"  BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}"
+        Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Grid Margin="10,0,0,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <Label x:Name="WaterMarkerLabel"
+                                   
+                                   Content="{TemplateBinding Tag}"
+                                   FontWeight="Normal"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Visibility="Collapsed"
+                                   Foreground="#A49F9F"
+                                   Padding="{TemplateBinding Padding}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#225496"></Setter>
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#225496"></Setter>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility"
+                                            TargetName="WaterMarkerLabel"
+                                            Value="Visible"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainThemeTextBoxDescriot" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="White"/>
+
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="BorderBrush" Value="#26A9E0"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="Foreground" Value="#225496"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border" CornerRadius="10"  BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}"
+        Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Grid Margin="10,0,0,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="True" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <Label x:Name="WaterMarkerLabel"
+                                   
+                                   Content="{TemplateBinding Tag}"
+                                   FontWeight="Normal"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Visibility="Collapsed"
+                                   Foreground="#A49F9F"
+                                   Padding="{TemplateBinding Padding}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#225496"></Setter>
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#225496"></Setter>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility"
+                                            TargetName="WaterMarkerLabel"
+                                            Value="Visible"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="PasswordText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#A49F9F"/>
+    </Style>
+
+
+
+    <Style x:Key="MainThemePasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderBrush" Value="#26A9E0"/>
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="Foreground" Value="#225496"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="border" CornerRadius="10" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}"
+        Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Grid Margin="10,0,0,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#225496"></Setter>
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#225496"></Setter>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainThemeGrid" TargetType="Grid">
+        <Setter Property="Background" Value="#26A9E0"></Setter>
+    </Style>
+
+    <Style x:Key="TitlyText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+
+
+
+
+    <Style x:Key="textOsnova" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style x:Key="textListNazvanie" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    <Style x:Key="textListAvtor" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#988F98"/>
+    </Style>
+
+    <Style x:Key="textOsnovaNazvanie" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+
+    <Style TargetType="CheckBox">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style x:Key="MenuOsnova" TargetType="Menu">
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    <ControlTemplate x:Key="ButtonStyl" TargetType="Button">
+        <Border CornerRadius="10" Background="#FFF73E28"  Padding="10,5,10,5" Margin="0,5,0,0">
+            <ContentControl   FontSize="10" FontFamily="Alegreya" 
+                    Foreground="#FFFFFF" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
+    <!--основная тема-->
+
+
+
+    <!--Основное-->
+    <Style x:Key="WhiteText" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Margin" Value="0,10,5,0"/>
+
+    </Style>
+</ResourceDictionary>

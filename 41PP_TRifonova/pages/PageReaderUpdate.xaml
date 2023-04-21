@@ -30,22 +30,22 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Дата рождения:</TextBlock>
-                <TextBlock Name="DRReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+                <TextBlock Name="DRReader"  Style="{DynamicResource MainThemetextOsnovaNazvanie}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Номер телефона:</TextBlock>
-                <TextBlock Name="TelefonReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+                <TextBlock Name="TelefonReader"  Style="{DynamicResource MainThemetextOsnovaNazvanie}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Дата регистрации:</TextBlock>
-                <TextBlock Name="RegistrReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+                <TextBlock Name="RegistrReader"  Style="{DynamicResource MainThemetextOsnovaNazvanie}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Style="{StaticResource textOsnovaNazvanie}">Дата перерегистрации:</TextBlock>
-                <TextBlock Name="PereRegistrReader"  Style="{StaticResource MainThemetextOsnovaNazvanie}"></TextBlock>
+                <TextBlock Name="PereRegistrReader"  Style="{DynamicResource MainThemetextOsnovaNazvanie}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">

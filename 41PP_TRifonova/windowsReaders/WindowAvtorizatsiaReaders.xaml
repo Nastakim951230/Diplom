@@ -8,7 +8,7 @@
         Title="Авторизация читателя" Height="300" Width="450" MaxHeight="300" MaxWidth="450">
     <Grid Style="{StaticResource MainThemeGrid}">
         <StackPanel  Margin="20,0,20,0">
-            <Image Height="130" Source="../image/MainThemeImage.png" Margin="0,10,0,10"></Image>
+            <Image Height="130" Style="{DynamicResource ThemeLogo}" Margin="0,10,0,10"></Image>
             <TextBox Name="readersAvtorizatsia" Style="{StaticResource MainThemeTextBox}" Tag="Введите номер читательского билета" Height="30" Cursor="IBeam"></TextBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="back" Click="back_Click" Template="{StaticResource MainThemeButton}" >Назад</Button>

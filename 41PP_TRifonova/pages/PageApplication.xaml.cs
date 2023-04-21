@@ -49,10 +49,10 @@ namespace _41PP_TRifonova
 
           List<Reader> reader = BD.bD.Reader.ToList();
             List<Reader> readers = new List<Reader>();
-            List<Application> applicaciones = BD.bD.Application.ToList();
+            List<ApplicationBooks> applicaciones = BD.bD.ApplicationBooks.ToList();
             for (int i = 0; i < reader.Count; i++)
             {
-                List<Application> applications = applicaciones.Where(x=>x.IDReader==reader[i].LibraryCardNumber && x.IDLibrary==employees.LibraryID).ToList();
+                List<ApplicationBooks> applications = applicaciones.Where(x=>x.IDReader==reader[i].LibraryCardNumber && x.IDLibrary==employees.LibraryID).ToList();
                 if(applications.Count>0)
                 {
                     readers.Add(reader[i]);
@@ -74,7 +74,7 @@ namespace _41PP_TRifonova
             windowDate.ShowDialog();
             if (date > DateTime.Today)
             {
-                List<Application> applications = BD.bD.Application.Where(x => x.IDReader == index).ToList();
+                List<ApplicationBooks> applications = BD.bD.ApplicationBooks.Where(x => x.IDReader == index).ToList();
                 for (int i = 0; i < applications.Count; i++)
                 {
                     IssueOrReturn issueOrReturn = new IssueOrReturn();
@@ -85,7 +85,7 @@ namespace _41PP_TRifonova
                     issueOrReturn.DateOfIssue = DateTime.Today;
                     issueOrReturn.ReturnDate = date;
                     BD.bD.IssueOrReturn.Add(issueOrReturn);
-                    BD.bD.Application.Remove(applications[i]);
+                    BD.bD.ApplicationBooks.Remove(applications[i]);
                 }
                 BD.bD.SaveChanges();
                 FrameNavigate.per.Navigate(new PageApplication(employees));
@@ -107,10 +107,10 @@ namespace _41PP_TRifonova
         {
             List<Reader> reader = BD.bD.Reader.ToList();
             List<Reader> readers = new List<Reader>();
-            List<Application> applicaciones = BD.bD.Application.ToList();
+            List<ApplicationBooks> applicaciones = BD.bD.ApplicationBooks.ToList();
             for (int i = 0; i < reader.Count; i++)
             {
-                List<Application> applications = applicaciones.Where(x => x.IDReader == reader[i].LibraryCardNumber).ToList();
+                List<ApplicationBooks> applications = applicaciones.Where(x => x.IDReader == reader[i].LibraryCardNumber).ToList();
                 if (applications.Count > 0)
                 {
                     readers.Add(reader[i]);
@@ -131,10 +131,10 @@ namespace _41PP_TRifonova
             {
                 Button btn = (Button)sender;
                 int index = Convert.ToInt32(btn.Uid);
-                List<Application> applications = BD.bD.Application.Where(x => x.IDReader == index).ToList();
+                List<ApplicationBooks> applications = BD.bD.ApplicationBooks.Where(x => x.IDReader == index).ToList();
                 for (int i = 0; i < applications.Count; i++)
                 {
-                    BD.bD.Application.Remove(applications[i]);
+                    BD.bD.ApplicationBooks.Remove(applications[i]);
                 }
                 BD.bD.SaveChanges();
                 FrameNavigate.per.Navigate(new PageApplication(employees));

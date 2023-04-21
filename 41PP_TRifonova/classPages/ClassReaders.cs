@@ -30,13 +30,13 @@ namespace _41PP_TRifonova
         {
             get
             {
-                List<Application> applications = BD.bD.Application.Where(x => x.IDReader == LibraryCardNumber).ToList();
+                List<ApplicationBooks> applications = BD.bD.ApplicationBooks.Where(x => x.IDReader == LibraryCardNumber).ToList();
 
                 string application = "";
                 int nomer = 0;
                 if (applications.Count > 0)
                 {
-                    foreach (Application books in applications)
+                    foreach (ApplicationBooks books in applications)
                     {
                         List<BooksAndAuthors> booksAndAuthors = BD.bD.BooksAndAuthors.Where(x => x.BookID == books.IDBook).ToList();
 

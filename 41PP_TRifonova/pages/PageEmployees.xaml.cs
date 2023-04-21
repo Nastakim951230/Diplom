@@ -376,5 +376,36 @@ namespace _41PP_TRifonova
         {
             FrameNavigate.per.Navigate(new PageReturn(employees));
         }
+
+        private void Osnova_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"MainTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            // очищаем коллекцию ресурсов приложения
+            Application.Current.Resources.Clear();
+            // добавляем загруженный словарь ресурсов
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+
+        }
+
+        private void Violet_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"PurpleTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            // очищаем коллекцию ресурсов приложения
+            Application.Current.Resources.Clear();
+            // добавляем загруженный словарь ресурсов
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
+
+        private void LightBlue_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"LightBlueTheme.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            // очищаем коллекцию ресурсов приложения
+            Application.Current.Resources.Clear();
+            // добавляем загруженный словарь ресурсов
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
     }
 }

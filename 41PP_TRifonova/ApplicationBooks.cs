@@ -12,7 +12,7 @@ namespace _41PP_TRifonova
     using System;
     using System.Collections.Generic;
     
-    public partial class Application
+    public partial class ApplicationBooks
     {
         public int ApplicationID { get; set; }
         public int IDBook { get; set; }

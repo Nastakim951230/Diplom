@@ -12,7 +12,7 @@
           <Property Name="AgeRestrictionsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Restrictions" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="Application">
+        <EntityType Name="ApplicationBooks">
           <Key>
             <PropertyRef Name="ApplicationID" />
           </Key>
@@ -202,36 +202,36 @@
         </EntityType>
         <Association Name="FK_Application_Books">
           <End Role="Books" Type="Self.Books" Multiplicity="1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <End Role="ApplicationBooks" Type="Self.ApplicationBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Books">
               <PropertyRef Name="BookID" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="ApplicationBooks">
               <PropertyRef Name="IDBook" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_Libraries">
           <End Role="Libraries" Type="Self.Libraries" Multiplicity="1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <End Role="ApplicationBooks" Type="Self.ApplicationBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Libraries">
               <PropertyRef Name="LibraryID" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="ApplicationBooks">
               <PropertyRef Name="IDLibrary" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_Reader">
           <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <End Role="ApplicationBooks" Type="Self.ApplicationBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Reader">
               <PropertyRef Name="LibraryCardNumber" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="ApplicationBooks">
               <PropertyRef Name="IDReader" />
             </Dependent>
           </ReferentialConstraint>
@@ -550,7 +550,7 @@
         </Association>
         <EntityContainer Name="Хранилище Trifonova_41P_DiplomModelContainer">
           <EntitySet Name="AgeRestrictions" EntityType="Self.AgeRestrictions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationBooks" EntityType="Self.ApplicationBooks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
@@ -570,15 +570,15 @@
           <EntitySet Name="SubDirectory" EntityType="Self.SubDirectory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Application_Books" Association="Self.FK_Application_Books">
             <End Role="Books" EntitySet="Books" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationBooks" EntitySet="ApplicationBooks" />
           </AssociationSet>
           <AssociationSet Name="FK_Application_Libraries" Association="Self.FK_Application_Libraries">
             <End Role="Libraries" EntitySet="Libraries" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationBooks" EntitySet="ApplicationBooks" />
           </AssociationSet>
           <AssociationSet Name="FK_Application_Reader" Association="Self.FK_Application_Reader">
             <End Role="Reader" EntitySet="Reader" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationBooks" EntitySet="ApplicationBooks" />
           </AssociationSet>
           <AssociationSet Name="FK_Booking_Books" Association="Self.FK_Booking_Books">
             <End Role="Books" EntitySet="Books" />
@@ -691,7 +691,7 @@
       <Schema Namespace="Trifonova_41P_DiplomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BaseBD" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AgeRestrictions" EntityType="Trifonova_41P_DiplomModel.AgeRestrictions" />
-          <EntitySet Name="Application" EntityType="Trifonova_41P_DiplomModel.Application" />
+          <EntitySet Name="ApplicationBooks" EntityType="Trifonova_41P_DiplomModel.ApplicationBooks" />
           <EntitySet Name="Authors" EntityType="Trifonova_41P_DiplomModel.Authors" />
           <EntitySet Name="Booking" EntityType="Trifonova_41P_DiplomModel.Booking" />
           <EntitySet Name="Books" EntityType="Trifonova_41P_DiplomModel.Books" />
@@ -715,15 +715,15 @@
           </AssociationSet>
           <AssociationSet Name="FK_Application_Books" Association="Trifonova_41P_DiplomModel.FK_Application_Books">
             <End Role="Books" EntitySet="Books" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationBooks" EntitySet="ApplicationBooks" />
           </AssociationSet>
           <AssociationSet Name="FK_Application_Libraries" Association="Trifonova_41P_DiplomModel.FK_Application_Libraries">
             <End Role="Libraries" EntitySet="Libraries" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationBooks" EntitySet="ApplicationBooks" />
           </AssociationSet>
           <AssociationSet Name="FK_Application_Reader" Association="Trifonova_41P_DiplomModel.FK_Application_Reader">
             <End Role="Reader" EntitySet="Reader" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationBooks" EntitySet="ApplicationBooks" />
           </AssociationSet>
           <AssociationSet Name="FK_BooksAndAuthors_Authors" Association="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Authors">
             <End Role="Authors" EntitySet="Authors" />
@@ -834,7 +834,7 @@
           <Property Name="Restrictions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" FromRole="AgeRestrictions" ToRole="Books" />
         </EntityType>
-        <EntityType Name="Application">
+        <EntityType Name="ApplicationBooks">
           <Key>
             <PropertyRef Name="ApplicationID" />
           </Key>
@@ -843,9 +843,9 @@
           <Property Name="IDReader" Type="Int32" Nullable="false" />
           <Property Name="IDLibrary" Type="Int32" Nullable="false" />
           <Property Name="countBooks" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Application_Books" FromRole="Application" ToRole="Books" />
-          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Application_Libraries" FromRole="Application" ToRole="Libraries" />
-          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Application_Reader" FromRole="Application" ToRole="Reader" />
+          <NavigationProperty Name="Books" Relationship="Trifonova_41P_DiplomModel.FK_Application_Books" FromRole="ApplicationBooks" ToRole="Books" />
+          <NavigationProperty Name="Libraries" Relationship="Trifonova_41P_DiplomModel.FK_Application_Libraries" FromRole="ApplicationBooks" ToRole="Libraries" />
+          <NavigationProperty Name="Reader" Relationship="Trifonova_41P_DiplomModel.FK_Application_Reader" FromRole="ApplicationBooks" ToRole="Reader" />
         </EntityType>
         <EntityType Name="Authors">
           <Key>
@@ -887,7 +887,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AgeRestrictions" Relationship="Trifonova_41P_DiplomModel.FK_Books_AgeRestrictions" FromRole="Books" ToRole="AgeRestrictions" />
-          <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Books" FromRole="Books" ToRole="Application" />
+          <NavigationProperty Name="ApplicationBooks" Relationship="Trifonova_41P_DiplomModel.FK_Application_Books" FromRole="Books" ToRole="ApplicationBooks" />
           <NavigationProperty Name="Booking" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Books" FromRole="Books" ToRole="Booking" />
           <NavigationProperty Name="PublishingHouse" Relationship="Trifonova_41P_DiplomModel.FK_Books_PublishingHouse" FromRole="Books" ToRole="PublishingHouse" />
           <NavigationProperty Name="BooksAndAuthors" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndAuthors_Books" FromRole="Books" ToRole="BooksAndAuthors" />
@@ -1018,7 +1018,7 @@
           <Property Name="LibraryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="library" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Libraries" FromRole="Libraries" ToRole="Application" />
+          <NavigationProperty Name="ApplicationBooks" Relationship="Trifonova_41P_DiplomModel.FK_Application_Libraries" FromRole="Libraries" ToRole="ApplicationBooks" />
           <NavigationProperty Name="Booking" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Libraries" FromRole="Libraries" ToRole="Booking" />
           <NavigationProperty Name="Booking1" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Libraries1" FromRole="Libraries" ToRole="Booking" />
           <NavigationProperty Name="BooksAndLibraries" Relationship="Trifonova_41P_DiplomModel.FK_BooksAndLibraries_Libraries" FromRole="Libraries" ToRole="BooksAndLibraries" />
@@ -1053,7 +1053,7 @@
           <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ReissuanceDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDLibrary" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Application" Relationship="Trifonova_41P_DiplomModel.FK_Application_Reader" FromRole="Reader" ToRole="Application" />
+          <NavigationProperty Name="ApplicationBooks" Relationship="Trifonova_41P_DiplomModel.FK_Application_Reader" FromRole="Reader" ToRole="ApplicationBooks" />
           <NavigationProperty Name="Booking" Relationship="Trifonova_41P_DiplomModel.FK_Booking_Reader" FromRole="Reader" ToRole="Booking" />
           <NavigationProperty Name="Gender" Relationship="Trifonova_41P_DiplomModel.FK_Reader_Gender" FromRole="Reader" ToRole="Gender" />
           <NavigationProperty Name="InformationAboutParents" Relationship="Trifonova_41P_DiplomModel.FK_Reader_InformationAboutParents" FromRole="Reader" ToRole="InformationAboutParents" />
@@ -1093,36 +1093,36 @@
         </Association>
         <Association Name="FK_Application_Books">
           <End Type="Trifonova_41P_DiplomModel.Books" Role="Books" Multiplicity="1" />
-          <End Type="Trifonova_41P_DiplomModel.Application" Role="Application" Multiplicity="*" />
+          <End Type="Trifonova_41P_DiplomModel.ApplicationBooks" Role="ApplicationBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Books">
               <PropertyRef Name="BookID" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="ApplicationBooks">
               <PropertyRef Name="IDBook" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_Libraries">
           <End Type="Trifonova_41P_DiplomModel.Libraries" Role="Libraries" Multiplicity="1" />
-          <End Type="Trifonova_41P_DiplomModel.Application" Role="Application" Multiplicity="*" />
+          <End Type="Trifonova_41P_DiplomModel.ApplicationBooks" Role="ApplicationBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Libraries">
               <PropertyRef Name="LibraryID" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="ApplicationBooks">
               <PropertyRef Name="IDLibrary" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Application_Reader">
           <End Type="Trifonova_41P_DiplomModel.Reader" Role="Reader" Multiplicity="1" />
-          <End Type="Trifonova_41P_DiplomModel.Application" Role="Application" Multiplicity="*" />
+          <End Type="Trifonova_41P_DiplomModel.ApplicationBooks" Role="ApplicationBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Reader">
               <PropertyRef Name="LibraryCardNumber" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="ApplicationBooks">
               <PropertyRef Name="IDReader" />
             </Dependent>
           </ReferentialConstraint>
@@ -1441,9 +1441,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Application">
-            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.Application">
-              <MappingFragment StoreEntitySet="Application">
+          <EntitySetMapping Name="ApplicationBooks">
+            <EntityTypeMapping TypeName="Trifonova_41P_DiplomModel.ApplicationBooks">
+              <MappingFragment StoreEntitySet="ApplicationBooks">
                 <ScalarProperty Name="countBooks" ColumnName="countBooks" />
                 <ScalarProperty Name="IDLibrary" ColumnName="IDLibrary" />
                 <ScalarProperty Name="IDReader" ColumnName="IDReader" />

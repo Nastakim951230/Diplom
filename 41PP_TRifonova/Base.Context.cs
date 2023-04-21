@@ -26,7 +26,7 @@ namespace _41PP_TRifonova
         }
     
         public virtual DbSet<AgeRestrictions> AgeRestrictions { get; set; }
-        public virtual DbSet<Application> Application { get; set; }
+        public virtual DbSet<ApplicationBooks> ApplicationBooks { get; set; }
         public virtual DbSet<Authors> Authors { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Books> Books { get; set; }
