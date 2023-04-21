@@ -122,5 +122,23 @@ namespace _41PP_TRifonova
         {
             loadedData();
         }
+
+        private void delet_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (MessageBox.Show("Вы точно хотите удалить заявку?", "Вопрос",
+               MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Button btn = (Button)sender;
+                int index = Convert.ToInt32(btn.Uid);
+                List<Application> applications = BD.bD.Application.Where(x => x.IDReader == index).ToList();
+                for (int i = 0; i < applications.Count; i++)
+                {
+                    BD.bD.Application.Remove(applications[i]);
+                }
+                BD.bD.SaveChanges();
+                FrameNavigate.per.Navigate(new PageApplication(employees));
+            }
+        }
     }
 }
