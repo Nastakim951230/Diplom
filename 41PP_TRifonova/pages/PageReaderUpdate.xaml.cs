@@ -22,6 +22,7 @@ namespace _41PP_TRifonova
     {
         Employees employees;
         Reader reader;
+        public static int backroundFon=1;
         public PageReaderUpdate(Employees employees,Reader reader)
         {
             InitializeComponent();
@@ -65,7 +66,18 @@ namespace _41PP_TRifonova
             }
             else
             {
-                PereRegistrReader.Foreground = (SolidColorBrush)(Brush)brush.ConvertFrom("#225496");
+                if (backroundFon == 1)
+                {
+                    PereRegistrReader.Foreground = (SolidColorBrush)(Brush)brush.ConvertFrom("#225496");
+                }
+                else if (backroundFon == 2)
+                {
+                    PereRegistrReader.Foreground = (SolidColorBrush)(Brush)brush.ConvertFrom("#6A2296");
+                }
+                else if(backroundFon == 3)
+                {
+                    PereRegistrReader.Foreground = (SolidColorBrush)(Brush)brush.ConvertFrom("#225E96");
+                }
             }
             List<IssueOrReturn> issueOrReturn = BD.bD.IssueOrReturn.Where(x => x.IDReader == reader.LibraryCardNumber).ToList();
             if (issueOrReturn.Count == 0)

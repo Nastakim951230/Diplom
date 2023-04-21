@@ -9,6 +9,7 @@ namespace _41PP_TRifonova
 {
     public partial class IssueOrReturn
     {
+        public static int backroundFon;
         public string fio
         {
             get
@@ -147,7 +148,18 @@ namespace _41PP_TRifonova
                 
                 if (nomer == 0)
                 {
-                    return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+                    if (backroundFon == 1)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+                    }
+                    else if (backroundFon == 2)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFEACCF5");
+                    }
+                    else
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFCCDFF5");
+                    }
                 }
                 else
                 {

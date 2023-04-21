@@ -7,9 +7,11 @@ using System.Windows.Media;
 
 namespace _41PP_TRifonova
 {
+    
     public partial class Reader
 
     {
+        public static int backroundFon;
         public string Nomer
         {
             get
@@ -76,7 +78,18 @@ namespace _41PP_TRifonova
                 date = date.AddYears(1);
                 if (date<=DateTime.Today)
                 {
-                    return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+                    if (backroundFon ==1)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+                    }
+                    else if(backroundFon ==2)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFEACCF5");
+                    }
+                    else
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFCCDFF5");
+                    }
                 }
                 else
                 {
@@ -149,7 +162,19 @@ namespace _41PP_TRifonova
                 }
                 if(nomer==0)
                 {
-                    return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+
+                    if (backroundFon == 1)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#CCE9F5");
+                    }
+                    else if (backroundFon == 2)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFEACCF5");
+                    }
+                    else
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#FFCCDFF5");
+                    }
                 }
                 else
                 {
@@ -170,8 +195,20 @@ namespace _41PP_TRifonova
                     return (SolidColorBrush)(Brush)brush.ConvertFrom("#fc1703");
                 }
                 else
-                {
-                    return (SolidColorBrush)(Brush)brush.ConvertFrom("#225496");
+                { 
+                    if (backroundFon == 1)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#225496");
+                    }
+                    else if (backroundFon == 2)
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#6A2296");
+                    }
+                    else
+                    {
+                        return (SolidColorBrush)(Brush)brush.ConvertFrom("#225E96");
+                    }
+                   
                 }
             }
         }
