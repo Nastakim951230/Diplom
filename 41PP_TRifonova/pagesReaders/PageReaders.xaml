@@ -12,7 +12,7 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="130"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
@@ -34,13 +34,18 @@
                     <ComboBox Name="CBGanre" Visibility="Collapsed"  Style="{StaticResource MainThemeComboBox}" SelectionChanged="CBGanre_SelectionChanged"></ComboBox>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <StackPanel Grid.Column="2">
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button Name="back" Template="{StaticResource ButtonStyl}"  Margin="0,0,5,0" Click="back_Click">X</Button>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <TextBlock Name="FIO" Visibility="Collapsed" Style="{StaticResource WhiteText}">dmdmv</TextBlock>
                 <Button Name="entrance" Template="{StaticResource MainThemeButton}" Visibility="Visible" Margin="0,0,5,0" Click="entrance_Click">Вход</Button>
                 <Button Name="exit" Template="{StaticResource MainThemeButton}" Visibility="Collapsed" Margin="0,0,5,0" Click="exit_Click">Выход</Button>
             </StackPanel>
-            <StackPanel Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,5,20" HorizontalAlignment="Right">
+            <StackPanel  VerticalAlignment="Bottom" Margin="0,0,5,20" HorizontalAlignment="Right">
                 <Button Name="BasketButton" Click="BasketButton_Click" Visibility="Collapsed" Template="{StaticResource MainThemeButton}">Корзина</Button>
+            </StackPanel>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="20,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">

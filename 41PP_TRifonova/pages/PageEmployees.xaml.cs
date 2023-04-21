@@ -297,8 +297,11 @@ namespace _41PP_TRifonova
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
-           
-            Environment.Exit(0);
+            if (MessageBox.Show("Вы точно хотите закрыть программу?", "Вопрос",
+               MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Environment.Exit(0);
+            }
         }
 
         private void addBook_Click(object sender, RoutedEventArgs e)

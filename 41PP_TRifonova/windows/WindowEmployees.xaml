@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_41PP_TRifonova"
-        mc:Ignorable="d" Icon="../image/logo.png"
-        Title="Библиотека" MinHeight="700" MinWidth="1000">
+        mc:Ignorable="d" Icon="../image/logo.png" 
+        Title="Библиотека"
+         DataContext ="{Binding RelativeSource={RelativeSource Mode=Self}}" WindowStartupLocation="CenterScreen"
+WindowStyle="None" AllowsTransparency="True" WindowState="Maximized" ResizeMode="NoResize"
+        MinHeight="700" MinWidth="1000">
     <Grid>
       
         <Frame Name="perehod" NavigationUIVisibility="Hidden"></Frame>

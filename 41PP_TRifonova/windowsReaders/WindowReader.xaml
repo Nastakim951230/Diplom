@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_41PP_TRifonova"
         mc:Ignorable="d" Icon="../image/logo.png"
-        Title="Библиотрека" Height="700" Width="1000">
+        Title="Библиотрека" 
+        DataContext ="{Binding RelativeSource={RelativeSource Mode=Self}}" WindowStartupLocation="CenterScreen"
+WindowStyle="None" AllowsTransparency="True" WindowState="Maximized" ResizeMode="NoResize"
+        Height="700" Width="1000">
     <Grid>
         <Frame Name="perehod" NavigationUIVisibility="Hidden"></Frame>
     </Grid>

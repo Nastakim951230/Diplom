@@ -335,5 +335,16 @@ namespace _41PP_TRifonova
         {
             FrameNavigate.perReader.Navigate(new PageBasket(reader, basket));
         }
+
+        private void back_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы точно хотите закрыть программу?", "Вопрос",
+                 MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+           
+
+        }
     }
 }

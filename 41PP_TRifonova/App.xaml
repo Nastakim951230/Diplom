@@ -46,7 +46,12 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
-
+        <ControlTemplate x:Key="ButtonStyl" TargetType="Button">
+            <Border CornerRadius="10" Background="#FFF73E28"  Padding="10,5,10,5" Margin="0,5,0,0">
+                <ContentControl   FontSize="10" FontFamily="Alegreya" 
+                    Foreground="#FFFFFF" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
         <!--основная тема-->
 
         <Style x:Key="MainThemeTabItem" TargetType="TabItem">
