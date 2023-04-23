@@ -9,7 +9,7 @@ namespace _41PP_TRifonova
 {
     public partial class Books
     {
-
+        
         public string avtors
         {
             get
@@ -32,6 +32,7 @@ namespace _41PP_TRifonova
                 else
                 {
                     return null;
+                    
                 }
             }
         }

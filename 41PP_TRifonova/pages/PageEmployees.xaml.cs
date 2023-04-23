@@ -389,6 +389,7 @@ namespace _41PP_TRifonova
             IssueOrReturn.backroundFon = 1;
             Booking.backroundFon = 1;
             PageReaderUpdate.backroundFon = 1;
+          
         }
 
         private void Violet_Click(object sender, RoutedEventArgs e)
@@ -403,6 +404,7 @@ namespace _41PP_TRifonova
             IssueOrReturn.backroundFon = 2;
             Booking.backroundFon = 2;
             PageReaderUpdate.backroundFon = 2;
+           
         }
 
         private void LightBlue_Click(object sender, RoutedEventArgs e)
@@ -417,6 +419,7 @@ namespace _41PP_TRifonova
             IssueOrReturn.backroundFon = 3;
             Booking.backroundFon = 3;
             PageReaderUpdate.backroundFon = 3;
+           
         }
     }
 }
