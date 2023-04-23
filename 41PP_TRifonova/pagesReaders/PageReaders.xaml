@@ -75,7 +75,7 @@
                             <Grid Width="140" Height="340">
                                 <StackPanel>
                                     <StackPanel Height="285">
-                                        <Image Width="150" Height="170" Source="{Binding Photo, TargetNullValue={StaticResource defaultImage}}"/>
+                                        <Image Width="150" Height="170" Source="{Binding photo, TargetNullValue={StaticResource defaultImage}}"/>
                                         <TextBlock Text="{Binding Nazvanie}" Style="{StaticResource textListNazvanie}" TextWrapping="Wrap" ></TextBlock>
                                         <TextBlock  Text="{Binding avtors}" Style="{StaticResource textListAvtor}" TextWrapping="Wrap"></TextBlock>
                                     </StackPanel>

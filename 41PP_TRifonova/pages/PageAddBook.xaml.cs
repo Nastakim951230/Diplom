@@ -178,7 +178,7 @@ namespace _41PP_TRifonova
                 string path = OFD.FileName;
                 if (path != null)
                 {
-                     newFilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\image\\" + System.IO.Path.GetFileName(path); // Путь куда копировать файл
+                    newFilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\image\\" + System.IO.Path.GetFileName(path); // Путь куда копировать файл
                     if (!File.Exists(newFilePath)) // Проверка наличия картинки в папке
                     {
                         File.Copy(path, newFilePath);
@@ -257,7 +257,7 @@ namespace _41PP_TRifonova
                                 }
                                 else
                                 {
-                                    books.Photo = newFilePath;
+                                    books.Photo = newFilePath.Substring(newFilePath.LastIndexOf('\\')).Replace("\\", "");
                                 }
                                 BD.bD.Books.Add(books);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace _41PP_TRifonova
 {
@@ -18,7 +19,22 @@ namespace _41PP_TRifonova
                 return authors.NameAuthor + " " + authors.SurnameAuthor;
             }
         }
-
+        public BitmapImage photo
+        {
+            get
+            {
+                if(Photo!=null)
+                {
+                    string path = Environment.CurrentDirectory.Replace("bin\\Debug", "image/");
+                    BitmapImage img = new BitmapImage(new Uri(path + Photo, UriKind.RelativeOrAbsolute));
+                    return img;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
         
         public string age
         {

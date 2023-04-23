@@ -72,7 +72,11 @@ namespace _41PP_TRifonova
             textDescription.Text = books.Description;
             if (books.Photo != null)
             {
-                BitmapImage img = new BitmapImage(new Uri(books.Photo, UriKind.RelativeOrAbsolute));
+               
+                    string path = Environment.CurrentDirectory.Replace("bin\\Debug", "image/");
+                   
+                  
+                BitmapImage img = new BitmapImage(new Uri(path+books.Photo, UriKind.RelativeOrAbsolute));
                 photoBook.Source = img;
             }
             textNazvanie.Text = books.Nazvanie;
