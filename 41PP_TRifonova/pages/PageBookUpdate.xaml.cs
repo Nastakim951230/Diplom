@@ -168,14 +168,20 @@ namespace _41PP_TRifonova
         private void updatePhoto_Click(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
 
-
-            OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
-            openFileDialog.ShowDialog(); // показываем
-            Barray = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
-            books.Photo = Barray;
-            BD.bD.SaveChanges();
-            showImage(Barray, photoBook);  // отображаем картинку
+                OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
+                openFileDialog.ShowDialog(); // показываем
+                Barray = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
+                books.Photo = Barray;
+                BD.bD.SaveChanges();
+                showImage(Barray, photoBook);  // отображаем картинку
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void updateNazvanie_Click(object sender, RoutedEventArgs e)

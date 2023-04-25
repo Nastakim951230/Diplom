@@ -80,6 +80,11 @@ namespace _41PP_TRifonova
             CBGanre.SelectedIndex = 0;
             listBook.ItemsSource = BD.bD.Books.ToList();
             TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
+
+
+          
+                listBook.ItemsSource = BD.bD.Books.ToList(); 
+           
         }
 
 
@@ -171,19 +176,20 @@ namespace _41PP_TRifonova
             {
                 listBook.ItemsSource = books;
                 TextCountBook.Text = "Количество книг: " + books.Count;
+               
             }
             else
             {
-               if(CBGanre.SelectedIndex>0)
+                if (CBGanre.SelectedIndex > 0)
                 {
                     CBGanre.SelectedIndex = 0;
                 }
-              else if (CBPodCatalog.SelectedIndex>0)
+                else if (CBPodCatalog.SelectedIndex > 0)
                 {
                     CBPodCatalog.SelectedIndex = 0;
                     CBGanre.SelectedIndex = 0;
                 }
-               else if(CBCatalog.SelectedIndex>0)
+                else if (CBCatalog.SelectedIndex > 0)
                 {
                     CBCatalog.SelectedIndex = 0;
                     CBPodCatalog.SelectedIndex = 0;

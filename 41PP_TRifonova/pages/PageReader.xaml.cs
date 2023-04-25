@@ -43,7 +43,17 @@ namespace _41PP_TRifonova
             }
             //Вывод ФИО сотрудника
             FIO.Text = employees.Surname + " " + name + ". " + othestvo + ".";
-            listReader.ItemsSource = BD.bD.Reader.Where(x=>x.IDLibrary==employees.LibraryID).ToList();
+            List<Reader> readers= BD.bD.Reader.Where(x => x.IDLibrary == employees.LibraryID).ToList();
+            if (readers.Count>0)
+            {
+                listReader.ItemsSource = readers;
+                tbEmpty.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tbEmpty.Visibility = Visibility.Visible;
+            }
+            
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -66,7 +76,8 @@ namespace _41PP_TRifonova
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            List<Reader> readers = BD.bD.Reader.ToList();
+            List<Reader> readers = BD.bD.Reader.Where(x => x.IDLibrary == employees.LibraryID).ToList();
+            
             if (!string.IsNullOrWhiteSpace(searhReader.Text))
             {
                 readers = readers.Where(x => x.id.ToLower().Contains(searhReader.Text.ToLower())).ToList();
@@ -75,12 +86,14 @@ namespace _41PP_TRifonova
             if(readers.Count>0)
             {
                 listReader.ItemsSource=readers;
+                tbEmpty.Visibility = Visibility.Collapsed;
             }
             else
             {
-                searhReader.Text = "";
-                MessageBox.Show("Данной читателя не существуеь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                listReader.ItemsSource = readers;
+                tbEmpty.Visibility = Visibility.Visible;
             }
+
         }
     }
 }

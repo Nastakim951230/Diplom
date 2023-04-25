@@ -44,8 +44,28 @@ namespace _41PP_TRifonova
             }
             //Вывод ФИО сотрудника
             FIO.Text = employees.Surname + " " + name + ". " + othestvo + ".";
-            listBooking.ItemsSource=BD.bD.Booking.Where(x=>x.FromWhere==employees.LibraryID).ToList();
-            listBookingLibrary.ItemsSource = BD.bD.Booking.Where(x => x.ToWhere == employees.LibraryID && x.look!=1).ToList();
+            List<Booking> bookingsLibrary = BD.bD.Booking.Where(x => x.ToWhere == employees.LibraryID && x.look != 1).ToList();
+            List<Booking> bookings = BD.bD.Booking.Where(x => x.FromWhere == employees.LibraryID).ToList();
+            if (bookingsLibrary.Count>0)
+            {
+                TbEmpty.Visibility = Visibility.Collapsed;
+                listBookingLibrary.ItemsSource = bookingsLibrary;
+            }
+            else
+            {
+                TbEmpty.Visibility = Visibility.Visible;
+            }
+            if (bookings.Count>0)
+            {
+                listBooking.ItemsSource = bookings;
+                tbEmpty.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tbEmpty.Visibility = Visibility.Visible;
+            }
+           
+            
         }
 
         private void back_Click(object sender, RoutedEventArgs e)

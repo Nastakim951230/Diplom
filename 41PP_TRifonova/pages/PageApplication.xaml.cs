@@ -58,7 +58,16 @@ namespace _41PP_TRifonova
                     readers.Add(reader[i]);
                 }
             }
-            listApplication.ItemsSource = readers;
+            if (readers.Count > 0)
+            {
+
+                listApplication.ItemsSource = readers;
+                tbEmpty.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tbEmpty.Visibility = Visibility.Visible;
+            }
         }
 
         private void back_Click(object sender, RoutedEventArgs e)

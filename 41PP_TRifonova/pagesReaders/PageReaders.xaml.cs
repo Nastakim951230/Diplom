@@ -66,8 +66,13 @@ namespace _41PP_TRifonova
             }
             CBGanre.SelectedIndex = 0;
 
-            listBook.ItemsSource = BD.bD.Books.ToList();
-            TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
+
+          
+            
+                listBook.ItemsSource = BD.bD.Books.ToList();
+
+
+                TextCountBook.Text = "Количество книг: " + BD.bD.Books.ToList().Count;
             if(reader != null)
             {
                 FIO.Visibility=Visibility.Visible;
@@ -182,6 +187,7 @@ namespace _41PP_TRifonova
             {
                 listBook.ItemsSource = books;
                 TextCountBook.Text = "Количество книг: " + books.Count;
+                
             }
             else
             {
@@ -203,6 +209,8 @@ namespace _41PP_TRifonova
                 search.Text = "";
                 MessageBox.Show("Данной книги не существуеь", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
+            
         }
 
         private void search_TextChanged(object sender, TextChangedEventArgs e)

@@ -40,6 +40,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <TextBlock Name="tbEmpty" Grid.Row="1" Text="Заявки не найдены" Style="{DynamicResource MainThemetextOsnovaNazvanie}" FontSize="40" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>

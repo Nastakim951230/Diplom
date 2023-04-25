@@ -45,8 +45,17 @@ namespace _41PP_TRifonova
             }
             //Вывод ФИО сотрудника
             FIO.Text = employees.Surname + " " + name + ". " + othestvo + ".";
-
-            listReturn.ItemsSource=BD.bD.IssueOrReturn.ToList();
+            List<IssueOrReturn> issues = BD.bD.IssueOrReturn.ToList();
+            if (issues.Count>0)
+            {
+                listReturn.ItemsSource = issues;
+                tbEmpty.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tbEmpty.Visibility = Visibility.Visible;
+            }
+            
                 }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -68,13 +77,16 @@ namespace _41PP_TRifonova
             if (issueOrReturns.Count > 0)
             {
                 listReturn.ItemsSource = issueOrReturns;
+                tbEmpty.Visibility=Visibility.Collapsed;
             }
 
             else
             {
-                searhReader.Text = "";
-                MessageBox.Show("У данного читател нету книг", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                listReturn.ItemsSource = issueOrReturns;
+                tbEmpty.Visibility = Visibility.Visible;
             }
+
+
         }
 
         private void extend_Click(object sender, RoutedEventArgs e)

@@ -185,10 +185,17 @@ namespace _41PP_TRifonova
         }
         private void addPhoto_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
-            openFileDialog.ShowDialog(); // показываем
-            Barray = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
-            showImage(Barray, photoBook);  // отображаем картинку
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
+                openFileDialog.ShowDialog(); // показываем
+                Barray = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
+                showImage(Barray, photoBook);  // отображаем картинку
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void back_Click(object sender, RoutedEventArgs e)

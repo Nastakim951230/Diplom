@@ -50,7 +50,20 @@ namespace _41PP_TRifonova
                 CBRole.Items.Add(roles[i].Role);
             }
             CBRole.SelectedIndex=0;
-            listEmployees.ItemsSource = BD.bD.Employees.Where(x=>x.EmployeeID!=employees.EmployeeID && x.LibraryID==employees.LibraryID).ToList();
+            List<Employees> employee = BD.bD.Employees.Where(x => x.EmployeeID != employees.EmployeeID && x.LibraryID == employees.LibraryID).ToList();
+
+            if (employee.Count > 0)
+            {
+                listEmployees.ItemsSource = employee;
+                tbEmpty.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            {
+                
+                tbEmpty.Visibility = Visibility.Visible;
+            }
+            
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -82,12 +95,13 @@ namespace _41PP_TRifonova
             if (employee.Count > 0)
             {
                 listEmployees.ItemsSource = employee;
+                tbEmpty.Visibility = Visibility.Collapsed;
             }
 
             else
             {
-                searhEmployees.Text = "";
-                MessageBox.Show("Данного сотрудника не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                listEmployees.ItemsSource = employee;
+                tbEmpty.Visibility = Visibility.Visible;
             }
         }
         private void add_Click(object sender, RoutedEventArgs e)
