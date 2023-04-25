@@ -28,6 +28,7 @@ namespace _41PP_TRifonova
     /// </summary>
     public partial class PageAddBook : Page
     {
+        byte[] Barray = null;
         Employees employees;
        
 
@@ -168,34 +169,26 @@ namespace _41PP_TRifonova
         //    }
 
         //}
-            private void addPhoto_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                 
-                OpenFileDialog OFD = new OpenFileDialog();
-                OFD.ShowDialog();
-                string path = OFD.FileName;
-                if (path != null)
-                {
-                    newFilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\image\\" + System.IO.Path.GetFileName(path); // Путь куда копировать файл
-                    if (!File.Exists(newFilePath)) // Проверка наличия картинки в папке
-                    {
-                        File.Copy(path, newFilePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Такая картинка уже есть! Добавлено старое фото");
-                    }
-                    BitmapImage img = new BitmapImage(new Uri(newFilePath, UriKind.RelativeOrAbsolute));
-                    photoBook.Source = img;
 
-                }
-            }
-            catch
+        void showImage(byte[] Barray, System.Windows.Controls.Image img)
+        {
+            BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
+            using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
             {
-                MessageBox.Show("При добавлении нового фото возникла ошибка!");
+                BI.BeginInit();  // начинаем считывание
+                BI.StreamSource = m;  // задаем источник потока
+                BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
+                BI.EndInit();  // заканчиваем считывание
             }
+            img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
+            img.Stretch = Stretch.Uniform;
+        }
+        private void addPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
+            openFileDialog.ShowDialog(); // показываем
+            Barray = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
+            showImage(Barray, photoBook);  // отображаем картинку
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -257,7 +250,8 @@ namespace _41PP_TRifonova
                                 }
                                 else
                                 {
-                                    books.Photo = newFilePath.Substring(newFilePath.LastIndexOf('\\')).Replace("\\", "");
+                                    books.Photo = Barray;
+                                    
                                 }
                                 BD.bD.Books.Add(books);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,12 +73,10 @@ namespace _41PP_TRifonova
             textDescription.Text = books.Description;
             if (books.Photo != null)
             {
+                byte[] Bar = books.Photo;  
+                showImage(Bar, photoBook);  // отображаем картинку
                
-                    string path = Environment.CurrentDirectory.Replace("bin\\Debug", "image/");
                    
-                  
-                BitmapImage img = new BitmapImage(new Uri(path+books.Photo, UriKind.RelativeOrAbsolute));
-                photoBook.Source = img;
             }
             textNazvanie.Text = books.Nazvanie;
             List<BooksAndAuthors> booksAndAuthors = BD.bD.BooksAndAuthors.Where(x => x.BookID == books.BookID).ToList();
@@ -136,6 +135,19 @@ namespace _41PP_TRifonova
                     }
                 }
             }
+        }
+        void showImage(byte[] Barray, System.Windows.Controls.Image img)
+        {
+            BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
+            using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
+            {
+                BI.BeginInit();  // начинаем считывание
+                BI.StreamSource = m;  // задаем источник потока
+                BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
+                BI.EndInit();  // заканчиваем считывание
+            }
+            img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
+            img.Stretch = Stretch.Uniform;
         }
 
         private void back_Click(object sender, RoutedEventArgs e)

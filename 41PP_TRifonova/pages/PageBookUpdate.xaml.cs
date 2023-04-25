@@ -24,8 +24,8 @@ namespace _41PP_TRifonova
     public partial class PageBookUpdate : Page
     {
         
-        string newFilePath = null; // путь к картинке
-        //byte[] Barray = null;
+       
+        byte[] Barray = null;
         Employees employees;
         Books books;
         int id;
@@ -74,9 +74,10 @@ namespace _41PP_TRifonova
             textDescription.Text = books.Description;
             if(books.Photo!=null)
             {
-                string path = Environment.CurrentDirectory.Replace("bin\\Debug", "image/");
-                BitmapImage img = new BitmapImage(new Uri(path+books.Photo, UriKind.RelativeOrAbsolute));
-                photoBook.Source = img;
+
+                byte[] Barray = books.Photo;
+                showImage(Barray, photoBook);  // отображаем картинку
+
             }
             textNazvanie.Text= books.Nazvanie;
              List<BooksAndAuthors> booksAndAuthors=BD.bD.BooksAndAuthors.Where(x=>x.BookID==books.BookID).ToList();
@@ -144,7 +145,21 @@ namespace _41PP_TRifonova
 
             
         }
-        
+
+        void showImage(byte[] Barray, System.Windows.Controls.Image img)
+        {
+            BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
+            using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
+            {
+                BI.BeginInit();  // начинаем считывание
+                BI.StreamSource = m;  // задаем источник потока
+                BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
+                BI.EndInit();  // заканчиваем считывание
+            }
+            img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
+            img.Stretch = Stretch.Uniform;
+        }
+
         private void back_Click(object sender, RoutedEventArgs e)
         {
             FrameNavigate.per.Navigate(new PageEmployees(employees));
@@ -152,32 +167,15 @@ namespace _41PP_TRifonova
 
         private void updatePhoto_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
 
-                OpenFileDialog OFD = new OpenFileDialog();
-                OFD.ShowDialog();
-                string path = OFD.FileName;
-                if (path != null)
-                {
-                    newFilePath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\image\\" + System.IO.Path.GetFileName(path);// Путь куда копировать файл
-                    if (!File.Exists(newFilePath)) // Проверка наличия картинки в папке
-                    {
-                        File.Copy(path, newFilePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Такая картинка уже есть! Добавлено старое фото");
-                    }
-                    books.Photo = newFilePath.Substring(newFilePath.LastIndexOf('\\')).Replace("\\", ""); ;
-                    BD.bD.SaveChanges();
-                    FrameNavigate.per.Navigate(new PageBookUpdate(employees, books, id));
-                }
-            }
-            catch
-            {
-                MessageBox.Show("При добавлении нового фото возникла ошибка!");
-            }
+
+
+            OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
+            openFileDialog.ShowDialog(); // показываем
+            Barray = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
+            books.Photo = Barray;
+            BD.bD.SaveChanges();
+            showImage(Barray, photoBook);  // отображаем картинку
         }
 
         private void updateNazvanie_Click(object sender, RoutedEventArgs e)

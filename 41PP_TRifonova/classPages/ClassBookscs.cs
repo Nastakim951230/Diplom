@@ -19,23 +19,7 @@ namespace _41PP_TRifonova
                 return authors.NameAuthor + " " + authors.SurnameAuthor;
             }
         }
-        public BitmapImage photo
-        {
-            get
-            {
-                if(Photo!=null)
-                {
-                    string path = Environment.CurrentDirectory.Replace("bin\\Debug", "image/");
-                    BitmapImage img = new BitmapImage(new Uri(path + Photo, UriKind.RelativeOrAbsolute));
-                    return img;
-                }
-                else
-                {
-                    return null;
-                    
-                }
-            }
-        }
+       
         
         public string age
         {

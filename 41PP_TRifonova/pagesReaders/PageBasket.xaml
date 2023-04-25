@@ -8,7 +8,7 @@
       d:DesignHeight="700" d:DesignWidth="1000"
       Title="PageBasket">
     <Page.Resources>
-        <BitmapImage x:Key="defaultImage" UriSource="./image/ping.png"></BitmapImage>
+        <BitmapImage x:Key="defaultImage" UriSource="../image/ping.png"></BitmapImage>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -35,7 +35,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <Image Source="{Binding books.photo, TargetNullValue={StaticResource defaultImage}}"></Image>
+                                    <Image Source="{Binding books.Photo, TargetNullValue={StaticResource defaultImage}}"></Image>
                                 </Grid>
                                 <Grid Grid.Column="1" Margin="5,0,0,0">
                                     <Grid.RowDefinitions>
